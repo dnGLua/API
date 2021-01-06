@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<AssemblyName>dnGLua.API.Starfall</AssemblyName>
+		<RootNamespace>dnGLua.API.Starfall</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>dnGLua</Authors>
+
+		<Description>Starfall standard library API for C#.</Description>
+		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/Starfall</PackageProjectUrl>
+		<PackageTags>csharp api gmod starfall starfallex gmod-lua glua dnglua</PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+
+		<Version>0.1.0</Version>
+		<FileVersion>0.1.0</FileVersion>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Generated\**" />
+		<None Include="Generated\**" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Debug'">
+		<ProjectReference Include="..\Common\Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+		<PackageReference Include="dnGLua.API.Common" Version="0.1.0" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30709.64
+MinimumVisualStudioVersion = 16.0.30709.64
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{47ADBCC7-CB77-43B3-B062-81719291B1F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarrysMod", "GarrysMod\GarrysMod.csproj", "{009DE0E8-429B-48E1-9EC2-F5045641657D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starfall", "Starfall\Starfall.csproj", "{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47ADBCC7-CB77-43B3-B062-81719291B1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47ADBCC7-CB77-43B3-B062-81719291B1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47ADBCC7-CB77-43B3-B062-81719291B1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47ADBCC7-CB77-43B3-B062-81719291B1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{009DE0E8-429B-48E1-9EC2-F5045641657D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009DE0E8-429B-48E1-9EC2-F5045641657D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009DE0E8-429B-48E1-9EC2-F5045641657D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009DE0E8-429B-48E1-9EC2-F5045641657D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDE5FFA0-CB50-4BF7-9853-F58031F7763E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<AssemblyName>dnGLua.API.Common</AssemblyName>
+		<RootNamespace>dnGLua.API.Common</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Authors>dnGLua</Authors>
+
+		<Description>Common GLua library API for C#.</Description>
+		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/Common</PackageProjectUrl>
+		<PackageTags>csharp api gmod-lua glua common dnglua</PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+
+		<Version>0.1.0</Version>
+		<FileVersion>0.1.0</FileVersion>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Generated\**" />
+		<None Include="Generated\**" />
+	</ItemGroup>
+
+</Project>
