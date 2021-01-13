@@ -4,6 +4,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
+		<Nullable>enable</Nullable>
 		<IsPackable>true</IsPackable>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<ContentTargetFolders>contentFiles</ContentTargetFolders>
@@ -25,7 +26,6 @@
 		<PackageReleaseNotes></PackageReleaseNotes>
 
 		<PackageVersion>0.1.0</PackageVersion>
-		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -50,10 +50,6 @@
 
 	<ItemGroup Condition="'$(Configuration)'=='Debug'">
 		<ProjectReference Include="..\Common\Common.csproj" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<PackageReference Include="dnGLua.API.Common" Version="0.1.0" />
 	</ItemGroup>
 
 </Project>
