@@ -33,23 +33,16 @@
 			<Pack>true</Pack>
 			<PackagePath>$(ContentTargetFolders)\cs\net5.0\$(PackageId)\%(RecursiveDir)\</PackagePath>
 		</Compile>
-		<EmbeddedResource Update="@(EmbeddedResource)">
-			<Pack>true</Pack>
-			<PackagePath>$(ContentTargetFolders)\any\any\$(PackageId)\%(RecursiveDir)\</PackagePath>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Remove="@(PackageReference)" />
+		<ProjectReference Include="..\Common\Common.csproj" />
 	</ItemGroup>
 
 	<Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
 
 	<Target Name="Compile" />
 	<Target Name="CopyFilesToOutputDirectory" />
-
-	<ItemGroup Condition="'$(Configuration)'=='Debug'">
-		<ProjectReference Include="..\Common\Common.csproj" />
-	</ItemGroup>
 
 </Project>

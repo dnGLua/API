@@ -33,10 +33,6 @@
 			<Pack>true</Pack>
 			<PackagePath>$(ContentTargetFolders)\cs\net5.0\$(PackageId)\%(RecursiveDir)\</PackagePath>
 		</Compile>
-		<EmbeddedResource Update="@(EmbeddedResource)">
-			<Pack>true</Pack>
-			<PackagePath>$(ContentTargetFolders)\any\any\$(PackageId)\%(RecursiveDir)\</PackagePath>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
