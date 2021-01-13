@@ -39,6 +39,7 @@ namespace dnGLua.API.CodeGenerator
             {
                 if (!output.Exists)
                 {
+                    Console.Error.WriteLine("Invalid --output argument");
                     return 2;
                 }
 

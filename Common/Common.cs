@@ -1,5 +1,5 @@
 ﻿#nullable enable
-#pragma warning disable 660, 661, 8600, 8602, 8618
+#pragma warning disable 660, 1591, 661, 8600, 8602, 8618
 #pragma warning disable CA1050 // Declare types in namespaces
 #pragma warning disable CA1822 // Mark members as static
 #pragma warning disable CS0626 // Method, operator, or accessor is marked external and has no attributes on it
@@ -35,20 +35,20 @@ public static partial class _G
     /// @CSharpLua.Template = CLIENT
     public static readonly bool CLIENT =
 #if CLIENT
-        true
+            true
 #else
-        false
+            false
 #endif
-    ;
+        ;
 
     /// @CSharpLua.Template = SERVER
     public static readonly bool SERVER =
 #if SERVER
-        true
+            true
 #else
-        false
+            false
 #endif
-    ;
+        ;
 
     /// @CSharpLua.Template = NULL
     public static readonly BaseEntity NULL;
@@ -780,12 +780,12 @@ public abstract partial class EventBase
 public sealed partial class Tick : EventBase
 {
     private const string ID =
-    #if STARFALL
-        "tick"
-    #else
-        "Tick"
-    #endif
-    ;
+#if STARFALL
+            "tick"
+#else
+            "Tick"
+#endif
+        ;
 
     public Tick(Action func) : base(ID, func, false)
     {
@@ -799,12 +799,12 @@ public sealed partial class Tick : EventBase
 public sealed partial class Think : EventBase
 {
     private const string ID =
-    #if STARFALL
-        "think"
-    #else
-        "Think"
-    #endif
-    ;
+#if STARFALL
+            "think"
+#else
+            "Think"
+#endif
+        ;
 
     public Think(Action func) : base(ID, func, false)
     {
@@ -816,36 +816,56 @@ public sealed partial class Think : EventBase
 }
 
 #if STARFALL
-public sealed partial class ComponentLinked : EventBase {
-  private const string ID = "ComponentLinked";
+public sealed partial class ComponentLinked : EventBase
+{
+    private const string ID = "ComponentLinked";
 
-  public ComponentLinked(Action<BaseEntity> func) : base(ID, func, false) { }
+    public ComponentLinked(Action<BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public ComponentLinked(Action<EventBase, BaseEntity> func) : base(ID, func, true) { }
+    public ComponentLinked(Action<EventBase, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class ComponentUnlinked : EventBase {
-  private const string ID = "ComponentUnlinked";
+public sealed partial class ComponentUnlinked : EventBase
+{
+    private const string ID = "ComponentUnlinked";
 
-  public ComponentUnlinked(Action<BaseEntity> func) : base(ID, func, false) { }
+    public ComponentUnlinked(Action<BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public ComponentUnlinked(Action<EventBase, BaseEntity> func) : base(ID, func, true) { }
+    public ComponentUnlinked(Action<EventBase, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class EntityRemoved : EventBase {
-  private const string ID = "EntityRemoved";
+public sealed partial class EntityRemoved : EventBase
+{
+    private const string ID = "EntityRemoved";
 
-  public EntityRemoved(Action<BaseEntity> func) : base(ID, func, false) { }
+    public EntityRemoved(Action<BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public EntityRemoved(Action<EventBase, BaseEntity> func) : base(ID, func, true) { }
+    public EntityRemoved(Action<EventBase, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class EntityCreated : EventBase {
-  private const string ID = "OnEntityCreated";
+public sealed partial class EntityCreated : EventBase
+{
+    private const string ID = "OnEntityCreated";
 
-  public EntityCreated(Action<BaseEntity> func) : base(ID, func, false) { }
+    public EntityCreated(Action<BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public EntityCreated(Action<EventBase, BaseEntity> func) : base(ID, func, true) { }
+    public EntityCreated(Action<EventBase, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
 //public sealed partial class KeyPress : EventBase {
@@ -864,20 +884,34 @@ public sealed partial class EntityCreated : EventBase {
 //  public KeyRelease(Action<EventBase, BasePlayer, IN> func) : base(ID, func, true) { }
 //}
 
-public sealed partial class Net : EventBase {
-  private const string ID = "net";
-  public Net(Action<string> func) : base(ID, func, false) { }
+public sealed partial class Net : EventBase
+{
+    private const string ID = "net";
 
-  public Net(Action<EventBase, string> func) : base(ID, func, true) { }
+    public Net(Action<string> func) : base(ID, func, false)
+    {
+    }
 
-  public Net(Action<string, int> func) : base(ID, func, false) { }
+    public Net(Action<EventBase, string> func) : base(ID, func, true)
+    {
+    }
 
-  public Net(Action<EventBase, string, int> func) : base(ID, func, true) { }
+    public Net(Action<string, int> func) : base(ID, func, false)
+    {
+    }
+
+    public Net(Action<EventBase, string, int> func) : base(ID, func, true)
+    {
+    }
 
 #if SERVER
-  public Net(Action<string, int, BasePlayer> func) : base(ID, func, false) { }
+    public Net(Action<string, int, BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public Net(Action<EventBase, string, int, BasePlayer> func) : base(ID, func, true) { }
+    public Net(Action<EventBase, string, int, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 #endif
 }
 
@@ -897,173 +931,284 @@ public sealed partial class Net : EventBase {
 //    public Remote(Func<EventBase, BaseEntity, BasePlayer, object?[]?, TOut> func) : base(ID, func, true) { }
 //  }
 
-public sealed partial class PhysgunDrop : EventBase {
-  private const string ID = "PhysgunDrop";
+public sealed partial class PhysgunDrop : EventBase
+{
+    private const string ID = "PhysgunDrop";
 
-  public PhysgunDrop(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public PhysgunDrop(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PhysgunDrop(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public PhysgunDrop(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PhysgunPickup : EventBase {
-  private const string ID = "PhysgunPickup";
+public sealed partial class PhysgunPickup : EventBase
+{
+    private const string ID = "PhysgunPickup";
 
-  public PhysgunPickup(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public PhysgunPickup(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PhysgunPickup(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public PhysgunPickup(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerNoClip : EventBase {
-  private const string ID = "PlayerNoClip";
+public sealed partial class PlayerNoClip : EventBase
+{
+    private const string ID = "PlayerNoClip";
 
-  public PlayerNoClip(Action<BasePlayer, bool> func) : base(ID, func, false) { }
+    public PlayerNoClip(Action<BasePlayer, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerNoClip(Action<EventBase, BasePlayer, bool> func) : base(ID, func, true) { }
+    public PlayerNoClip(Action<EventBase, BasePlayer, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerSwitchWeapon : EventBase {
-  private const string ID = "PlayerSwitchWeapon";
+public sealed partial class PlayerSwitchWeapon : EventBase
+{
+    private const string ID = "PlayerSwitchWeapon";
 
-  public PlayerSwitchWeapon(Action<BasePlayer, Weapon, Weapon> func) : base(ID, func, false) { }
+    public PlayerSwitchWeapon(Action<BasePlayer, Weapon, Weapon> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSwitchWeapon(Action<EventBase, BasePlayer, Weapon, Weapon> func) : base(ID, func, true) { }
+    public PlayerSwitchWeapon(Action<EventBase, BasePlayer, Weapon, Weapon> func) : base(ID, func, true)
+    {
+    }
 
-  public PlayerSwitchWeapon(Func<BasePlayer, Weapon, Weapon, bool> func) : base(ID, func, false) { }
+    public PlayerSwitchWeapon(Func<BasePlayer, Weapon, Weapon, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSwitchWeapon(Func<EventBase, BasePlayer, Weapon, Weapon, bool> func) : base(ID, func, true) { }
+    public PlayerSwitchWeapon(Func<EventBase, BasePlayer, Weapon, Weapon, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PropBreak : EventBase {
-  private const string ID = "PropBreak";
+public sealed partial class PropBreak : EventBase
+{
+    private const string ID = "PropBreak";
 
-  public PropBreak(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public PropBreak(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PropBreak(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public PropBreak(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
 #if CLIENT
-public sealed partial class StarfallUsed : EventBase {
-  private const string ID = "starfallUsed";
+public sealed partial class StarfallUsed : EventBase
+{
+    private const string ID = "starfallUsed";
 
-  public StarfallUsed(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public StarfallUsed(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public StarfallUsed(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public StarfallUsed(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PermissionRequest : EventBase {
-  private const string ID = "permissionrequest";
+public sealed partial class PermissionRequest : EventBase
+{
+    private const string ID = "permissionrequest";
 
-  public PermissionRequest(Action func) : base(ID, func, false) { }
+    public PermissionRequest(Action func) : base(ID, func, false)
+    {
+    }
 
-  public PermissionRequest(Action<EventBase> func) : base(ID, func, true) { }
+    public PermissionRequest(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class HudConnected : EventBase {
-  private const string ID = "hudconnected";
+public sealed partial class HudConnected : EventBase
+{
+    private const string ID = "hudconnected";
 
-  public HudConnected(Action func) : base(ID, func, false) { }
+    public HudConnected(Action func) : base(ID, func, false)
+    {
+    }
 
-  public HudConnected(Action<EventBase> func) : base(ID, func, true) { }
+    public HudConnected(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class HudDisconnected : EventBase {
-  private const string ID = "huddisconnected";
+public sealed partial class HudDisconnected : EventBase
+{
+    private const string ID = "huddisconnected";
 
-  public HudDisconnected(Action func) : base(ID, func, false) { }
+    public HudDisconnected(Action func) : base(ID, func, false)
+    {
+    }
 
-  public HudDisconnected(Action<EventBase> func) : base(ID, func, true) { }
+    public HudDisconnected(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class HudShouldDraw : EventBase {
-  private const string ID = "hudshoulddraw";
+public sealed partial class HudShouldDraw : EventBase
+{
+    private const string ID = "hudshoulddraw";
 
-  public HudShouldDraw(Action<string> func) : base(ID, func, false) { }
+    public HudShouldDraw(Action<string> func) : base(ID, func, false)
+    {
+    }
 
-  public HudShouldDraw(Action<EventBase, string> func) : base(ID, func, true) { }
+    public HudShouldDraw(Action<EventBase, string> func) : base(ID, func, true)
+    {
+    }
 
-  public HudShouldDraw(Func<string, bool> func) : base(ID, func, false) { }
+    public HudShouldDraw(Func<string, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public HudShouldDraw(Func<EventBase, string, bool> func) : base(ID, func, true) { }
+    public HudShouldDraw(Func<EventBase, string, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PreDrawHUD : EventBase {
-  private const string ID = "predrawhud";
+public sealed partial class PreDrawHUD : EventBase
+{
+    private const string ID = "predrawhud";
 
-  public PreDrawHUD(Action func) : base(ID, func, false) { }
+    public PreDrawHUD(Action func) : base(ID, func, false)
+    {
+    }
 
-  public PreDrawHUD(Action<EventBase> func) : base(ID, func, true) { }
+    public PreDrawHUD(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class DrawHUD : EventBase {
-  private const string ID = "drawhud";
+public sealed partial class DrawHUD : EventBase
+{
+    private const string ID = "drawhud";
 
-  public DrawHUD(Action func) : base(ID, func, false) { }
+    public DrawHUD(Action func) : base(ID, func, false)
+    {
+    }
 
-  public DrawHUD(Action<EventBase> func) : base(ID, func, true) { }
+    public DrawHUD(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PostDrawHUD : EventBase {
-  private const string ID = "postdrawhud";
+public sealed partial class PostDrawHUD : EventBase
+{
+    private const string ID = "postdrawhud";
 
-  public PostDrawHUD(Action func) : base(ID, func, false) { }
+    public PostDrawHUD(Action func) : base(ID, func, false)
+    {
+    }
 
-  public PostDrawHUD(Action<EventBase> func) : base(ID, func, true) { }
+    public PostDrawHUD(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class RenderScreen : EventBase {
-  private const string ID = "render";
+public sealed partial class RenderScreen : EventBase
+{
+    private const string ID = "render";
 
-  public RenderScreen(Action func) : base(ID, func, false) { }
+    public RenderScreen(Action func) : base(ID, func, false)
+    {
+    }
 
-  public RenderScreen(Action<EventBase> func) : base(ID, func, true) { }
+    public RenderScreen(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class RenderOffscreen : EventBase {
-  private const string ID = "renderoffscreen";
+public sealed partial class RenderOffscreen : EventBase
+{
+    private const string ID = "renderoffscreen";
 
-  public RenderOffscreen(Action func) : base(ID, func, false) { }
+    public RenderOffscreen(Action func) : base(ID, func, false)
+    {
+    }
 
-  public RenderOffscreen(Action<EventBase> func) : base(ID, func, true) { }
+    public RenderOffscreen(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class RenderScene : EventBase {
-  private const string ID = "renderscene";
+public sealed partial class RenderScene : EventBase
+{
+    private const string ID = "renderscene";
 
-  public RenderScene(Action<Vector, Angle, double> func) : base(ID, func, false) { }
+    public RenderScene(Action<Vector, Angle, double> func) : base(ID, func, false)
+    {
+    }
 
-  public RenderScene(Action<EventBase, Vector, Angle, double> func) : base(ID, func, true) { }
+    public RenderScene(Action<EventBase, Vector, Angle, double> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PreDrawOpaqueRenderables : EventBase {
-  private const string ID = "predrawopaquerenderables";
+public sealed partial class PreDrawOpaqueRenderables : EventBase
+{
+    private const string ID = "predrawopaquerenderables";
 
-  public PreDrawOpaqueRenderables(Action func) : base(ID, func, false) { }
+    public PreDrawOpaqueRenderables(Action func) : base(ID, func, false)
+    {
+    }
 
-  public PreDrawOpaqueRenderables(Action<EventBase> func) : base(ID, func, true) { }
+    public PreDrawOpaqueRenderables(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 
-  public PreDrawOpaqueRenderables(Action<bool, bool> func) : base(ID, func, false) { }
+    public PreDrawOpaqueRenderables(Action<bool, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PreDrawOpaqueRenderables(Action<EventBase, bool, bool> func) : base(ID, func, true) { }
+    public PreDrawOpaqueRenderables(Action<EventBase, bool, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PostDrawOpaqueRenderables : EventBase {
-  private const string ID = "postdrawopaquerenderables";
+public sealed partial class PostDrawOpaqueRenderables : EventBase
+{
+    private const string ID = "postdrawopaquerenderables";
 
-  public PostDrawOpaqueRenderables(Action func) : base(ID, func, false) { }
+    public PostDrawOpaqueRenderables(Action func) : base(ID, func, false)
+    {
+    }
 
-  public PostDrawOpaqueRenderables(Action<EventBase> func) : base(ID, func, true) { }
+    public PostDrawOpaqueRenderables(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 
-  public PostDrawOpaqueRenderables(Action<bool, bool> func) : base(ID, func, false) { }
+    public PostDrawOpaqueRenderables(Action<bool, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PostDrawOpaqueRenderables(Action<EventBase, bool, bool> func) : base(ID, func, true) { }
+    public PostDrawOpaqueRenderables(Action<EventBase, bool, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class CalcView : EventBase {
-  private const string ID = "calcview";
+public sealed partial class CalcView : EventBase
+{
+    private const string ID = "calcview";
 
-  public CalcView(Action<Vector, Angle, double, double, double> func) : base(ID, func, false) { }
+    public CalcView(Action<Vector, Angle, double, double, double> func) : base(ID, func, false)
+    {
+    }
 
-  public CalcView(Action<EventBase, Vector, Angle, double, double, double> func) : base(ID, func, true) { }
+    public CalcView(Action<EventBase, Vector, Angle, double, double, double> func) : base(ID, func, true)
+    {
+    }
 }
 
 //public sealed partial class PlayerButtonDown : EventBase {
@@ -1082,28 +1227,43 @@ public sealed partial class CalcView : EventBase {
 //  public PlayerButtonUp(Action<EventBase, BUTTON_CODE> func) : base(ID, func, true) { }
 //}
 
-public sealed partial class MouseMoved : EventBase {
-  private const string ID = "mousemoved";
+public sealed partial class MouseMoved : EventBase
+{
+    private const string ID = "mousemoved";
 
-  public MouseMoved(Action<int, int> func) : base(ID, func, false) { }
+    public MouseMoved(Action<int, int> func) : base(ID, func, false)
+    {
+    }
 
-  public MouseMoved(Action<EventBase, int, int> func) : base(ID, func, true) { }
+    public MouseMoved(Action<EventBase, int, int> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class MouseWheeled : EventBase {
-  private const string ID = "mouseWheeled";
+public sealed partial class MouseWheeled : EventBase
+{
+    private const string ID = "mouseWheeled";
 
-  public MouseWheeled(Action<int> func) : base(ID, func, false) { }
+    public MouseWheeled(Action<int> func) : base(ID, func, false)
+    {
+    }
 
-  public MouseWheeled(Action<EventBase, int> func) : base(ID, func, true) { }
+    public MouseWheeled(Action<EventBase, int> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class FinishChat : EventBase {
-  private const string ID = "FinishChat";
+public sealed partial class FinishChat : EventBase
+{
+    private const string ID = "FinishChat";
 
-  public FinishChat(Action func) : base(ID, func, false) { }
+    public FinishChat(Action func) : base(ID, func, false)
+    {
+    }
 
-  public FinishChat(Action<EventBase> func) : base(ID, func, true) { }
+    public FinishChat(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
 //public sealed partial class PlayerChat : EventBase {
@@ -1124,132 +1284,218 @@ public sealed partial class FinishChat : EventBase {
 #endif
 
 #if SERVER
-public sealed partial class ClientInitialized : EventBase {
-  private const string ID = "ClientInitialized";
+public sealed partial class ClientInitialized : EventBase
+{
+    private const string ID = "ClientInitialized";
 
-  public ClientInitialized(Action<BasePlayer> func) : base(ID, func, false) { }
+    public ClientInitialized(Action<BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public ClientInitialized(Action<EventBase, BasePlayer> func) : base(ID, func, true) { }
+    public ClientInitialized(Action<EventBase, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class InputChanged : EventBase {
-  private const string ID = "input";
+public sealed partial class InputChanged : EventBase
+{
+    private const string ID = "input";
 
-  public InputChanged(Action<string, object?> func) : base(ID, func, false) { }
+    public InputChanged(Action<string, object?> func) : base(ID, func, false)
+    {
+    }
 
-  public InputChanged(Action<EventBase, string, object?> func) : base(ID, func, true) { }
+    public InputChanged(Action<EventBase, string, object?> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class Removed : EventBase {
-  private const string ID = "Removed";
+public sealed partial class Removed : EventBase
+{
+    private const string ID = "Removed";
 
-  public Removed(Action func) : base(ID, func, false) { }
+    public Removed(Action func) : base(ID, func, false)
+    {
+    }
 
-  public Removed(Action<EventBase> func) : base(ID, func, true) { }
+    public Removed(Action<EventBase> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerDeath : EventBase {
-  private const string ID = "PlayerDeath";
+public sealed partial class PlayerDeath : EventBase
+{
+    private const string ID = "PlayerDeath";
 
-  public PlayerDeath(Action<BasePlayer, BaseEntity, BaseEntity> func) : base(ID, func, false) { }
+    public PlayerDeath(Action<BasePlayer, BaseEntity, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerDeath(Action<EventBase, BasePlayer, BaseEntity, BaseEntity> func) : base(ID, func, true) { }
+    public PlayerDeath(Action<EventBase, BasePlayer, BaseEntity, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerDisconnected : EventBase {
-  private const string ID = "PlayerDisconnected";
+public sealed partial class PlayerDisconnected : EventBase
+{
+    private const string ID = "PlayerDisconnected";
 
-  public PlayerDisconnected(Action<BasePlayer> func) : base(ID, func, false) { }
+    public PlayerDisconnected(Action<BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerDisconnected(Action<EventBase, BasePlayer> func) : base(ID, func, true) { }
+    public PlayerDisconnected(Action<EventBase, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerInitialSpawn : EventBase {
-  private const string ID = "PlayerInitialSpawn";
+public sealed partial class PlayerInitialSpawn : EventBase
+{
+    private const string ID = "PlayerInitialSpawn";
 
-  public PlayerInitialSpawn(Action<BasePlayer> func) : base(ID, func, false) { }
+    public PlayerInitialSpawn(Action<BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerInitialSpawn(Action<EventBase, BasePlayer> func) : base(ID, func, true) { }
+    public PlayerInitialSpawn(Action<EventBase, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerSpawn : EventBase {
-  private const string ID = "PlayerSpawn";
+public sealed partial class PlayerSpawn : EventBase
+{
+    private const string ID = "PlayerSpawn";
 
-  public PlayerSpawn(Action<BasePlayer> func) : base(ID, func, false) { }
+    public PlayerSpawn(Action<BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSpawn(Action<EventBase, BasePlayer> func) : base(ID, func, true) { }
+    public PlayerSpawn(Action<EventBase, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerEnteredVehicle : EventBase {
-  private const string ID = "PlayerEnteredVehicle";
+public sealed partial class PlayerEnteredVehicle : EventBase
+{
+    private const string ID = "PlayerEnteredVehicle";
 
-  public PlayerEnteredVehicle(Action<BasePlayer, Vehicle> func) : base(ID, func, false) { }
+    public PlayerEnteredVehicle(Action<BasePlayer, Vehicle> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerEnteredVehicle(Action<EventBase, BasePlayer, Vehicle> func) : base(ID, func, true) { }
+    public PlayerEnteredVehicle(Action<EventBase, BasePlayer, Vehicle> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerLeaveVehicle : EventBase {
-  private const string ID = "PlayerLeaveVehicle";
+public sealed partial class PlayerLeaveVehicle : EventBase
+{
+    private const string ID = "PlayerLeaveVehicle";
 
-  public PlayerLeaveVehicle(Action<BasePlayer, Vehicle> func) : base(ID, func, false) { }
+    public PlayerLeaveVehicle(Action<BasePlayer, Vehicle> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerLeaveVehicle(Action<EventBase, BasePlayer, Vehicle> func) : base(ID, func, true) { }
+    public PlayerLeaveVehicle(Action<EventBase, BasePlayer, Vehicle> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerHurt : EventBase {
-  private const string ID = "PlayerHurt";
+public sealed partial class PlayerHurt : EventBase
+{
+    private const string ID = "PlayerHurt";
 
-  public PlayerHurt(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public PlayerHurt(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerHurt(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public PlayerHurt(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 
-  public PlayerHurt(Action<BasePlayer, BaseEntity, int, int> func) : base(ID, func, false) { }
+    public PlayerHurt(Action<BasePlayer, BaseEntity, int, int> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerHurt(Action<EventBase, BasePlayer, BaseEntity, int, int> func) : base(ID, func, true) { }
+    public PlayerHurt(Action<EventBase, BasePlayer, BaseEntity, int, int> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerSay : EventBase {
-  private const string ID = "PlayerSay";
+public sealed partial class PlayerSay : EventBase
+{
+    private const string ID = "PlayerSay";
 
-  public PlayerSay(Action<BasePlayer, string> func) : base(ID, func, false) { }
+    public PlayerSay(Action<BasePlayer, string> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSay(Action<EventBase, BasePlayer, string> func) : base(ID, func, true) { }
+    public PlayerSay(Action<EventBase, BasePlayer, string> func) : base(ID, func, true)
+    {
+    }
 
-  public PlayerSay(Action<BasePlayer, string, bool> func) : base(ID, func, false) { }
+    public PlayerSay(Action<BasePlayer, string, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSay(Action<EventBase, BasePlayer, string, bool> func) : base(ID, func, true) { }
+    public PlayerSay(Action<EventBase, BasePlayer, string, bool> func) : base(ID, func, true)
+    {
+    }
 
-  public PlayerSay(Func<BasePlayer, string, string?> func) : base(ID, func, false) { }
+    public PlayerSay(Func<BasePlayer, string, string?> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSay(Func<EventBase, BasePlayer, string, string?> func) : base(ID, func, true) { }
+    public PlayerSay(Func<EventBase, BasePlayer, string, string?> func) : base(ID, func, true)
+    {
+    }
 
-  public PlayerSay(Func<BasePlayer, string, bool, string?> func) : base(ID, func, false) { }
+    public PlayerSay(Func<BasePlayer, string, bool, string?> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSay(Func<EventBase, BasePlayer, string, bool, string?> func) : base(ID, func, true) { }
+    public PlayerSay(Func<EventBase, BasePlayer, string, bool, string?> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerSpray : EventBase {
-  private const string ID = "PlayerSpray";
+public sealed partial class PlayerSpray : EventBase
+{
+    private const string ID = "PlayerSpray";
 
-  public PlayerSpray(Action<BasePlayer> func) : base(ID, func, false) { }
+    public PlayerSpray(Action<BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSpray(Action<EventBase, BasePlayer> func) : base(ID, func, true) { }
+    public PlayerSpray(Action<EventBase, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerSwitchFlashlight : EventBase {
-  private const string ID = "PlayerSwitchFlashlight";
+public sealed partial class PlayerSwitchFlashlight : EventBase
+{
+    private const string ID = "PlayerSwitchFlashlight";
 
-  public PlayerSwitchFlashlight(Action<BasePlayer, bool> func) : base(ID, func, false) { }
+    public PlayerSwitchFlashlight(Action<BasePlayer, bool> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerSwitchFlashlight(Action<EventBase, BasePlayer, bool> func) : base(ID, func, true) { }
+    public PlayerSwitchFlashlight(Action<EventBase, BasePlayer, bool> func) : base(ID, func, true)
+    {
+    }
 }
 
-public sealed partial class PlayerUse : EventBase {
-  private const string ID = "PlayerUse";
+public sealed partial class PlayerUse : EventBase
+{
+    private const string ID = "PlayerUse";
 
-  public PlayerUse(Action<BasePlayer, BaseEntity> func) : base(ID, func, false) { }
+    public PlayerUse(Action<BasePlayer, BaseEntity> func) : base(ID, func, false)
+    {
+    }
 
-  public PlayerUse(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true) { }
+    public PlayerUse(Action<EventBase, BasePlayer, BaseEntity> func) : base(ID, func, true)
+    {
+    }
 }
 
 //public sealed partial class PhysgunFreeze : EventBase {
@@ -1260,12 +1506,17 @@ public sealed partial class PlayerUse : EventBase {
 //  public PhysgunFreeze(Action<EventBase, BaseEntity, PhysObj, BaseEntity, BasePlayer> func) : base(ID, func, true) { }
 //}
 
-public sealed partial class PhysgunReload : EventBase {
-  private const string ID = "OnPhysgunReload";
+public sealed partial class PhysgunReload : EventBase
+{
+    private const string ID = "OnPhysgunReload";
 
-  public PhysgunReload(Action<Weapon, BasePlayer> func) : base(ID, func, false) { }
+    public PhysgunReload(Action<Weapon, BasePlayer> func) : base(ID, func, false)
+    {
+    }
 
-  public PhysgunReload(Action<EventBase, Weapon, BasePlayer> func) : base(ID, func, true) { }
+    public PhysgunReload(Action<EventBase, Weapon, BasePlayer> func) : base(ID, func, true)
+    {
+    }
 }
 #endif
 #endif
@@ -1361,99 +1612,101 @@ public static partial class CoreExLib
 }
 
 
-
 #if CLIENT
 /// @CSharpLua.Ignore
-public sealed class DLight {
+public sealed class DLight
+{
 #if STARFALL
-  /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
-  public extern DLight(Vector pos, double size, double brightness, Color color);
+    /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
+    public extern DLight(Vector pos, double size, double brightness, Color color);
 #else
-  /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
-  public extern DLight(uint index, bool elight = false);
+    /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
+    public extern DLight(uint index, bool elight = false);
 #endif
 
-  public double brightness { get; set; }
+    public double brightness { get; set; }
 
-  public uint decay { get; set; }
+    public uint decay { get; set; }
 
-  public double dietime { get; set; }
+    public double dietime { get; set; }
 
-  public Vector dir { get; set; }
+    public Vector dir { get; set; }
 
-  public double innerangle { get; set; }
+    public double innerangle { get; set; }
 
-  public double outerangle { get; set; }
+    public double outerangle { get; set; }
 
-  //public double key { get; set; }
+    //public double key { get; set; }
 
-  public double minlight { get; set; }
+    public double minlight { get; set; }
 
-  public bool noworld { get; set; }
+    public bool noworld { get; set; }
 
-  public bool nomodel { get; set; }
+    public bool nomodel { get; set; }
 
-  public Vector pos { get; set; }
+    public Vector pos { get; set; }
 
-  public double size { get; set; }
+    public double size { get; set; }
 
-  public byte style { get; set; }
+    public byte style { get; set; }
 
-  public byte r { get; set; }
+    public byte r { get; set; }
 
-  public byte g { get; set; }
+    public byte g { get; set; }
 
-  public byte b { get; set; }
+    public byte b { get; set; }
 }
 
 /// @CSharpLua.Ignore
-public sealed class CamData {
-  // TODO
+public sealed class CamData
+{
+    // TODO
 
-  /// @CSharpLua.Template = CamData_ctor1({0}, {1}, {2}, {3}, {4}, {5}, {6})
-  public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer = false, CamData_Ortho? ortho = default);
+    /// @CSharpLua.Template = CamData_ctor1({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer = false, CamData_Ortho? ortho = default);
 
-  /// @CSharpLua.Template = CamData_ctor2({0}, {1}, {2}, {3}, {4})
-  public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar);
+    /// @CSharpLua.Template = CamData_ctor2({0}, {1}, {2}, {3}, {4})
+    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar);
 
-  /// @CSharpLua.Template = CamData_ctor3({0}, {1}, {2}, {3}, {4}, {5})
-  public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer);
+    /// @CSharpLua.Template = CamData_ctor3({0}, {1}, {2}, {3}, {4}, {5})
+    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer);
 
-  /// @CSharpLua.Template = CamData_ctor4({0}, {1}, {2}, {3}, {4}, {5})
-  public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho);
+    /// @CSharpLua.Template = CamData_ctor4({0}, {1}, {2}, {3}, {4}, {5})
+    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho);
 
-  /// @CSharpLua.Template = CamData_ctor5({0}, {1}, {2}, {3}, {4}, {5}, {6})
-  public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho, bool drawViewer);
+    /// @CSharpLua.Template = CamData_ctor5({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho, bool drawViewer);
 
-  public Vector origin { get; set; }
+    public Vector origin { get; set; }
 
-  public Angle angles { get; set; }
+    public Angle angles { get; set; }
 
-  public double fov { get; set; }
+    public double fov { get; set; }
 
-  public double znear { get; set; }
+    public double znear { get; set; }
 
-  public double zfar { get; set; }
+    public double zfar { get; set; }
 
-  public bool drawviewer { get; set; }
+    public bool drawviewer { get; set; }
 
-  public CamData_Ortho? ortho { get; set; }
+    public CamData_Ortho? ortho { get; set; }
 }
 
 /// @CSharpLua.Ignore
-public sealed class CamData_Ortho {
-  // TODO
+public sealed class CamData_Ortho
+{
+    // TODO
 
-  /// @CSharpLua.Template = CamData_Ortho_ctor({0}, {1}, {2}, {3})
-  public extern CamData_Ortho(double left, double right, double top, double bottom);
+    /// @CSharpLua.Template = CamData_Ortho_ctor({0}, {1}, {2}, {3})
+    public extern CamData_Ortho(double left, double right, double top, double bottom);
 
-  public double left { get; set; }
+    public double left { get; set; }
 
-  public double right { get; set; }
+    public double right { get; set; }
 
-  public double top { get; set; }
+    public double top { get; set; }
 
-  public double bottom { get; set; }
+    public double bottom { get; set; }
 }
 #endif
 
@@ -1491,7 +1744,7 @@ public sealed class Debug_GetInfo
 public static partial class debug
 {
 #if STARFALL
-  /// @CSharpLua.Template = _G.debugGetInfo({0}, {1})
+    /// @CSharpLua.Template = _G.debugGetInfo({0}, {1})
 #else
     /// @CSharpLua.Template = debug.getinfo({0}, {1})
 #endif
@@ -1499,7 +1752,7 @@ public static partial class debug
     public static extern Debug_GetInfo? GetInfo<TDelegate>(TDelegate func, string flags = "flnSu") where TDelegate : Delegate;
 
 #if STARFALL
-  /// @CSharpLua.Template = _G.debugGetInfo({0}, {1})
+    /// @CSharpLua.Template = _G.debugGetInfo({0}, {1})
 #else
     /// @CSharpLua.Template = debug.getinfo({0}, {1})
 #endif
@@ -1507,7 +1760,7 @@ public static partial class debug
     public static extern Debug_GetInfo? GetInfo(ulong index, string flags = "flnSu");
 
 #if STARFALL
-  /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
+    /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
 #else
     /// @CSharpLua.Template = System.Tuple(debug.getlocal({0}, {1}))
 #endif
@@ -1515,7 +1768,7 @@ public static partial class debug
     public static extern (string?, TLocal?) GetLocal<TDelegate, TLocal>(TDelegate func, long index) where TDelegate : Delegate;
 
 #if STARFALL
-  /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
+    /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
 #else
     /// @CSharpLua.Template = System.Tuple(debug.getlocal({0}, {1}))
 #endif
@@ -1527,7 +1780,7 @@ public static partial class debug
 public partial class BaseEntity
 {
 #if STARFALL
-  /// @CSharpLua.Template = _G.entity({0})
+    /// @CSharpLua.Template = _G.entity({0})
 #else
     /// @CSharpLua.Template = _G.Entity({0})
 #endif
@@ -1535,405 +1788,415 @@ public partial class BaseEntity
 
     [Pure]
 #if STARFALL
-  public extern bool isValid();
+    public extern bool isValid();
 #else
     public extern bool IsValid();
 #endif
 
 #if SERVER
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern bool isValidPhys();
+    public extern bool isValidPhys();
 #else
-  public extern bool IsValidPhys();
+    public extern bool IsValidPhys();
 #endif
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isPlayer();
+    public extern bool isPlayer();
 #else
     public extern bool IsPlayer();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isVehicle();
+    public extern bool isVehicle();
 #else
     public extern bool IsVehicle();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isWeapon();
+    public extern bool isWeapon();
 #else
     public extern bool IsWeapon();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isOnFire();
+    public extern bool isOnFire();
 #else
     public extern bool IsOnFire();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isOnGround();
+    public extern bool isOnGround();
 #else
     public extern bool IsOnGround();
 #endif
 
 #if SERVER
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern bool isPlayerHolding();
+    public extern bool isPlayerHolding();
 #else
-  public extern bool IsPlayerHolding();
+    public extern bool IsPlayerHolding();
 #endif
 
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern BaseEntity isWeldedTo();
+    public extern BaseEntity isWeldedTo();
 #else
-  public extern BaseEntity IsWeldedTo();
+    public extern BaseEntity IsWeldedTo();
 #endif
 #endif
 
     [Pure]
 #if STARFALL
-  public extern int entIndex();
+    public extern int entIndex();
 #else
     public extern int EntIndex();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern BaseEntity entOwner();
+    public extern BaseEntity entOwner();
 #else
     public extern BaseEntity GetOwner();
 #endif
 
 #if STARFALL
-  /// @CSharpLua.NoField
-  public extern BasePlayer Owner { get; }
+    /// @CSharpLua.NoField
+    public extern BasePlayer Owner { get; }
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Health {
-    get;
+    /// @CSharpLua.NoField
+    public int Health
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getHealth();
+    [Pure]
+    public extern int getHealth();
 #else
     [Pure]
     public extern int GetHealth();
 #if SERVER
-  public extern void SetHealth(int health);
+    public extern void SetHealth(int health);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int MaxHealth {
-    get;
+    /// @CSharpLua.NoField
+    public int MaxHealth
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getMaxHealth();
+    [Pure]
+    public extern int getMaxHealth();
 #else
     [Pure]
     public extern int GetMaxHealth();
 #if SERVER
-  public extern void SetMaxHealth(int maxHealth);
+    public extern void SetMaxHealth(int maxHealth);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Color Color {
-    get;
+    /// @CSharpLua.NoField
+    public Color Color
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern Color getColor();
+    [Pure]
+    public extern Color getColor();
 #if SERVER
-  public extern void setColor(Color color);
+    public extern void setColor(Color color);
 #endif
 #else
     [Pure]
     public extern Color GetColor();
 #if SERVER
-  public extern void SetColor(Color color);
+    public extern void SetColor(Color color);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector Pos {
-    get;
+    /// @CSharpLua.NoField
+    public Vector Pos
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern Vector getPos();
+    [Pure]
+    public extern Vector getPos();
 #if SERVER
-  public extern void setPos(Vector pos);
+    public extern void setPos(Vector pos);
 #endif
 #else
     [Pure]
     public extern Vector GetPos();
 #if SERVER
-  public extern void SetPos(Vector pos);
+    public extern void SetPos(Vector pos);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Angle Angles {
-    get;
+    /// @CSharpLua.NoField
+    public Angle Angles
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern Angle getAngles();
+    [Pure]
+    public extern Angle getAngles();
 #if SERVER
-  public extern void setAngles(Angle angles);
+    public extern void setAngles(Angle angles);
 #endif
 #else
     [Pure]
     public extern Angle GetAngles();
 #if SERVER
-  public extern void SetAngles(Angle angles);
+    public extern void SetAngles(Angle angles);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public virtual Vector EyePos { get; }
+    /// @CSharpLua.NoField
+    public virtual Vector EyePos { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern virtual Vector getEyePos();
+    public extern virtual Vector getEyePos();
 #else
     public extern virtual Vector EyePos();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public virtual Angle EyeAngles { get; }
+    /// @CSharpLua.NoField
+    public virtual Angle EyeAngles { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern virtual Angle getEyeAngles();
+    public extern virtual Angle getEyeAngles();
 #else
     public extern virtual Angle EyeAngles();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector Velocity {
-    get;
+    /// @CSharpLua.NoField
+    public Vector Velocity
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern Vector getVelocity();
+    [Pure]
+    public extern Vector getVelocity();
 #if SERVER
-  public extern void setVelocity(Vector velocity);
+    public extern void setVelocity(Vector velocity);
 #endif
 #else
     [Pure]
     public extern Vector GetVelocity();
 #if SERVER
-  public extern void SetVelocity(Vector velocity);
+    public extern void SetVelocity(Vector velocity);
 #endif
 #endif
 #endif
 
 #if STARFALL && SERVER
-  public extern void unparent();
+    public extern void unparent();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public virtual BaseEntity? Parent {
-    get;
+    /// @CSharpLua.NoField
+    public virtual BaseEntity? Parent
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern virtual BaseEntity? getParent();
+    [Pure]
+    public extern virtual BaseEntity? getParent();
 #if SERVER
-  public extern virtual void setParent(BaseEntity? parent);
+    public extern virtual void setParent(BaseEntity? parent);
 #endif
 #else
     [Pure]
     public extern virtual BaseEntity? GetParent();
 #if SERVER
-  public extern virtual void SetParent(BaseEntity? parent);
+    public extern virtual void SetParent(BaseEntity? parent);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public string Material {
-    get;
+    /// @CSharpLua.NoField
+    public string Material
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern string getMaterial();
+    [Pure]
+    public extern string getMaterial();
 #if SERVER
-  public extern void setMaterial(string material);
+    public extern void setMaterial(string material);
 #endif
 #else
     [Pure]
     public extern string GetMaterial();
 #if SERVER
-  public extern void SetMaterial(string material);
+    public extern void SetMaterial(string material);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector Forward { get; }
+    /// @CSharpLua.NoField
+    public Vector Forward { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Vector getForward();
+    public extern Vector getForward();
 #else
     public extern Vector GetForward();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector Right { get; }
+    /// @CSharpLua.NoField
+    public Vector Right { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Vector getRight();
+    public extern Vector getRight();
 #else
     public extern Vector GetRight();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public double CreationTime { get; }
+    /// @CSharpLua.NoField
+    public double CreationTime { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern double getCreationTime();
+    public extern double getCreationTime();
 #else
     public extern double GetCreationTime();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public COLLISION_GROUP CollisionGroup {
-    get;
+    /// @CSharpLua.NoField
+    public COLLISION_GROUP CollisionGroup
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern COLLISION_GROUP getCollisionGroup();
+    [Pure]
+    public extern COLLISION_GROUP getCollisionGroup();
 #if SERVER
-  public extern void setCollisionGroup(COLLISION_GROUP collisionGroup);
+    public extern void setCollisionGroup(COLLISION_GROUP collisionGroup);
 #endif
 #else
     [Pure]
     public extern COLLISION_GROUP GetCollisionGroup();
 #if SERVER
-  public extern void SetCollisionGroup(COLLISION_GROUP collisionGroup);
+    public extern void SetCollisionGroup(COLLISION_GROUP collisionGroup);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public bool Persistent {
-    get;
+    /// @CSharpLua.NoField
+    public bool Persistent
+    {
+        get;
 #if SERVER
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern bool getPersistent();
+    [Pure]
+    public extern bool getPersistent();
 #if SERVER
-  public extern void setPersistent(bool persistent);
+    public extern void setPersistent(bool persistent);
 #endif
 #else
     [Pure]
     public extern bool GetPersistent();
 #if SERVER
-  public extern void SetPersistent(bool persistent);
+    public extern void SetPersistent(bool persistent);
 #endif
 #endif
 #endif
 
 #if STARFALL
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public BaseEntity[] LinkedComponents { get; }
+    /// @CSharpLua.NoField
+    public BaseEntity[] LinkedComponents { get; }
 #else
-  [Pure]
-  public extern BaseEntity[] getLinkedComponents();
+    [Pure]
+    public extern BaseEntity[] getLinkedComponents();
 #endif
 #endif
 
 #if STARFALL && SERVER
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Wirelink Wirelink { get; }
+    /// @CSharpLua.NoField
+    public Wirelink Wirelink { get; }
 #else
-  [Pure]
-  public extern Wirelink getWirelink();
+    [Pure]
+    public extern Wirelink getWirelink();
 #endif
 #endif
 
@@ -1950,7 +2213,7 @@ public partial class BaseEntity
 public partial class BasePlayer : BaseEntity
 {
 #if STARFALL
-  /// @CSharpLua.Template = _G.player({0})
+    /// @CSharpLua.Template = _G.player({0})
 #else
     /// @CSharpLua.Template = _G.Player({0})
 #endif
@@ -1958,408 +2221,418 @@ public partial class BasePlayer : BaseEntity
 
     [Pure]
 #if STARFALL
-  public extern bool isAlive();
+    public extern bool isAlive();
 #else
     public extern bool Alive();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isBot();
+    public extern bool isBot();
 #else
     public extern bool IsBot();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isNPC();
+    public extern bool isNPC();
 #else
     public extern bool IsNPC();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isConnected();
+    public extern bool isConnected();
 #else
     public extern bool IsConnected();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isAdmin();
+    public extern bool isAdmin();
 #else
     public extern bool IsAdmin();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isSuperAdmin();
+    public extern bool isSuperAdmin();
 #else
     public extern bool IsSuperAdmin();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isCrouching();
+    public extern bool isCrouching();
 #else
     public extern bool Crouching();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isSprinting();
+    public extern bool isSprinting();
 #else
     public extern bool IsSprinting();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isFrozen();
+    public extern bool isFrozen();
 #else
     public extern bool IsFrozen();
 #endif
 
 #if STARFALL
-  [Pure]
-  public extern bool isNoclipped();
+    [Pure]
+    public extern bool isNoclipped();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isFlashlightOn();
+    public extern bool isFlashlightOn();
 #else
     public extern bool FlashlightIsOn();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isTyping();
+    public extern bool isTyping();
 #else
     public extern bool IsTyping();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool isUserGroup(string group);
+    public extern bool isUserGroup(string group);
 #else
     public extern bool IsUserGroup(string group);
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool inVehicle();
+    public extern bool inVehicle();
 #else
     public extern bool InVehicle();
 #endif
 
     [Pure]
 #if STARFALL
-  public extern bool hasGodMode();
+    public extern bool hasGodMode();
 #else
     public extern bool HasGodMode();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Armor {
-    get;
+    /// @CSharpLua.NoField
+    public int Armor
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getArmor();
+    [Pure]
+    public extern int getArmor();
 #else
     [Pure]
     public extern int GetArmor();
 #if SERVER
-  public extern void SetArmor(int armor);
+    public extern void SetArmor(int armor);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int MaxArmor {
-    get;
+    /// @CSharpLua.NoField
+    public int MaxArmor
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getMaxArmor();
+    [Pure]
+    public extern int getMaxArmor();
 #else
     [Pure]
     public extern int GetMaxArmor();
 #if SERVER
-  public extern void SetMaxArmor(int maxArmor);
+    public extern void SetMaxArmor(int maxArmor);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Team {
-    get;
+    /// @CSharpLua.NoField
+    public int Team
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getTeam();
+    [Pure]
+    public extern int getTeam();
 #else
     [Pure]
     public extern int GetTeam();
 #if SERVER
-  public extern void SetTeam(int team);
+    public extern void SetTeam(int team);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Deaths {
-    get;
+    /// @CSharpLua.NoField
+    public int Deaths
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getDeaths();
+    [Pure]
+    public extern int getDeaths();
 #else
     [Pure]
     public extern int GetDeaths();
 #if SERVER
-  public extern void SetDeaths(int deaths);
+    public extern void SetDeaths(int deaths);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Frags {
-    get;
+    /// @CSharpLua.NoField
+    public int Frags
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern int getFrags();
+    [Pure]
+    public extern int getFrags();
 #else
     [Pure]
     public extern int GetFrags();
 #if SERVER
-  public extern void SetFrags(int frags);
+    public extern void SetFrags(int frags);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Weapon ActiveWeapon {
-    get;
+    /// @CSharpLua.NoField
+    public Weapon ActiveWeapon
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern Weapon getActiveWeapon();
+    [Pure]
+    public extern Weapon getActiveWeapon();
 #else
     [Pure]
     public extern Weapon GetActiveWeapon();
 #if SERVER
-  public extern void SetActiveWeapon(Weapon activeWeapon);
+    public extern void SetActiveWeapon(Weapon activeWeapon);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector AimVector { get; }
+    /// @CSharpLua.NoField
+    public Vector AimVector { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Vector getAimVector();
+    public extern Vector getAimVector();
 #else
     public extern Vector GetAimVector();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public double FOV {
-    get;
+    /// @CSharpLua.NoField
+    public double FOV
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern double getFOV();
+    [Pure]
+    public extern double getFOV();
 #else
     [Pure]
     public extern double GetFOV();
 #if SERVER
-  public extern void SetFOV(double fov);
+    public extern void SetFOV(double fov);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public double JumpPower {
-    get;
+    /// @CSharpLua.NoField
+    public double JumpPower
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern double getJumpPower();
+    [Pure]
+    public extern double getJumpPower();
 #else
     [Pure]
     public extern Double GetJumpPower();
 #if SERVER
-  public extern void SetJumpPower(double jumpPower);
+    public extern void SetJumpPower(double jumpPower);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public double MaxSpeed {
-    get;
+    /// @CSharpLua.NoField
+    public double MaxSpeed
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern double getMaxSpeed();
+    [Pure]
+    public extern double getMaxSpeed();
 #else
     [Pure]
     public extern double GetMaxSpeed();
 #if SERVER
-  public extern void SetMaxSpeed(double maxSpeed);
+    public extern void SetMaxSpeed(double maxSpeed);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public double RunSpeed {
-    get;
+    /// @CSharpLua.NoField
+    public double RunSpeed
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern double getRunSpeed();
+    [Pure]
+    public extern double getRunSpeed();
 #else
     [Pure]
     public extern double GetRunSpeed();
 #if SERVER
-  public extern void SetRunSpeed(double runSpeed);
+    public extern void SetRunSpeed(double runSpeed);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vector ShootPos { get; }
+    /// @CSharpLua.NoField
+    public Vector ShootPos { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Vector getShootPos();
+    public extern Vector getShootPos();
 #else
     public extern Vector GetShootPos();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Vehicle Vehicle { get; }
+    /// @CSharpLua.NoField
+    public Vehicle Vehicle { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Vehicle getVehicle();
+    public extern Vehicle getVehicle();
 #else
     public extern Vehicle GetVehicle();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int Ping { get; }
+    /// @CSharpLua.NoField
+    public int Ping { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern int getPing();
+    public extern int getPing();
 #else
     public extern int Ping();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int UserID { get; }
+    /// @CSharpLua.NoField
+    public int UserID { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern int getUserID();
+    public extern int getUserID();
 #else
     public extern int UserID();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public string SteamID { get; }
+    /// @CSharpLua.NoField
+    public string SteamID { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern string getSteamID();
+    public extern string getSteamID();
 #else
     public extern string SteamID();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public string SteamID64 { get; }
+    /// @CSharpLua.NoField
+    public string SteamID64 { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern string getSteamID64();
+    public extern string getSteamID64();
 #else
     public extern string SteamID64();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public string Name { get; }
+    /// @CSharpLua.NoField
+    public string Name { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern string getName();
+    public extern string getName();
 #else
     public extern string Name();
 
@@ -2368,57 +2641,58 @@ public partial class BasePlayer : BaseEntity
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public TraceResult EyeTrace { get; }
+    /// @CSharpLua.NoField
+    public TraceResult EyeTrace { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern TraceResult getEyeTrace();
+    public extern TraceResult getEyeTrace();
 #else
     public extern TraceResult GetEyeTrace();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public BaseEntity ViewEntity {
-    get;
+    /// @CSharpLua.NoField
+    public BaseEntity ViewEntity
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern BaseEntity getViewEntity();
+    [Pure]
+    public extern BaseEntity getViewEntity();
 #else
     [Pure]
     public extern BaseEntity GetViewEntity();
 #if SERVER
-  public extern void SetViewEntity(BaseEntity viewEntity);
+    public extern void SetViewEntity(BaseEntity viewEntity);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public BaseEntity ViewModel { get; }
+    /// @CSharpLua.NoField
+    public BaseEntity ViewModel { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern BaseEntity getViewModel();
+    public extern BaseEntity getViewModel();
 #else
     public extern BaseEntity GetViewModel();
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public Weapon[] Weapons { get; }
+    /// @CSharpLua.NoField
+    public Weapon[] Weapons { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern Weapon[] getWeapons();
+    public extern Weapon[] getWeapons();
 #else
     public extern Weapon[] GetWeapons();
 #endif
@@ -2426,39 +2700,40 @@ public partial class BasePlayer : BaseEntity
 
     [Pure]
 #if STARFALL
-  public extern Weapon getWeapon(string className);
+    public extern Weapon getWeapon(string className);
 #else
     public extern Weapon GetWeapon(string className);
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public BaseEntity GroundEntity {
-    get;
+    /// @CSharpLua.NoField
+    public BaseEntity GroundEntity
+    {
+        get;
 #if SERVER && !STARFALL
-    set;
+        set;
 #endif
-  }
+    }
 #else
 #if STARFALL
-  [Pure]
-  public extern BaseEntity getGroundEntity();
+    [Pure]
+    public extern BaseEntity getGroundEntity();
 #else
     [Pure]
     public extern BaseEntity GetGroundEntity();
 #if SERVER
-  public extern void SetGroundEntity(BaseEntity groundEntity);
+    public extern void SetGroundEntity(BaseEntity groundEntity);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public int AmmoCount { get; }
+    /// @CSharpLua.NoField
+    public int AmmoCount { get; }
 #else
     [Pure]
 #if STARFALL
-  public extern int getAmmoCount();
+    public extern int getAmmoCount();
 #else
     public extern int AmmoCount();
 #endif
@@ -2466,42 +2741,43 @@ public partial class BasePlayer : BaseEntity
 
     [Pure]
 #if STARFALL
-  public extern bool keyDown(IN_KEY key);
+    public extern bool keyDown(IN_KEY key);
 #else
     public extern bool KeyDown(IN_KEY key);
 #endif
 
 #if CLIENT
-  [Pure]
+
+    [Pure]
 #if STARFALL
-  public extern bool isMuted();
+    public extern bool isMuted();
 #else
-  public extern bool IsMuted();
+    public extern bool IsMuted();
 #endif
 
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern bool isSpeaking();
+    public extern bool isSpeaking();
 #else
-  public extern bool IsSpeaking();
+    public extern bool IsSpeaking();
 #endif
 
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern double voiceVolume();
+    public extern double voiceVolume();
 #else
-  public extern double VoiceVolume();
+    public extern double VoiceVolume();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public string FriendStatus { get; }
+    /// @CSharpLua.NoField
+    public string FriendStatus { get; }
 #else
-  [Pure]
+    [Pure]
 #if STARFALL
-  public extern string getFriendStatus();
+    public extern string getFriendStatus();
 #else
-  public extern string GetFriendStatus();
+    public extern string GetFriendStatus();
 #endif
 #endif
 
@@ -2510,13 +2786,14 @@ public partial class BasePlayer : BaseEntity
 
 #if SERVER
 /// @CSharpLua.Ignore
-public partial class NPC : BaseEntity {
+public partial class NPC : BaseEntity
+{
 #if STARFALL
-  /// @CSharpLua.Template = _G.entity({0})
+    /// @CSharpLua.Template = _G.entity({0})
 #else
-  /// @CSharpLua.Template = _G.Entity({0})
+    /// @CSharpLua.Template = _G.Entity({0})
 #endif
-  public extern NPC(int entIndex);
+    public extern NPC(int entIndex);
 }
 #endif
 
@@ -2531,7 +2808,7 @@ public partial class PhysObj
 public partial class Vehicle : BaseEntity
 {
 #if STARFALL
-  /// @CSharpLua.Template = _G.entity({0})
+    /// @CSharpLua.Template = _G.entity({0})
 #else
     /// @CSharpLua.Template = _G.Entity({0})
 #endif
@@ -2542,7 +2819,7 @@ public partial class Vehicle : BaseEntity
 public partial class Weapon : BaseEntity
 {
 #if STARFALL
-  /// @CSharpLua.Template = _G.entity({0})
+    /// @CSharpLua.Template = _G.entity({0})
 #else
     /// @CSharpLua.Template = _G.Entity({0})
 #endif
@@ -2551,232 +2828,239 @@ public partial class Weapon : BaseEntity
 
 #if STARFALL && SERVER
 /// @CSharpLua.Ignore
-public partial class Wirelink {
-  /// @CSharpLua.Template = wire.getWirelink({0})
-  public extern Wirelink(BaseEntity entity);
+public partial class Wirelink
+{
+    /// @CSharpLua.Template = wire.getWirelink({0})
+    public extern Wirelink(BaseEntity entity);
 
-  public extern BaseEntity entity();
+    public extern BaseEntity entity();
 
-  public extern bool isValid();
+    public extern bool isValid();
 
-  public extern bool isWired(string inputName);
+    public extern bool isWired(string inputName);
 
-  public extern BaseEntity getWiredTo(string inputName);
+    public extern BaseEntity getWiredTo(string inputName);
 
-  public extern string getWiredToName(string inputName);
+    public extern string getWiredToName(string inputName);
 
-  public extern string inputType(string inputName);
+    public extern string inputType(string inputName);
 
-  public extern string outputType(string outputName);
+    public extern string outputType(string outputName);
 
-  public extern dynamic inputs();
+    public extern dynamic inputs();
 
-  public extern dynamic outputs();
+    public extern dynamic outputs();
 }
 
 /// @CSharpLua.Ignore
-public static partial class wire {
+public static partial class wire
+{
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern Wirelink Self { get; }
+    /// @CSharpLua.NoField
+    public static extern Wirelink Self { get; }
 #else
-  /// @CSharpLua.Template = wire.self()
-  [Pure]
-  public static extern Wirelink Self();
+    /// @CSharpLua.Template = wire.self()
+    [Pure]
+    public static extern Wirelink Self();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern dynamic Ports { get; }
+    /// @CSharpLua.NoField
+    public static extern dynamic Ports { get; }
 #else
-  /// @CSharpLua.Template = wire.ports
-  [Pure]
-  public static extern dynamic Ports();
+    /// @CSharpLua.Template = wire.ports
+    [Pure]
+    public static extern dynamic Ports();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern string ServerUUID { get; }
+    /// @CSharpLua.NoField
+    public static extern string ServerUUID { get; }
 #else
-  /// @CSharpLua.Template = wire.serverUUID()
-  [Pure]
-  public static extern string ServerUUID();
+    /// @CSharpLua.Template = wire.serverUUID()
+    [Pure]
+    public static extern string ServerUUID();
 #endif
 
-  /// @CSharpLua.Template = wire.getWirelink({0})
-  [Pure]
-  public static extern Wirelink GetWirelink(BaseEntity entity);
+    /// @CSharpLua.Template = wire.getWirelink({0})
+    [Pure]
+    public static extern Wirelink GetWirelink(BaseEntity entity);
 
-  /// @CSharpLua.Template = wire.create({0}, {1}, {2}, {3})
-  public static extern void Create(BaseEntity entityWithInput, BaseEntity entityWithOutput, string inputName, string outputName);
+    /// @CSharpLua.Template = wire.create({0}, {1}, {2}, {3})
+    public static extern void Create(BaseEntity entityWithInput, BaseEntity entityWithOutput, string inputName, string outputName);
 
-  /// @CSharpLua.Template = wire.create({0}, {1}, {2}, {3}, {4}, {5}, {6})
-  public static extern void Create(BaseEntity entityWithInput, BaseEntity entityWithOutput, string inputName, string outputName, double width, Color? color = default, string? material = default);
+    /// @CSharpLua.Template = wire.create({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    public static extern void Create(BaseEntity entityWithInput, BaseEntity entityWithOutput, string inputName, string outputName, double width, Color? color = default, string? material = default);
 
-  /// @CSharpLua.Template = wire.delete({0}, {1})
-  public static extern void Delete(BaseEntity entityWithInput, string inputName);
+    /// @CSharpLua.Template = wire.delete({0}, {1})
+    public static extern void Delete(BaseEntity entityWithInput, string inputName);
 
-  /// @CSharpLua.Template = wire.getInputs({0})
-  [Pure]
-  public static extern (string[], string[]) GetInputs(BaseEntity entity);
+    /// @CSharpLua.Template = wire.getInputs({0})
+    [Pure]
+    public static extern (string[], string[]) GetInputs(BaseEntity entity);
 
-  /// @CSharpLua.Template = wire.getOutputs({0})
-  [Pure]
-  public static extern (string[], string[]) GetOutputs(BaseEntity entity);
+    /// @CSharpLua.Template = wire.getOutputs({0})
+    [Pure]
+    public static extern (string[], string[]) GetOutputs(BaseEntity entity);
 
-  /// @CSharpLua.Template = wire.addInput({0}, {1})
-  public static extern bool AddInput(string inputName, string inputType);
+    /// @CSharpLua.Template = wire.addInput({0}, {1})
+    public static extern bool AddInput(string inputName, string inputType);
 
-  /// @CSharpLua.Template = wire.addOutput({0}, {1})
-  public static extern bool AddOutput(string outputName, string outputType);
+    /// @CSharpLua.Template = wire.addOutput({0}, {1})
+    public static extern bool AddOutput(string outputName, string outputType);
 
-  /// @CSharpLua.Template = wire.removeInput({0})
-  public static extern bool RemoveInput(string inputName);
+    /// @CSharpLua.Template = wire.removeInput({0})
+    public static extern bool RemoveInput(string inputName);
 
-  /// @CSharpLua.Template = wire.removeOutput({0})
-  public static extern bool RemoveOutput(string outputName);
+    /// @CSharpLua.Template = wire.removeOutput({0})
+    public static extern bool RemoveOutput(string outputName);
 
-  /// @CSharpLua.Template = wire.getInputType({0})
-  [Pure]
-  public static extern string? GetInputType(string inputName);
+    /// @CSharpLua.Template = wire.getInputType({0})
+    [Pure]
+    public static extern string? GetInputType(string inputName);
 
-  /// @CSharpLua.Template = wire.getOutputType({0})
-  [Pure]
-  public static extern string? GetOutputType(string outputName);
+    /// @CSharpLua.Template = wire.getOutputType({0})
+    [Pure]
+    public static extern string? GetOutputType(string outputName);
 
-  /// @CSharpLua.Template = wire.setInputType({0}, {1})
-  public static extern bool SetInputType(string inputName, string inputType);
+    /// @CSharpLua.Template = wire.setInputType({0}, {1})
+    public static extern bool SetInputType(string inputName, string inputType);
 
-  /// @CSharpLua.Template = wire.setOutputType({0}, {1})
-  public static extern bool SetOutputType(string outputName, string outputType);
+    /// @CSharpLua.Template = wire.setOutputType({0}, {1})
+    public static extern bool SetOutputType(string outputName, string outputType);
 
-  /// @CSharpLua.Template = wire.getInput({0})
-  [Pure]
-  public static extern T GetInput<T>(string inputName);
+    /// @CSharpLua.Template = wire.getInput({0})
+    [Pure]
+    public static extern T GetInput<T>(string inputName);
 
-  /// @CSharpLua.Template = wire.getOutput({0})
-  [Pure]
-  public static extern T GetOutput<T>(string outputName);
+    /// @CSharpLua.Template = wire.getOutput({0})
+    [Pure]
+    public static extern T GetOutput<T>(string outputName);
 
-  /// @CSharpLua.Template = wire.setOutput({0}, {1})
-  public static extern void SetOutput<T>(string outputName, T value);
+    /// @CSharpLua.Template = wire.setOutput({0}, {1})
+    public static extern void SetOutput<T>(string outputName, T value);
 }
 
 /// @CSharpLua.Ignore
-public static partial class prop {
+public static partial class prop
+{
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool PropClean { get; set; }
+    /// @CSharpLua.NoField
+    public static extern bool PropClean { get; set; }
 #else
-  /// @CSharpLua.Template = prop.getPropClean()
-  [Pure]
-  public static extern bool GetPropClean();
-  /// @CSharpLua.Template = prop.setPropClean({0})
-  public static extern void SetPropClean(bool propClean);
+    /// @CSharpLua.Template = prop.getPropClean()
+    [Pure]
+    public static extern bool GetPropClean();
+
+    /// @CSharpLua.Template = prop.setPropClean({0})
+    public static extern void SetPropClean(bool propClean);
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool PropUndo { get; set; }
+    /// @CSharpLua.NoField
+    public static extern bool PropUndo { get; set; }
 #else
-  /// @CSharpLua.Template = prop.getPropUndo()
-  [Pure]
-  public static extern bool GetPropUndo();
-  /// @CSharpLua.Template = prop.setPropUndo({0})
-  public static extern void SetPropUndo(bool propUndo);
+    /// @CSharpLua.Template = prop.getPropUndo()
+    [Pure]
+    public static extern bool GetPropUndo();
+
+    /// @CSharpLua.Template = prop.setPropUndo({0})
+    public static extern void SetPropUndo(bool propUndo);
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool CanSpawn { get; }
+    /// @CSharpLua.NoField
+    public static extern bool CanSpawn { get; }
 #else
-  /// @CSharpLua.Template = prop.canSpawn()
-  [Pure]
-  public static extern bool CanSpawn();
+    /// @CSharpLua.Template = prop.canSpawn()
+    [Pure]
+    public static extern bool CanSpawn();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern int PropsLeft { get; }
+    /// @CSharpLua.NoField
+    public static extern int PropsLeft { get; }
 #else
-  /// @CSharpLua.Template = prop.propsLeft()
-  [Pure]
-  public static extern int PropsLeft();
+    /// @CSharpLua.Template = prop.propsLeft()
+    [Pure]
+    public static extern int PropsLeft();
 #endif
 
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern int SpawnRate { get; }
+    /// @CSharpLua.NoField
+    public static extern int SpawnRate { get; }
 #else
-  /// @CSharpLua.Template = prop.spawnRate()
-  [Pure]
-  public static extern int SpawnRate();
+    /// @CSharpLua.Template = prop.spawnRate()
+    [Pure]
+    public static extern int SpawnRate();
 #endif
 
-  /// @CSharpLua.Template = prop.create({0}, {1}, {2}, {3})
-  [Pure]
-  public static extern BaseEntity Create(Vector pos, Angle angles, string model, bool frozen = false);
+    /// @CSharpLua.Template = prop.create({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern BaseEntity Create(Vector pos, Angle angles, string model, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createComponent({0}, {1}, {2}, {3}, {4})
-  [Pure]
-  public static extern BaseEntity CreateComponent(Vector pos, Angle angles, string className, string model, bool frozen = false);
+    /// @CSharpLua.Template = prop.createComponent({0}, {1}, {2}, {3}, {4})
+    [Pure]
+    public static extern BaseEntity CreateComponent(Vector pos, Angle angles, string className, string model, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createComponent({0}, {1}, 'starfall_hud', {2}, {3})
-  [Pure]
-  public static extern BaseEntity CreateHUD(Vector pos, Angle angles, string model, bool frozen = false);
+    /// @CSharpLua.Template = prop.createComponent({0}, {1}, 'starfall_hud', {2}, {3})
+    [Pure]
+    public static extern BaseEntity CreateHUD(Vector pos, Angle angles, string model, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createComponent({0}, {1}, 'starfall_screen', {2}, {3})
-  [Pure]
-  public static extern BaseEntity CreateScreen(Vector pos, Angle angles, string model, bool frozen = false);
+    /// @CSharpLua.Template = prop.createComponent({0}, {1}, 'starfall_screen', {2}, {3})
+    [Pure]
+    public static extern BaseEntity CreateScreen(Vector pos, Angle angles, string model, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createCustom({0}, {1}, {2}, {3})
-  [Pure]
-  public static extern BaseEntity CreateCustom(Vector pos, Angle angles, dynamic verticles, bool frozen = false);
+    /// @CSharpLua.Template = prop.createCustom({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern BaseEntity CreateCustom(Vector pos, Angle angles, dynamic verticles, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createRagdoll({0}, {1})
-  [Pure]
-  public static extern BaseEntity CreateRagdoll(string model, bool frozen = false);
+    /// @CSharpLua.Template = prop.createRagdoll({0}, {1})
+    [Pure]
+    public static extern BaseEntity CreateRagdoll(string model, bool frozen = false);
 
-  /// @CSharpLua.Template = prop.createSent({0}, {1}, {2}, {3})
-  [Pure]
-  public static extern BaseEntity CreateSent(Vector pos, Angle angles, bool frozen = false, dynamic? data = null);
+    /// @CSharpLua.Template = prop.createSent({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern BaseEntity CreateSent(Vector pos, Angle angles, bool frozen = false, dynamic? data = null);
 
-  /// @CSharpLua.Template = prop.createSent({0}, {1}, {3}, {2})
-  [Pure]
-  public static extern BaseEntity CreateSent(Vector pos, Angle angles, dynamic? data, bool frozen = false);
+    /// @CSharpLua.Template = prop.createSent({0}, {1}, {3}, {2})
+    [Pure]
+    public static extern BaseEntity CreateSent(Vector pos, Angle angles, dynamic? data, bool frozen = false);
 }
 #endif
 
 #if STARFALL
 /// @CSharpLua.Ignore
-public static partial class holograms {
+public static partial class holograms
+{
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool CanSpawn { get; }
+    /// @CSharpLua.NoField
+    public static extern bool CanSpawn { get; }
 
-  /// @CSharpLua.NoField
-  public static extern int HologramsLeft { get; }
+    /// @CSharpLua.NoField
+    public static extern int HologramsLeft { get; }
 #else
-  /// @CSharpLua.Template = holograms.canSpawn()
-  [Pure]
-  public static extern bool CanSpawn();
+    /// @CSharpLua.Template = holograms.canSpawn()
+    [Pure]
+    public static extern bool CanSpawn();
 
-  /// @CSharpLua.Template = holograms.hologramsLeft()
-  [Pure]
-  public static extern int HologramsLeft();
+    /// @CSharpLua.Template = holograms.hologramsLeft()
+    [Pure]
+    public static extern int HologramsLeft();
 #endif
 
-  /// @CSharpLua.Template = holograms.removeAll()
-  public static extern void RemoveAll();
+    /// @CSharpLua.Template = holograms.removeAll()
+    public static extern void RemoveAll();
 }
 
 /// @CSharpLua.Ignore
-public sealed partial class Hologram : BaseEntity {
-  /// @CSharpLua.Template = holograms.create({0}, {1}, {2})
-  public extern Hologram(Vector pos, Angle ang, string model);
+public sealed partial class Hologram : BaseEntity
+{
+    /// @CSharpLua.Template = holograms.create({0}, {1}, {2})
+    public extern Hologram(Vector pos, Angle ang, string model);
 
-  /// @CSharpLua.Template = holograms.create({0}, {1}, {2}, {3})
-  public extern Hologram(Vector pos, Angle ang, string model, Vector scale);
+    /// @CSharpLua.Template = holograms.create({0}, {1}, {2}, {3})
+    public extern Hologram(Vector pos, Angle ang, string model, Vector scale);
 }
 #endif
 
@@ -2784,7 +3068,7 @@ public sealed partial class Hologram : BaseEntity {
 public static partial class ents
 {
 #if STARFALL
-  /// @CSharpLua.Template = find.all()
+    /// @CSharpLua.Template = find.all()
 #else
     /// @CSharpLua.Template = ents.GetAll()
 #endif
@@ -2796,7 +3080,7 @@ public static partial class ents
 public static partial class player
 {
 #if STARFALL
-  /// @CSharpLua.Template = find.allPlayers()
+    /// @CSharpLua.Template = find.allPlayers()
 #else
     /// @CSharpLua.Template = player.GetAll()
 #endif
@@ -2828,7 +3112,7 @@ public static partial class math
     public static extern int random(int min, int max);
 
 #if STARFALL
-  /// @CSharpLua.Template = math.rand({0}, {1})
+    /// @CSharpLua.Template = math.rand({0}, {1})
 #else
     /// @CSharpLua.Template = math.Rand({0}, {1})
 #endif
@@ -2887,7 +3171,8 @@ public static partial class team
 
 #if SERVER
 /// @CSharpLua.Ignore
-public static partial class constraint {
+public static partial class constraint
+{
 }
 #endif
 
@@ -2897,13 +3182,13 @@ public static partial class util
     // Line/Hull tracing, JSON, FastLZ compression, Base64 encoding/decoding, CRC32 hash...
 
 #if STARFALL
-  /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
-  [Pure]
-  public static extern TraceResult? TraceLine(Vector start, Vector endpos, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern TraceResult? TraceLine(Vector start, Vector endpos, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 
-  /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
-  [Pure]
-  public static extern TraceResult? TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern TraceResult? TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 #endif
 
     ////#if STARFALL
@@ -3069,24 +3354,24 @@ public static partial class sound
 
 #if STARFALL
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool CanCreate { get; }
+    /// @CSharpLua.NoField
+    public static extern bool CanCreate { get; }
 
-  /// @CSharpLua.NoField
-  public static extern int SoundsLeft { get; }
+    /// @CSharpLua.NoField
+    public static extern int SoundsLeft { get; }
 #else
-  /// @CSharpLua.Template = sounds.canCreate()
-  [Pure]
-  public static extern bool CanCreate();
+    /// @CSharpLua.Template = sounds.canCreate()
+    [Pure]
+    public static extern bool CanCreate();
 
-  /// @CSharpLua.Template = sounds.soundsLeft()
-  [Pure]
-  public static extern int SoundsLeft();
+    /// @CSharpLua.Template = sounds.soundsLeft()
+    [Pure]
+    public static extern int SoundsLeft();
 #endif
 #endif
 
 #if STARFALL
-  /// @CSharpLua.Template = sounds.Create({0}, {1})
+    /// @CSharpLua.Template = sounds.Create({0}, {1})
 #else
     /// @CSharpLua.Template = _G.CreateSound({0}, {1})
 #endif
@@ -3095,12 +3380,12 @@ public static partial class sound
 
 #if SERVER
 #if STARFALL
-  /// @CSharpLua.Template = sounds.Create({0}, {1}, {2})
+    /// @CSharpLua.Template = sounds.Create({0}, {1}, {2})
 #else
-  /// @CSharpLua.Template = _G.CreateSound({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.CreateSound({0}, {1}, {2})
 #endif
-  [Pure]
-  public static extern Sound Create(BaseEntity entity, string path, bool noFilter);
+    [Pure]
+    public static extern Sound Create(BaseEntity entity, string path, bool noFilter);
 #endif
 
     public static extern void PlayFile(string filePath, string flags, Action<IGModAudioChannel, int, string> callback);
@@ -3108,141 +3393,142 @@ public static partial class sound
 
 #if CLIENT
 /// @CSharpLua.Ignore
-public static partial class bass {
+public static partial class bass
+{
 #if STARFALL
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static extern bool CanCreate { get; }
+    /// @CSharpLua.NoField
+    public static extern bool CanCreate { get; }
 
-  /// @CSharpLua.NoField
-  public static extern int SoundsLeft { get; }
+    /// @CSharpLua.NoField
+    public static extern int SoundsLeft { get; }
 #else
-  /// @CSharpLua.Template = bass.canCreate()
-  [Pure]
-  public static extern bool CanCreate();
+    /// @CSharpLua.Template = bass.canCreate()
+    [Pure]
+    public static extern bool CanCreate();
 
-  /// @CSharpLua.Template = bass.soundsLeft()
-  [Pure]
-  public static extern int SoundsLeft();
+    /// @CSharpLua.Template = bass.soundsLeft()
+    [Pure]
+    public static extern int SoundsLeft();
 #endif
 #endif
 
 #if STARFALL
-  /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
+    /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
 #else
-  /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
+    /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
 #endif
-  /// <summary>
-  ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
-  ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
-  /// </summary>
-  /// <param name="url">The URL of the sound to play.</param>
-  /// <param name="flags">
-  ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
-  ///   <list type="bullet">
-  ///     <item>
-  ///       <term>3d</term>
-  ///       <description>Makes the sound 3D, so you can set its position.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>mono</term>
-  ///       <description>Forces the sound to have only one channel.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noplay</term>
-  ///       <description>Forces the sound not to play as soon as this function is called.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noblock</term>
-  ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
-  ///     </item>
-  ///   </list>
-  ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
-  /// </param>
-  /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
-  /// <remarks>
-  ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
-  ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
-  /// </remarks>
-  public static extern void PlayURL(string url, string flags, AudioPlayCallback1 callback);
+    /// <summary>
+    ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
+    ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
+    /// </summary>
+    /// <param name="url">The URL of the sound to play.</param>
+    /// <param name="flags">
+    ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
+    ///   <list type="bullet">
+    ///     <item>
+    ///       <term>3d</term>
+    ///       <description>Makes the sound 3D, so you can set its position.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>mono</term>
+    ///       <description>Forces the sound to have only one channel.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noplay</term>
+    ///       <description>Forces the sound not to play as soon as this function is called.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noblock</term>
+    ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
+    ///     </item>
+    ///   </list>
+    ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
+    /// </param>
+    /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
+    /// <remarks>
+    ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
+    ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
+    /// </remarks>
+    public static extern void PlayURL(string url, string flags, AudioPlayCallback1 callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
+    /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
 #else
-  /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
+    /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
 #endif
-  /// <summary>
-  ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
-  ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
-  /// </summary>
-  /// <param name="url">The URL of the sound to play.</param>
-  /// <param name="flags">
-  ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
-  ///   <list type="bullet">
-  ///     <item>
-  ///       <term>3d</term>
-  ///       <description>Makes the sound 3D, so you can set its position.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>mono</term>
-  ///       <description>Forces the sound to have only one channel.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noplay</term>
-  ///       <description>Forces the sound not to play as soon as this function is called.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noblock</term>
-  ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
-  ///     </item>
-  ///   </list>
-  ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
-  /// </param>
-  /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
-  /// <remarks>
-  ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
-  ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
-  /// </remarks>
-  public static extern void PlayURL(string url, string flags, AudioPlayCallback2 callback);
+    /// <summary>
+    ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
+    ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
+    /// </summary>
+    /// <param name="url">The URL of the sound to play.</param>
+    /// <param name="flags">
+    ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
+    ///   <list type="bullet">
+    ///     <item>
+    ///       <term>3d</term>
+    ///       <description>Makes the sound 3D, so you can set its position.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>mono</term>
+    ///       <description>Forces the sound to have only one channel.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noplay</term>
+    ///       <description>Forces the sound not to play as soon as this function is called.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noblock</term>
+    ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
+    ///     </item>
+    ///   </list>
+    ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
+    /// </param>
+    /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
+    /// <remarks>
+    ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
+    ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
+    /// </remarks>
+    public static extern void PlayURL(string url, string flags, AudioPlayCallback2 callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
+    /// @CSharpLua.Template = bass.loadURL({0}, {1}, {2})
 #else
-  /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
+    /// @CSharpLua.Template = sound.PlayURL({0}, {1}, {2})
 #endif
-  /// <summary>
-  ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
-  ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
-  /// </summary>
-  /// <param name="url">The URL of the sound to play.</param>
-  /// <param name="flags">
-  ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
-  ///   <list type="bullet">
-  ///     <item>
-  ///       <term>3d</term>
-  ///       <description>Makes the sound 3D, so you can set its position.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>mono</term>
-  ///       <description>Forces the sound to have only one channel.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noplay</term>
-  ///       <description>Forces the sound not to play as soon as this function is called.</description>
-  ///     </item>
-  ///     <item>
-  ///       <term>noblock</term>
-  ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
-  ///     </item>
-  ///   </list>
-  ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
-  /// </param>
-  /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
-  /// <remarks>
-  ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
-  ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
-  /// </remarks>
-  public static extern void PlayURL(string url, string flags, AudioPlayCallback3 callback);
+    /// <summary>
+    ///   <para>Allows you to play external sound files, as well as online radio streams.</para>
+    ///   <para>For offline file playback, see <see cref="sound.PlayFile"/>.</para>
+    /// </summary>
+    /// <param name="url">The URL of the sound to play.</param>
+    /// <param name="flags">
+    ///   Flags for the sound. Can be one or more of following, separated by a space (<c>" "</c>):
+    ///   <list type="bullet">
+    ///     <item>
+    ///       <term>3d</term>
+    ///       <description>Makes the sound 3D, so you can set its position.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>mono</term>
+    ///       <description>Forces the sound to have only one channel.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noplay</term>
+    ///       <description>Forces the sound not to play as soon as this function is called.</description>
+    ///     </item>
+    ///     <item>
+    ///       <term>noblock</term>
+    ///       <description>Disables streaming in blocks. It is more resource-intensive, but it is required for <seealso cref="IGModAudioChannel.setTime"/>.</description>
+    ///     </item>
+    ///   </list>
+    ///   <para>If you don't want to use any of the above, you can just leave it as <c>""</c>.</para>
+    /// </param>
+    /// <param name="callback">Callback function that is called as soon as the the stream is loaded.</param>
+    /// <remarks>
+    ///   <para><a href="https://wiki.facepunch.com/gmod/sound.PlayURL">GMod docs</a></para>
+    ///   <para><a href="https://github.com/thegrb93/StarfallEx/search?q=bass_library+loadURL">Starfall definition</a></para>
+    /// </remarks>
+    public static extern void PlayURL(string url, string flags, AudioPlayCallback3 callback);
 }
 #endif
 
@@ -3273,91 +3559,91 @@ public interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-  double getAverageBitRate(); // TODO
+    double getAverageBitRate(); // TODO
 #else
     double GetAverageBitRate();
 #endif
 
     [Pure]
 #if STARFALL
-  double getBitsPerSample(); // TODO
+    double getBitsPerSample(); // TODO
 #else
     double GetBitsPerSample();
 #endif
 
     [Pure]
 #if STARFALL
-  string getFileName(); // TODO
+    string getFileName(); // TODO
 #else
     string GetFileName();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getFFT(FFT size);
+    dynamic getFFT(FFT size);
 #else
     double FFT(dynamic tbl, FFT size);
 #endif
 
     [Pure]
 #if STARFALL
-  double getLength();
+    double getLength();
 #else
     double GetLength();
 #endif
 
     [Pure]
 #if STARFALL
-  (double, double) getLevels();
+    (double, double) getLevels();
 #else
     (double, double) GetLevel();
 #endif
 
     [Pure]
 #if STARFALL
-  double getSamplingRate(); // TODO
+    double getSamplingRate(); // TODO
 #else
     double GetSamplingRate();
 #endif
 
     [Pure]
 #if STARFALL
-  GMOD_CHANNEL getState(); // TODO
+    GMOD_CHANNEL getState(); // TODO
 #else
     GMOD_CHANNEL GetState();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getTagsHTTP(); // TODO
+    dynamic getTagsHTTP(); // TODO
 #else
     dynamic GetTagsHTTP();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getTagsID3(); // TODO
+    dynamic getTagsID3(); // TODO
 #else
     dynamic GetTagsID3();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getTagsMeta(); // TODO
+    dynamic getTagsMeta(); // TODO
 #else
     dynamic GetTagsMeta();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getTagsOGG(); // TODO
+    dynamic getTagsOGG(); // TODO
 #else
     dynamic GetTagsOGG();
 #endif
 
     [Pure]
 #if STARFALL
-  dynamic getTagsVendor(); // TODO
+    dynamic getTagsVendor(); // TODO
 #else
     dynamic GetTagsVendor();
 #endif
@@ -3371,65 +3657,65 @@ public interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-  (double, double, double) get3DCone(); // TODO
+    (double, double, double) get3DCone(); // TODO
 #else
     (double, double, double) Get3DCone();
 #endif
 
 #if STARFALL
-  void set3DCone(double innerAngle, double outerAngle, double outerVolume); // TODO
+    void set3DCone(double innerAngle, double outerAngle, double outerVolume); // TODO
 #else
     void Set3DCone(double innerAngle, double outerAngle, double outerVolume);
 #endif
 
     [Pure]
 #if STARFALL
-  (double, double) get3DFadeDistance();
+    (double, double) get3DFadeDistance();
 #else
     (double, double) Get3DFadeDistance();
 #endif
 
 #if STARFALL
-  void set3DFadeDistance(double min, double max);
+    void set3DFadeDistance(double min, double max);
 #else
     void Set3DFadeDistance(double min, double max);
 #endif
 
     [Pure]
 #if STARFALL
-  double getPan(); // TODO
+    double getPan(); // TODO
 #else
     double GetPan();
 #endif
 
 #if STARFALL
-  void setPan(double pan); // TODO
+    void setPan(double pan); // TODO
 #else
     void SetPan(double pan);
 #endif
 
     [Pure]
 #if STARFALL
-  double getPitch(); // TODO
+    double getPitch(); // TODO
 #else
     double GetPlaybackRate();
 #endif
 
 #if STARFALL
-  void setPitch(double pitch);
+    void setPitch(double pitch);
 #else
     void SetPlaybackRate(double rate);
 #endif
 
     [Pure]
 #if STARFALL
-  Vector getPos(); // TODO
+    Vector getPos(); // TODO
 #else
     Vector GetPos(); // TODO: @GMod why not return dir as well (maybe make a separate method?)
 #endif
 
 #if STARFALL
-  void setPos(Vector pos); // TODO: dir argument
+    void setPos(Vector pos); // TODO: dir argument
 #else
     void SetPos(Vector pos);
 
@@ -3438,91 +3724,91 @@ public interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-  double getTime();
+    double getTime();
 #else
     double GetTime();
 #endif
 
 #if STARFALL
-  void setTime(double time);
+    void setTime(double time);
 #else
     void SetTime(double time);
 #endif
 
     [Pure]
 #if STARFALL
-  double getVolume(); // TODO
+    double getVolume(); // TODO
 #else
     double GetVolume();
 #endif
 
 #if STARFALL
-  void setVolume(double volume);
+    void setVolume(double volume);
 #else
     void SetVolume(double volume);
 #endif
 
     [Pure]
 #if STARFALL
-  bool isLooping(); // TODO
+    bool isLooping(); // TODO
 #else
     bool IsLooping();
 #endif
 
 #if STARFALL
-  void setLooping(bool enable);
+    void setLooping(bool enable);
 #else
     void EnableLooping(bool enable);
 #endif
 
     [Pure]
 #if STARFALL
-  bool is3D(); // TODO
+    bool is3D(); // TODO
 #else
     bool Is3D();
 #endif
 
     [Pure]
 #if STARFALL
-  bool isBlockStreamed(); // TODO
+    bool isBlockStreamed(); // TODO
 #else
     bool IsBlockStreamed();
 #endif
 
     [Pure]
 #if STARFALL
-  bool isOnline();
+    bool isOnline();
 #else
     bool IsOnline();
 #endif
 
     [Pure]
 #if STARFALL
-  bool isValid();
+    bool isValid();
 #else
     bool IsValid();
 #endif
 
 #if STARFALL
-  void pause();
+    void pause();
 #else
     void Pause();
 #endif
 
 #if STARFALL
-  void play();
+    void play();
 #else
     void Play();
 #endif
 
 #if STARFALL
-  void stop();
+    void stop();
 #else
     void Stop();
 #endif
 
 #if STARFALL
-  void destroy();
+    void destroy();
 #endif
 }
 
@@ -3538,7 +3824,7 @@ public static partial class net
     // TODO: Make instance class?
 
 #if STARFALL
-  /// @CSharpLua.Template = net.start({0})
+    /// @CSharpLua.Template = net.start({0})
 #else
     /// @CSharpLua.Template = net.Start({0})
 #endif
@@ -3554,7 +3840,7 @@ public static partial class net
     public static extern bool Start(string messageName);
 
 #if STARFALL
-  /// @CSharpLua.Template = net.start({0}, {1})
+    /// @CSharpLua.Template = net.start({0}, {1})
 #else
     /// @CSharpLua.Template = net.Start({0}, {2})
 #endif
@@ -3572,34 +3858,34 @@ public static partial class net
 
 #if SERVER
 #if STARFALL
-  /// @CSharpLua.Template = net.send({0})
+    /// @CSharpLua.Template = net.send({0})
 #else
-  /// @CSharpLua.Template = net.Send({0})
+    /// @CSharpLua.Template = net.Send({0})
 #endif
-  public static extern void Send(BasePlayer ply);
+    public static extern void Send(BasePlayer ply);
 
 #if STARFALL
-  /// @CSharpLua.Template = net.send({0})
+    /// @CSharpLua.Template = net.send({0})
 #else
-  /// @CSharpLua.Template = net.Send({0})
+    /// @CSharpLua.Template = net.Send({0})
 #endif
-  public static extern void Send(dynamic playersTable);
+    public static extern void Send(dynamic playersTable);
 #endif
 
 #if CLIENT
-  /// @CSharpLua.Template = net.SendToServer()
-  public static extern void SendToServer();
+    /// @CSharpLua.Template = net.SendToServer()
+    public static extern void SendToServer();
 #endif
 
 #if STARFALL
-  /// @CSharpLua.Template = net.receive({0}, {1})
+    /// @CSharpLua.Template = net.receive({0}, {1})
 #else
     /// @CSharpLua.Template = net.Receive({0}, {1})
 #endif
     public static extern void Receive(string messageName, Action callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = net.receive({0}, {1})
+    /// @CSharpLua.Template = net.receive({0}, {1})
 #else
     /// @CSharpLua.Template = net.Receive({0}, {1})
 #endif
@@ -3607,11 +3893,11 @@ public static partial class net
 
 #if SERVER
 #if STARFALL
-  /// @CSharpLua.Template = net.receive({0}, {1})
+    /// @CSharpLua.Template = net.receive({0}, {1})
 #else
-  /// @CSharpLua.Template = net.Receive({0}, {1})
+    /// @CSharpLua.Template = net.Receive({0}, {1})
 #endif
-  public static extern void Receive(string messageName, Action<int, BasePlayer> callback);
+    public static extern void Receive(string messageName, Action<int, BasePlayer> callback);
 #endif
 }
 
@@ -3629,7 +3915,7 @@ public sealed class Thread
 public static partial class timer
 {
 #if STARFALL
-  /// @CSharpLua.Template = timer.adjust({0}, {1})
+    /// @CSharpLua.Template = timer.adjust({0}, {1})
 #else
     /// @CSharpLua.Template = timer.Adjust({0}, {1})
 #endif
@@ -3637,7 +3923,7 @@ public static partial class timer
     public static extern bool Adjust(string identifier, double delay);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.adjust({0}, {1}, {2})
+    /// @CSharpLua.Template = timer.adjust({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = timer.Adjust({0}, {1}, {2})
 #endif
@@ -3645,7 +3931,7 @@ public static partial class timer
     public static extern bool Adjust(string identifier, double delay, ulong repetitions);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.adjust({0}, {1}, {2}, {3})
+    /// @CSharpLua.Template = timer.adjust({0}, {1}, {2}, {3})
 #else
     /// @CSharpLua.Template = timer.Adjust({0}, {1}, {2}, {3})
 #endif
@@ -3653,21 +3939,21 @@ public static partial class timer
     public static extern bool Adjust(string identifier, double delay, ulong? repetitions, Action callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.create({0}, {1}, {2}, {3})
+    /// @CSharpLua.Template = timer.create({0}, {1}, {2}, {3})
 #else
     /// @CSharpLua.Template = timer.Create({0}, {1}, {2}, {3})
 #endif
     public static extern void Create(string identifier, double delay, ulong repetitions, Action callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.simple({0}, {1})
+    /// @CSharpLua.Template = timer.simple({0}, {1})
 #else
     /// @CSharpLua.Template = timer.Simple({0}, {1})
 #endif
     public static extern void Simple(double delay, Action callback);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.exists({0})
+    /// @CSharpLua.Template = timer.exists({0})
 #else
     /// @CSharpLua.Template = timer.Exists({0})
 #endif
@@ -3675,7 +3961,7 @@ public static partial class timer
     public static extern bool Exists(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.pause({0})
+    /// @CSharpLua.Template = timer.pause({0})
 #else
     /// @CSharpLua.Template = timer.Pause({0})
 #endif
@@ -3683,7 +3969,7 @@ public static partial class timer
     public static extern bool Pause(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.unpause({0})
+    /// @CSharpLua.Template = timer.unpause({0})
 #else
     /// @CSharpLua.Template = timer.UnPause({0})
 #endif
@@ -3691,14 +3977,14 @@ public static partial class timer
     public static extern bool Unpause(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.remove({0})
+    /// @CSharpLua.Template = timer.remove({0})
 #else
     /// @CSharpLua.Template = timer.Remove({0})
 #endif
     public static extern void Remove(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.start({0})
+    /// @CSharpLua.Template = timer.start({0})
 #else
     /// @CSharpLua.Template = timer.Start({0})
 #endif
@@ -3706,7 +3992,7 @@ public static partial class timer
     public static extern bool Start(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.stop({0})
+    /// @CSharpLua.Template = timer.stop({0})
 #else
     /// @CSharpLua.Template = timer.Stop({0})
 #endif
@@ -3714,9 +4000,9 @@ public static partial class timer
     public static extern bool Stop(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.repsleft({0})
-  [Pure]
-  public static extern ulong? RepsLeft(string identifier);
+    /// @CSharpLua.Template = timer.repsleft({0})
+    [Pure]
+    public static extern ulong? RepsLeft(string identifier);
 #else
     /// @CSharpLua.Template = timer.RepsLeft({0})
     [Pure]
@@ -3724,7 +4010,7 @@ public static partial class timer
 #endif
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.timeleft({0})
+    /// @CSharpLua.Template = timer.timeleft({0})
 #else
     /// @CSharpLua.Template = timer.TimeLeft({0})
 #endif
@@ -3732,7 +4018,7 @@ public static partial class timer
     public static extern double TimeLeft(string identifier);
 
 #if STARFALL
-  /// @CSharpLua.Template = timer.toggle({0})
+    /// @CSharpLua.Template = timer.toggle({0})
 #else
     /// @CSharpLua.Template = timer.Toggle({0})
 #endif
@@ -3741,16 +4027,16 @@ public static partial class timer
 
 #if STARFALL
 #if FEATURE_PROPERTIES
-  /// @CSharpLua.NoField
-  public static int TimersLeft { get; }
+    /// @CSharpLua.NoField
+    public static int TimersLeft { get; }
 #else
-  /// @CSharpLua.Template = timer.getTimersLeft()
-  [Pure]
-  public static extern int GetTimersLeft();
+    /// @CSharpLua.Template = timer.getTimersLeft()
+    [Pure]
+    public static extern int GetTimersLeft();
 #endif
 
-  /// @CSharpLua.NoField
-  public static extern bool CanCreate { get; }
+    /// @CSharpLua.NoField
+    public static extern bool CanCreate { get; }
 #endif
 }
 
@@ -3790,7 +4076,7 @@ public sealed class Timer : ITimer
     public Timer(Action callback, double delay, ulong repetitions = 1)
     {
 #if STARFALL
-    _G.Assert(timer.CanCreate, "cannot create a timer");
+        _G.Assert(timer.CanCreate, "cannot create a timer");
 #endif
         _G.Assert(delay >= 0, $"bad argument #2 to `{nameof(Timer)}` ({nameof(delay)} cannot be negative)");
         _callback = callback;
@@ -3838,7 +4124,7 @@ public sealed class Timer : ITimer
     public ulong Repetitions
     {
 #if STARFALL
-    get => timer.RepsLeft(Identifier) ?? default; // stuped starfail.
+        get => timer.RepsLeft(Identifier) ?? default; // stuped starfail.
 #else
         get => timer.RepsLeft(Identifier);
 #endif
@@ -3910,21 +4196,21 @@ public sealed class Timer : ITimer
 public static partial class hook
 {
 #if STARFALL
-  /// @CSharpLua.Template = hook.add({0}, {1}, {2})
+    /// @CSharpLua.Template = hook.add({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = hook.Add({0}, {1}, {2})
 #endif
     public static extern void Add<T>(string eventName, string id, T func) where T : Delegate;
 
 #if STARFALL
-  /// @CSharpLua.Template = hook.add({0}, {1}, {2})
+    /// @CSharpLua.Template = hook.add({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = hook.Add({0}, {1}, {2})
 #endif
     public static extern void Add(string eventName, string id, EventBase eventBase);
 
 #if STARFALL
-  /// @CSharpLua.Template = hook.remove({0}, {1})
+    /// @CSharpLua.Template = hook.remove({0}, {1})
 #else
     /// @CSharpLua.Template = hook.Remove({0}, {1})
 #endif
