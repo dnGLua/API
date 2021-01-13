@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>dnGLua.API.GarrysMod</AssemblyName>
 		<RootNamespace>dnGLua.API.GarrysMod</RootNamespace>
@@ -23,6 +23,7 @@
 		<Version>0.1.0</Version>
 		<FileVersion>0.1.0</FileVersion>
 		<AssemblyVersion>0.1.0</AssemblyVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
