@@ -50,5 +50,8 @@
 
 	<Target Name="Compile" />
 	<Target Name="CopyFilesToOutputDirectory" />
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="&quot;$(SolutionDir)Build/$(OutDir)Build.exe&quot; --clean-nuget" />
+	</Target>
 
 </Project>

@@ -3,13 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.64
 MinimumVisualStudioVersion = 16.0.30709.64
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerator", "CodeGenerator\CodeGenerator.csproj", "{BD03F68E-DCB0-4285-A8AC-3954395E9B66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGenerator", "CodeGenerator\CodeGenerator.csproj", "{BD03F68E-DCB0-4285-A8AC-3954395E9B66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{47ADBCC7-CB77-43B3-B062-81719291B1F1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357} = {1A0A5821-E68A-45AD-BAA4-8D9759BE4357}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GarrysMod", "GarrysMod\GarrysMod.csproj", "{009DE0E8-429B-48E1-9EC2-F5045641657D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357} = {1A0A5821-E68A-45AD-BAA4-8D9759BE4357}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Starfall", "Starfall\Starfall.csproj", "{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357} = {1A0A5821-E68A-45AD-BAA4-8D9759BE4357}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "Build\Build.csproj", "{1A0A5821-E68A-45AD-BAA4-8D9759BE4357}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +44,10 @@ Global
 		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A9F9A42-8702-4BE0-87E3-31E592A5FFB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A0A5821-E68A-45AD-BAA4-8D9759BE4357}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

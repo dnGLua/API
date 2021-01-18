@@ -30,8 +30,8 @@
 		<PackageTags>csharp api gmod-lua glua common dnglua</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageVersion>0.1.0</PackageVersion>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+		<PackageVersion>0.1.2</PackageVersion>
+		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -49,5 +49,8 @@
 
 	<Target Name="Compile" />
 	<Target Name="CopyFilesToOutputDirectory" />
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="&quot;$(SolutionDir)Build/$(OutDir)Build.exe&quot; --clean-nuget" />
+	</Target>
 
 </Project>
