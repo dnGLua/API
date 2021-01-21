@@ -62,13 +62,17 @@ public static partial class _G
     [Pure]
     public static extern Angle Angle();
 
+    /// @CSharpLua.Template = _G.Angle({0})
+    [Pure]
+    public static extern Angle Angle(Angle angle);
+
 #if STARFALL
     /// @CSharpLua.Template = _G.Angle({0})
 #else
     /// @CSharpLua.Template = _G.Angle({0}, {0}, {0})
 #endif
     [Pure]
-    public static extern Angle Angle(double pyr);
+    public static extern Angle Angle(float pyr);
 
 #if STARFALL
     /// @CSharpLua.Template = _G.Angle({0}, {1})
@@ -76,15 +80,19 @@ public static partial class _G
     /// @CSharpLua.Template = _G.Angle({0}, {1}, 0)
 #endif
     [Pure]
-    public static extern Angle Angle(double p, double y);
+    public static extern Angle Angle(float p, float y);
 
     /// @CSharpLua.Template = _G.Angle({0}, {1}, {2})
     [Pure]
-    public static extern Angle Angle(double p, double y, double r);
+    public static extern Angle Angle(float p, float y, float r);
 
     /// @CSharpLua.Template = _G.Vector()
     [Pure]
     public static extern Vector Vector();
+
+    /// @CSharpLua.Template = _G.Vector({0})
+    [Pure]
+    public static extern Vector Vector(Vector vector);
 
 #if STARFALL
     /// @CSharpLua.Template = _G.Vector({0})
@@ -92,7 +100,7 @@ public static partial class _G
     /// @CSharpLua.Template = _G.Vector({0}, {0}, {0})
 #endif
     [Pure]
-    public static extern Vector Vector(double xyz);
+    public static extern Vector Vector(float xyz);
 
 #if STARFALL
     /// @CSharpLua.Template = _G.Vector({0}, {1})
@@ -100,19 +108,45 @@ public static partial class _G
     /// @CSharpLua.Template = _G.Vector({0}, {1}, 0)
 #endif
     [Pure]
-    public static extern Vector Vector(double x, double y);
+    public static extern Vector Vector(float x, float y);
 
     /// @CSharpLua.Template = _G.Vector({0}, {1}, {2})
     [Pure]
-    public static extern Vector Vector(double x, double y, double z);
+    public static extern Vector Vector(float x, float y, float z);
+
+    /// @CSharpLua.Template = _G.Matrix()
+    [Pure]
+    public static extern VMatrix Matrix();
+
+    /// @CSharpLua.Template = _G.Matrix({0})
+    [Pure]
+    public static extern VMatrix Matrix(dynamic table);
+
+    /// @CSharpLua.Template = _G.Matrix({0})
+    [Pure]
+    public static extern VMatrix Matrix(VMatrix matrix);
+
+    [Pure]
+    public static VMatrix Matrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44)
+    {
+        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
+        /*
+        [[
+          return _G.Matrix(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44)
+        ]]
+        */
+    }
 
     /// @CSharpLua.Template = _G.Color({0}, {1}, {2})
+    [Pure]
     public static extern Color Color(byte red, byte green, byte blue);
 
     /// @CSharpLua.Template = _G.Color({0}, {1}, {2}, {3})
+    [Pure]
     public static extern Color Color(byte red, byte green, byte blue, byte alpha);
 
     /// @CSharpLua.Template = _G.Color({0})
+    [Pure]
     public static extern Color Color(System.Drawing.Color color);
 
     /// @CSharpLua.Template = _G.assert({0})
@@ -395,15 +429,15 @@ public static partial class _G
 
 public sealed partial class Angle
 {
-    public double p { get; set; }
+    public float p { get; set; }
 
-    public double y { get; set; }
+    public float y { get; set; }
 
-    public double r { get; set; }
+    public float r { get; set; }
 
     private extern Angle();
 
-    public double this[int index]
+    public float this[int index]
     {
         get
         {
@@ -474,7 +508,7 @@ public sealed partial class Angle
         */
     }
 
-    public static Angle operator *(Angle left, double right)
+    public static Angle operator *(Angle left, float right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -484,7 +518,7 @@ public sealed partial class Angle
         */
     }
 
-    public static Angle operator *(double left, Angle right)
+    public static Angle operator *(float left, Angle right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -504,7 +538,7 @@ public sealed partial class Angle
         */
     }
 
-    public static Angle operator /(Angle left, double right)
+    public static Angle operator /(Angle left, float right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -514,7 +548,7 @@ public sealed partial class Angle
         */
     }
 
-    public static Angle operator /(double left, Angle right)
+    public static Angle operator /(float left, Angle right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -547,15 +581,15 @@ public sealed partial class Angle
 
 public sealed partial class Vector
 {
-    public double x { get; set; }
+    public float x { get; set; }
 
-    public double y { get; set; }
+    public float y { get; set; }
 
-    public double z { get; set; }
+    public float z { get; set; }
 
     private extern Vector();
 
-    public double this[int index]
+    public float this[int index]
     {
         get
         {
@@ -626,7 +660,7 @@ public sealed partial class Vector
         */
     }
 
-    public static Vector operator *(Vector left, double right)
+    public static Vector operator *(Vector left, float right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -636,7 +670,7 @@ public sealed partial class Vector
         */
     }
 
-    public static Vector operator *(double left, Vector right)
+    public static Vector operator *(float left, Vector right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -656,7 +690,7 @@ public sealed partial class Vector
         */
     }
 
-    public static Vector operator /(Vector left, double right)
+    public static Vector operator /(Vector left, float right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -666,7 +700,7 @@ public sealed partial class Vector
         */
     }
 
-    public static Vector operator /(double left, Vector right)
+    public static Vector operator /(float left, Vector right)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -695,6 +729,11 @@ public sealed partial class Vector
         ]]
         */
     }
+}
+
+public sealed partial class VMatrix
+{
+    private extern VMatrix();
 }
 
 public sealed partial class Color
@@ -2757,13 +2796,35 @@ public static partial class player
 /// @CSharpLua.Ignore
 public static partial class strlib
 {
+    /// @CSharpLua.Template = strlib.bytes({0}, {1}, {2})
+    [Pure]
+    public static extern byte[] bytes(string str, int? startPos = 1, int? endPos = null);
+
+    /// @CSharpLua.Template = strlib.chars({*0})
+    [Pure]
+    public static extern string chars(params byte[] bytes);
+
+#if STARFALL
+
+    /// @CSharpLua.Template = string.comma({0})
+#else
+
+    /// @CSharpLua.Template = string.Comma({0})
+#endif
+    [Pure]
+    public static extern string comma(double number);
+
     /// @CSharpLua.Template = string.dump({0})
     [Pure]
     public static extern string dump<T>(T func) where T : Delegate;
 
-    /// @CSharpLua.Template = string.format({0}, {*1})
+#if STARFALL
+    /// @CSharpLua.Template = string.endsWith({0}, {1})
+#else
+    /// @CSharpLua.Template = string.EndsWith({0}, {1})
+#endif
     [Pure]
-    public static extern string format(string format, params object[] args);
+    public static extern string endsWith(string str, string end);
 
 #if STARFALL
     /// @CSharpLua.Template = string.explode({0}, {1})
@@ -2781,6 +2842,185 @@ public static partial class strlib
     [Pure]
     public static extern string[] explode(string separator, string str, bool usePatterns);
 
+    /// @CSharpLua.Template = System.Tuple(string.find({0}, {1}, {2}, {3}))
+    [Pure]
+    public static extern (int?, int?, string?) find(string haystack, string needle, int startPos = 1, bool noPatterns = false);
+
+    /// @CSharpLua.Template = string.format({0}, {*1})
+    [Pure]
+    public static extern string format(string format, params object[] args);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.formattedTime({0})
+#else
+    /// @CSharpLua.Template = string.FormattedTime({0})
+#endif
+    [Pure]
+    public static extern dynamic formattedTime(double time);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.formattedTime({0}, {1})
+#else
+    /// @CSharpLua.Template = string.FormattedTime({0}, {1})
+#endif
+    [Pure]
+    public static extern string formattedTime(double time, string format);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.getExtensionFromFilename({0})
+#else
+    /// @CSharpLua.Template = string.GetExtensionFromFilename({0})
+#endif
+    [Pure]
+    public static extern string getExtensionFromFilename(string file);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.getFileFromFilename({0})
+#else
+    /// @CSharpLua.Template = string.GetFileFromFilename({0})
+#endif
+    [Pure]
+    public static extern string getFileFromFilename(string pathString);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.getPathFromFilename({0})
+#else
+    /// @CSharpLua.Template = string.GetPathFromFilename({0})
+#endif
+    [Pure]
+    public static extern string getPathFromFilename(string inputString);
+
+    /// @CSharpLua.Template = strlib.gmatch({0}, {1})
+    public static extern string[] gmatch(string data, string pattern);
+
+    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    [Pure]
+    public static extern (string, int) gsub(string input, string pattern, string replacement);
+
+    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    [Pure]
+    public static extern (string, int) gsub(string input, string pattern, dynamic replacement);
+
+    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    [Pure]
+    public static extern (string, int) gsub(string input, string pattern, Action<string[]> replacement);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.javascriptSafe({0})
+#else
+    /// @CSharpLua.Template = string.JavascriptSafe({0})
+#endif
+    [Pure]
+    public static extern string javascriptSafe(string str);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.left({0}, {1})
+#else
+    /// @CSharpLua.Template = string.Left({0}, {1})
+#endif
+    [Pure]
+    public static extern string left(string str, int amount);
+
+    /// @CSharpLua.Template = string.len({0})
+    [Pure]
+    public static extern int len(string str);
+
+    /// @CSharpLua.Template = string.lower({0})
+    [Pure]
+    public static extern string lower(string str);
+
+    /// @CSharpLua.Template = strlib.match({0}, {1})
+    [Pure]
+    public static extern string[]? match(string str, string pattern);
+
+    /// @CSharpLua.Template = strlib.match({0}, {1}, {2})
+    [Pure]
+    public static extern string[]? match(string str, string pattern, int startPos);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.niceSize({0})
+#else
+    /// @CSharpLua.Template = string.NiceSize({0})
+#endif
+    [Pure]
+    public static extern string niceSize(ulong bytes);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.niceTime({0})
+#else
+    /// @CSharpLua.Template = string.NiceTime({0})
+#endif
+    [Pure]
+    public static extern string niceTime(ulong num);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.patternSafe({0})
+#else
+    /// @CSharpLua.Template = string.PatternSafe({0})
+#endif
+    [Pure]
+    public static extern string patternSafe(string str);
+
+    /// @CSharpLua.Template = string.rep({0}, {1})
+    [Pure]
+    public static extern string rep(string str, int repetitions);
+
+    /// @CSharpLua.Template = string.rep({0}, {1}, {2})
+    [Pure]
+    public static extern string rep(string str, int repetitions, string separator);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.replace({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = string.Replace({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern string replace(string str, string find, string replace);
+
+    /// @CSharpLua.Template = string.reverse({0})
+    [Pure]
+    public static extern string reverse(string str);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.right({0}, {1})
+#else
+    /// @CSharpLua.Template = string.Right({0}, {1})
+#endif
+    [Pure]
+    public static extern string right(string str, int amount);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.setChar({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = string.SetChar({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern string setChar(string inputString, int index, string replacementChar);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.split({0}, {1})
+#else
+    /// @CSharpLua.Template = string.Split({0}, {1})
+#endif
+    [Pure]
+    public static extern string[] split(string inputString, string separator);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.startWith({0}, {1})
+#else
+    /// @CSharpLua.Template = string.StartWith({0}, {1})
+#endif
+    [Pure]
+    public static extern bool startWith(string inputString, string start);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.stripExtension({0})
+#else
+    /// @CSharpLua.Template = string.StripExtension({0})
+#endif
+    [Pure]
+    public static extern string stripExtension(string inputString);
+
     /// @CSharpLua.Template = string.sub({0}, {1})
     [Pure]
     public static extern string sub(string str, int startPos);
@@ -2790,12 +3030,64 @@ public static partial class strlib
     public static extern string sub(string str, int startPos, int endPos);
 
 #if STARFALL
+    /// @CSharpLua.Template = string.toMinutesSeconds({0})
+#else
+    /// @CSharpLua.Template = string.ToMinutesSeconds({0})
+#endif
+    [Pure]
+    public static extern string toMinutesSeconds(ulong time);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.toMinutesSecondsMilliseconds({0})
+#else
+    /// @CSharpLua.Template = string.ToMinutesSecondsMilliseconds({0})
+#endif
+    [Pure]
+    public static extern string toMinutesSecondsMilliseconds(double time);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.toTable({0})
+#else
+    /// @CSharpLua.Template = string.ToTable({0})
+#endif
+    [Pure]
+    public static extern byte[] toTable(string str);
+
+#if STARFALL
     /// @CSharpLua.Template = string.trim({0})
 #else
     /// @CSharpLua.Template = string.Trim({0})
 #endif
     [Pure]
-    public static extern string trim(string str);
+    public static extern string trim(string inputString);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.trim({0}, {1})
+#else
+    /// @CSharpLua.Template = string.Trim({0}, {1})
+#endif
+    [Pure]
+    public static extern string trim(string inputString, string toMatch = "%s");
+
+#if STARFALL
+    /// @CSharpLua.Template = string.trimLeft({0}, {1})
+#else
+    /// @CSharpLua.Template = string.TrimLeft({0}, {1})
+#endif
+    [Pure]
+    public static extern string trimLeft(string str, string toRemove);
+
+#if STARFALL
+    /// @CSharpLua.Template = string.trimRight({0}, {1})
+#else
+    /// @CSharpLua.Template = string.TrimRight({0}, {1})
+#endif
+    [Pure]
+    public static extern string trimRight(string str, string toRemove);
+
+    /// @CSharpLua.Template = string.upper({0})
+    [Pure]
+    public static extern string upper(string str);
 }
 
 /// @CSharpLua.Ignore
@@ -2816,6 +3108,7 @@ public static class StringExtensions
     /// @CSharpLua.Template = string.sub({0}, {1}, {2})
     [Pure]
     public static extern string sub(this string @this, int startPos, int endPos);
+
 #if STARFALL
     /// @CSharpLua.Template = string.trim({0})
 #else
@@ -2828,46 +3121,416 @@ public static class StringExtensions
 /// @CSharpLua.Ignore
 public static partial class table
 {
-    /// @CSharpLua.Template = table.remove({0})
+    /// @CSharpLua.Template = table.concat({0}, {1})
     [Pure]
+    public static extern string concat(dynamic table, string concatenator);
+
+    /// @CSharpLua.Template = table.concat({0}, {1}, {2})
+    [Pure]
+    public static extern string concat(dynamic table, string concatenator, long startPos);
+
+    /// @CSharpLua.Template = table.concat({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern string concat(dynamic table, string concatenator, long startPos, long endPos);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.copy({0})
+#else
+    /// @CSharpLua.Template = table.Copy({0})
+#endif
+    [Pure]
+    public static extern dynamic Copy(dynamic table);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.count({0})
+#else
+    /// @CSharpLua.Template = table.Count({0})
+#endif
+    [Pure]
+    public static extern int Count(dynamic table);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.empty({0})
+#else
+    /// @CSharpLua.Template = table.Empty({0})
+#endif
+    public static extern void Empty(dynamic table);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.getKeys({0})
+#else
+    /// @CSharpLua.Template = table.GetKeys({0})
+#endif
+    [Pure]
+    public static extern dynamic GetKeys(dynamic table);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.isEmpty({0})
+#else
+    /// @CSharpLua.Template = table.IsEmpty({0})
+#endif
+    [Pure]
+    public static extern bool IsEmpty(dynamic table);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.isSequential({0})
+#else
+    /// @CSharpLua.Template = table.IsSequential({0})
+#endif
+    [Pure]
+    public static extern bool IsSequential(dynamic table);
+
+    /// @CSharpLua.Template = table.remove({0})
     public static extern T remove<T>(dynamic table);
 
     /// @CSharpLua.Template = table.remove({0}, {1})
+    public static extern T remove<T>(dynamic table, int key);
+
+#if STARFALL
+	/// @CSharpLua.Template = table.reverse({0})
+#else
+    /// @CSharpLua.Template = table.Reverse({0})
+#endif
     [Pure]
-    public static extern T remove<T, TKey>(dynamic table, TKey key);
+    public static extern dynamic Reverse(dynamic table);
+
+    /// @CSharpLua.Template = table.sort({0}, {1})
+    public static extern void sort(dynamic table, Func<object, object, bool> sorter);
 }
 
 /// @CSharpLua.Ignore
 public static partial class math
 {
+    /// @CSharpLua.Template = math.huge
+    public static readonly double huge = double.MaxValue;
+
+    /// @CSharpLua.Template = math.pi
+    public static readonly double pi = Math.PI;
+
     /// @CSharpLua.Template = math.abs({0})
+    [Pure]
     public static extern double abs(double number);
 
-    /// @CSharpLua.Template = math.random()
-    public static extern double random();
+    /// @CSharpLua.Template = math.acos({0})
+    [Pure]
+    public static extern double acos(double cos);
 
-    /// @CSharpLua.Template = math.random({0})
-    public static extern int random(int max);
+#if STARFALL
+	/// @CSharpLua.Template = math.angleDifference({0}, {1})
+#else
+    /// @CSharpLua.Template = math.AngleDifference({0}, {1})
+#endif
+    [Pure]
+    public static extern double AngleDifference(double a, double b);
 
-    /// @CSharpLua.Template = math.random({0}, {1})
-    public static extern int random(int min, int max);
+#if STARFALL
+	/// @CSharpLua.Template = math.approach({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.Approach({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double Approach(double current, double target, double change);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.approachAngle({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.ApproachAngle({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double ApproachAngle(double currentAngle, double targetAngle, double rate);
+
+    /// @CSharpLua.Template = math.asin({0})
+    [Pure]
+    public static extern double asin(double num);
+
+    /// @CSharpLua.Template = math.atan({0})
+    [Pure]
+    public static extern double atan(double num);
+
+    /// @CSharpLua.Template = math.atan2({0}, {1})
+    [Pure]
+    public static extern double atan2(double y, double x);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.binToInt({0})
+#else
+    /// @CSharpLua.Template = math.BinToInt({0})
+#endif
+    [Pure]
+    public static extern T BinToInt<T>(string binaryString) where T : unmanaged;
+
+#if STARFALL
+	/// @CSharpLua.Template = math.bSplinePoint({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.BSplinePoint({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern Vector BSplinePoint(double tDiff, Vector[] points, double tMax = 1.0);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.calcBSplineN({0}, {1}, {2}, {3})
+#else
+    /// @CSharpLua.Template = math.calcBSplineN({0}, {1}, {2}, {3})
+#endif
+    [Pure]
+    public static extern double calcBSplineN(double i, double k, double t, double tInc);
+
+    /// @CSharpLua.Template = math.ceil({0})
+    [Pure]
+    public static extern double ceil(double num);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.clamp({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.Clamp({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double Clamp(double input, double min, double max);
+
+    /// @CSharpLua.Template = math.cos({0})
+    [Pure]
+    public static extern double cos(double num);
+
+    /// @CSharpLua.Template = math.cosh({0})
+    [Pure]
+    public static extern double cosh(double num);
+
+    /// @CSharpLua.Template = math.deg({0})
+    [Pure]
+    public static extern double deg(double radians);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.distance({0}, {1}, {2}, {3})
+#else
+    /// @CSharpLua.Template = math.Distance({0}, {1}, {2}, {3})
+#endif
+    [Pure]
+    public static extern double Distance(double x1, double y1, double x2, double y2);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.easeInOut({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.EaseInOut({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double EaseInOut(double progress, double easeIn, double easeOut);
+
+    /// @CSharpLua.Template = math.exp({0})
+    [Pure]
+    public static extern double exp(double exponent);
+
+    /// @CSharpLua.Template = math.floor({0})
+    [Pure]
+    public static extern double floor(double num);
+
+    /// @CSharpLua.Template = math.fmod({0}, {1})
+    [Pure]
+    public static extern double fmod(double num, double modulator);
+
+    /// @CSharpLua.Template = System.Tuple(math.frexp({0}))
+    [Pure]
+    public static extern (double, double) frexp(double x);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.intToBin({0})
+#else
+    /// @CSharpLua.Template = math.IntToBin({0})
+#endif
+    [Pure]
+    public static extern string IntToBin<T>(T num) where T : unmanaged;
+
+    /// @CSharpLua.Template = math.ldexp({0}, {1})
+    [Pure]
+    public static extern double ldexp(double normalizedFraction, double exponent);
+
+    /// @CSharpLua.Template = math.log({0})
+    [Pure]
+    public static extern double log(double x);
+
+    /// @CSharpLua.Template = math.log({0}, {1})
+    [Pure]
+    public static extern double log(double x, double @base);
+
+    /// @CSharpLua.Template = math.log10({0})
+    [Pure]
+    public static extern double log10(double x);
+
+    /// @CSharpLua.Template = math.max({*0})
+    [Pure]
+    public static extern double max(params double[] numbers);
+
+    /// @CSharpLua.Template = math.min({*0})
+    [Pure]
+    public static extern double min(params double[] numbers);
+
+    /// @CSharpLua.Template = System.Tuple(math.modf({0}))
+    [Pure]
+    public static extern (long, double) modf(double num);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.normalizeAngle({0})
+#else
+    /// @CSharpLua.Template = math.NormalizeAngle({0})
+#endif
+    [Pure]
+    public static extern double NormalizeAngle(double angle);
+
+    /// @CSharpLua.Template = math.pow({0}, {1})
+    [Pure]
+    public static extern double pow(double x, double y);
+
+    /// @CSharpLua.Template = math.rad({0})
+    [Pure]
+    public static extern double rad(double degrees);
 
 #if STARFALL
     /// @CSharpLua.Template = math.rand({0}, {1})
 #else
     /// @CSharpLua.Template = math.Rand({0}, {1})
 #endif
+    [Pure]
     public static extern double Rand(double min, double max);
+
+    /// @CSharpLua.Template = math.random()
+    [Pure]
+    public static extern double random();
+
+    /// @CSharpLua.Template = math.random({0})
+    [Pure]
+    public static extern int random(int max);
+
+    /// @CSharpLua.Template = math.random({0}, {1})
+    [Pure]
+    public static extern int random(int min, int max);
 
 #if !STARFALL
     /// @CSharpLua.Template = math.randomseed({0})
     public static extern void RandomSeed(double seed);
 #endif
+
+#if STARFALL
+	/// @CSharpLua.Template = math.remap({0}, {1}, {2}, {3}, {4})
+#else
+    /// @CSharpLua.Template = math.Remap({0}, {1}, {2}, {3}, {4})
+#endif
+    [Pure]
+    public static extern double Remap(double value, double inMin, double inMax, double outMin, double outMax);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.round({0}, {1})
+#else
+    /// @CSharpLua.Template = math.Round({0}, {1})
+#endif
+    [Pure]
+    public static extern double Round(double value, int decimals = 0);
+
+    /// @CSharpLua.Template = math.sin({0})
+    [Pure]
+    public static extern double sin(double num);
+
+    /// @CSharpLua.Template = math.sinh({0})
+    [Pure]
+    public static extern double sinh(double num);
+
+    /// @CSharpLua.Template = math.sqrt({0})
+    [Pure]
+    public static extern double sqrt(double num);
+
+    /// @CSharpLua.Template = math.tan({0})
+    [Pure]
+    public static extern double tan(double num);
+
+    /// @CSharpLua.Template = math.tanh({0})
+    [Pure]
+    public static extern double tanh(double num);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.timeFraction({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = math.TimeFraction({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double TimeFraction(double start, double end, double current);
+
+    /// @CSharpLua.Template = math.Truncate({0}, {1})
+    [Pure]
+    public static extern double Truncate(double num, int digits = 0);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.lerp({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = _G.Lerp({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern double Lerp(double t, double from, double to);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.lerpAngle({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = _G.LerpAngle({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern Angle LerpAngle(float ratio, Angle from, Angle to);
+
+#if STARFALL
+	/// @CSharpLua.Template = math.lerpVector({0}, {1}, {2})
+#else
+    /// @CSharpLua.Template = _G.LerpVector({0}, {1}, {2})
+#endif
+    [Pure]
+    public static extern Vector LerpVector(float ratio, Vector from, Vector to);
 }
 
 /// @CSharpLua.Ignore
 public static partial class bit
 {
+    /// @CSharpLua.Template = bit.arshift({0}, {1})
+    [Pure]
+    public static extern int arshift(int value, int shiftCount);
+
+    /// @CSharpLua.Template = bit.band({0}, {*1})
+    [Pure]
+    public static extern int band(int value, params int[] otherValues);
+
+    /// @CSharpLua.Template = bit.bnot({0})
+    [Pure]
+    public static extern int bnot(int value);
+
+    /// @CSharpLua.Template = bit.bor({0}, {*1})
+    [Pure]
+    public static extern int bor(int value, params int[] otherValues);
+
+    /// @CSharpLua.Template = bit.bswap({0})
+    [Pure]
+    public static extern int bswap(int value);
+
+    /// @CSharpLua.Template = bit.bxor({0}, {*1})
+    [Pure]
+    public static extern int bxor(int value, params int[] otherValues);
+
+    /// @CSharpLua.Template = bit.lshift({0}, {1})
+    [Pure]
+    public static extern int lshift(int value, int shiftCount);
+
+    /// @CSharpLua.Template = bit.rol({0}, {1})
+    [Pure]
+    public static extern int rol(int value, int shiftCount);
+
+    /// @CSharpLua.Template = bit.ror({0}, {1})
+    [Pure]
+    public static extern int ror(int value, int shiftCount);
+
+    /// @CSharpLua.Template = bit.rshift({0}, {1})
+    [Pure]
+    public static extern int rshift(int value, int shiftCount);
+
+    /// @CSharpLua.Template = bit.tobit({0})
+    [Pure]
+    public static extern int tobit<T>(T value) where T : unmanaged;
+
+    /// @CSharpLua.Template = bit.tohex({0}, {1})
+    [Pure]
+    public static extern string tohex(int value, int digits = 8);
 }
 
 /// @CSharpLua.Ignore
@@ -3012,31 +3675,91 @@ public static partial class util
     [Pure]
     public static extern TraceResult? TraceHull(HullTrace traceData);
 
+#if STARFALL
+    /// @CSharpLua.Template = System.Tuple(trace.intersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
+#else
+    /// @CSharpLua.Template = System.Tuple(util.IntersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
+#endif
+    [Pure]
+    public static extern (Vector?, Vector?, double?) IntersectRayWithOBB(Vector rayStart, Vector rayDelta, Vector boxOrigin, Angle boxAngles, Vector boxMins, Vector boxMaxs);
+
+#if STARFALL
+    /// @CSharpLua.Template = trace.intersectRayWithPlane({0}, {1}, {2}, {3})
+#else
+    /// @CSharpLua.Template = util.IntersectRayWithPlane({0}, {1}, {2}, {3})
+#endif
+    [Pure]
+    public static extern Vector? IntersectRayWithPlane(Vector rayOrigin, Vector rayDirection, Vector planePosition, Vector planeNormal);
+
+#if STARFALL
+    /// @CSharpLua.Template = trace.pointContents({0})
+#else
+    /// @CSharpLua.Template = util.PointContents({0})
+#endif
+    [Pure]
+    public static extern CONTENTS PointContents(Vector position);
+
+#if STARFALL
+    /// @CSharpLua.Template = _G.crc({0})
+#else
     /// @CSharpLua.Template = util.CRC({0})
+#endif
     [Pure]
     public static extern string CRC(string data);
 
+#if STARFALL
+    /// @CSharpLua.Template = fastlz.compress({0})
+#else
     /// @CSharpLua.Template = util.Compress({0})
+#endif
     [Pure]
     public static extern string Compress(string data);
 
+#if STARFALL
+    /// @CSharpLua.Template = fastlz.decompress({0})
+#else
     /// @CSharpLua.Template = util.Decompress({0})
+#endif
     [Pure]
     public static extern string Decompress(string compressedData);
 
+#if STARFALL
+    /// @CSharpLua.Template = http.base64Decode({0})
+#else
     /// @CSharpLua.Template = util.Base64Decode({0})
+#endif
     [Pure]
     public static extern string Base64Decode(string encodedData);
 
+#if STARFALL
+    /// @CSharpLua.Template = http.base64Encode({0})
+#else
     /// @CSharpLua.Template = util.Base64Encode({0})
+#endif
     [Pure]
     public static extern string Base64Encode(string data);
 
+#if STARFALL
+    /// @CSharpLua.Template = json.encode({0})
+#else
     /// @CSharpLua.Template = util.TableToJSON({0})
+#endif
     [Pure]
     public static extern string TableToJSON(dynamic table);
 
+#if STARFALL
+    /// @CSharpLua.Template = json.encode({0}, {1})
+#else
+    /// @CSharpLua.Template = util.TableToJSON({0}, {1})
+#endif
+    [Pure]
+    public static extern string TableToJSON(dynamic table, bool prettyPrint);
+
+#if STARFALL
+    /// @CSharpLua.Template = json.decode({0})
+#else
     /// @CSharpLua.Template = util.JSONToTable({0})
+#endif
     [Pure]
     public static extern dynamic JSONToTable(string json);
 }
@@ -3685,7 +4408,7 @@ public static partial class net
 #else
     /// @CSharpLua.Template = net.Send({0})
 #endif
-    public static extern void Send(dynamic playersTable);
+    public static extern void Send(BasePlayer[] playersTable);
 #endif
 
 #if CLIENT
@@ -3714,9 +4437,254 @@ public static partial class net
     /// @CSharpLua.Template = net.Receive({0}, {1})
 #endif
     public static extern void Receive(string messageName, Action<int, BasePlayer> callback);
+    
+    /// @CSharpLua.Template = net.Broadcast()
+    public static extern void Broadcast();
 #endif
 
-    // TODO
+#if !STARFALL
+    /// @CSharpLua.Template = net.BytesLeft()
+    [Pure]
+    public static extern (int?, int?) BytesLeft();
+
+    /// @CSharpLua.Template = net.BytesWritten()
+    [Pure]
+    public static extern (int?, int?) BytesWritten();
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readAngle()
+#else
+    /// @CSharpLua.Template = net.ReadAngle()
+#endif
+    [Pure]
+    public static extern Angle ReadAngle();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeAngle({0})
+#else
+    /// @CSharpLua.Template = net.WriteAngle({0})
+#endif
+    public static extern void WriteAngle(Angle angle);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readBit()
+#else
+    /// @CSharpLua.Template = net.ReadBit()
+#endif
+    [Pure]
+    public static extern byte ReadBit();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeBit({0})
+    public static extern void WriteBit(byte bit);
+#else
+    /// @CSharpLua.Template = net.WriteBit({0})
+    public static extern void WriteBit(bool bit);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readBool()
+#else
+    /// @CSharpLua.Template = net.ReadBool()
+#endif
+    [Pure]
+    public static extern bool ReadBool();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeBool({0})
+#else
+    /// @CSharpLua.Template = net.WriteBool({0})
+#endif
+    public static extern void WriteBool(bool value);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readColor()
+#else
+    /// @CSharpLua.Template = net.ReadColor()
+#endif
+    [Pure]
+    public static extern Color ReadColor();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeColor({0})
+#else
+    /// @CSharpLua.Template = net.WriteColor({0})
+#endif
+    public static extern void WriteColor(Color color);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readData({0})
+#else
+    /// @CSharpLua.Template = net.ReadData({0})
+#endif
+    [Pure]
+    public static extern string ReadData(ushort length);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeData({0}, {1})
+#else
+    /// @CSharpLua.Template = net.WriteData({0}, {1})
+#endif
+    public static extern void WriteData(string value, ushort length);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readDouble()
+#else
+    /// @CSharpLua.Template = net.ReadDouble()
+#endif
+    [Pure]
+    public static extern double ReadDouble();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeDouble({0})
+#else
+    /// @CSharpLua.Template = net.WriteDouble({0})
+#endif
+    public static extern void WriteDouble(double value);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readEntity()
+#else
+    /// @CSharpLua.Template = net.ReadEntity()
+#endif
+    [Pure]
+    public static extern BaseEntity ReadEntity();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeEntity({0})
+#else
+    /// @CSharpLua.Template = net.WriteEntity({0})
+#endif
+    public static extern void WriteEntity(BaseEntity ent);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readFloat()
+#else
+    /// @CSharpLua.Template = net.ReadFloat()
+#endif
+    [Pure]
+    public static extern float ReadFloat();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeFloat({0})
+#else
+    /// @CSharpLua.Template = net.WriteFloat({0})
+#endif
+    public static extern void WriteFloat(float value);
+
+#if !STARFALL
+    /// @CSharpLua.Template = net.ReadHeader()
+    [Pure]
+    public static extern ushort ReadHeader();
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readInt({0})
+#else
+    /// @CSharpLua.Template = net.ReadInt({0})
+#endif
+    [Pure]
+    public static extern int ReadInt(int bitCount);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeInt({0}, {1})
+#else
+    /// @CSharpLua.Template = net.WriteInt({0}, {1})
+#endif
+    public static extern void WriteInt(int value, int bitCount);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readMatrix()
+#else
+    /// @CSharpLua.Template = net.ReadMatrix()
+#endif
+    [Pure]
+    public static extern VMatrix ReadMatrix();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeMatrix({0})
+#else
+    /// @CSharpLua.Template = net.WriteMatrix({0})
+#endif
+    public static extern void WriteMatrix(VMatrix value);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readNormal()
+#else
+    /// @CSharpLua.Template = net.ReadNormal()
+#endif
+    [Pure]
+    public static extern Vector ReadNormal();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeNormal({0})
+#else
+    /// @CSharpLua.Template = net.WriteNormal({0})
+#endif
+    public static extern void WriteNormal(Vector value);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readString()
+#else
+    /// @CSharpLua.Template = net.ReadString()
+#endif
+    [Pure]
+    public static extern string ReadString();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeString({0})
+#else
+    /// @CSharpLua.Template = net.WriteString({0})
+#endif
+    public static extern void WriteString(string value);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readTable()
+#else
+    /// @CSharpLua.Template = net.ReadTable()
+#endif
+    [Pure]
+    public static extern dynamic ReadTable();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeTable({0})
+#else
+    /// @CSharpLua.Template = net.WriteTable({0})
+#endif
+    public static extern void WriteTable(dynamic value);
+
+    // TODO: Type
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readUInt({0})
+#else
+    /// @CSharpLua.Template = net.ReadUInt({0})
+#endif
+    [Pure]
+    public static extern uint ReadUInt(int numberOfBits);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeUInt({0}, {1})
+#else
+    /// @CSharpLua.Template = net.WriteUInt({0}, {1})
+#endif
+    public static extern void WriteUInt(uint value, int numberOfBits);
+
+#if STARFALL
+    /// @CSharpLua.Template = net.readVector()
+#else
+    /// @CSharpLua.Template = net.ReadVector()
+#endif
+    [Pure]
+    public static extern Vector ReadVector();
+
+#if STARFALL
+    /// @CSharpLua.Template = net.writeVector({0})
+#else
+    /// @CSharpLua.Template = net.WriteVector({0})
+#endif
+    public static extern void WriteVector(Vector value);
 }
 
 /// @CSharpLua.Ignore

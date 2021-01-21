@@ -1,6 +1,6 @@
-﻿#define CLIENT // TODO: Remove me
-#define SERVER // TODO: Remove me
-#define FEATURE_PROPERTIES // TODO: Remove me
+﻿//#define CLIENT // TODO: Remove me
+//#define SERVER // TODO: Remove me
+//#define FEATURE_PROPERTIES // TODO: Remove me
 
 #nullable enable
 #pragma warning disable 660, 1591, 661, 8600, 8602, 8618
@@ -672,6 +672,58 @@ public static partial class prop
 #endif
 
 /// @CSharpLua.Ignore
+public static partial class net
+{
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern int BytesLeft { get; }
+
+    /// @CSharpLua.NoField
+    public static extern int BitsLeft { get; }
+
+    /// @CSharpLua.NoField
+    public static extern double StreamProgress { get; }
+
+    /// @CSharpLua.NoField
+    public static extern bool IsStreaming { get; }
+#else
+    /// @CSharpLua.Template = net.getBytesLeft()
+    public static extern int GetBytesLeft();
+
+    /// @CSharpLua.Template = net.getBitsLeft()
+    public static extern int GetBitsLeft();
+
+    /// @CSharpLua.Template = net.getStreamProgress()
+    public static extern double GetStreamProgress();
+
+    /// @CSharpLua.Template = net.isStreaming()
+    public static extern bool IsStreaming();
+#endif
+
+    /// @CSharpLua.Template = net.cancelStream()
+    public static extern void CancelStream();
+
+#if CLIENT
+    /// @CSharpLua.Template = net.readEntity({0})
+    public static extern void ReadEntity(Action<BaseEntity?> callback);
+#endif
+
+    /// @CSharpLua.Template = net.readStream({0})
+    public static extern void ReadStream(Action<string?> callback);
+
+    /// @CSharpLua.Template = net.writeStream({0}, {1})
+    public static extern void WriteStream(string data, bool compress = true);
+}
+
+/// @CSharpLua.Ignore
+public static partial class math
+{
+    /// @CSharpLua.Template = math.sign({0})
+    [Pure]
+    public static extern int sign(double num);
+}
+
+/// @CSharpLua.Ignore
 public static partial class util
 {
     /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
@@ -916,9 +968,17 @@ public static partial class render
 /// @CSharpLua.Ignore
 public static partial class bit
 {
+    /// @CSharpLua.Template = bit.stringstream()
+    [Pure]
+    public static extern StringStream StringStream();
+
+    /// @CSharpLua.Template = bit.stringstream({0})
+    [Pure]
+    public static extern StringStream StringStream(string initialBuffer);
+
     /// @CSharpLua.Template = bit.stringstream({0}, {1}, {2})
     [Pure]
-    public static extern StringStream StringStream(string initialBuffer = "", uint position = 1, string endianess = "little");
+    public static extern StringStream StringStream(string initialBuffer, uint position = 1, string endianess = "little");
 }
 
 /// @CSharpLua.Ignore
@@ -927,18 +987,26 @@ public sealed partial class StringStream
     internal dynamic buffer;
     internal uint pos;
 
+    /// @CSharpLua.Template = bit.stringstream()
+    public extern StringStream();
+
+    /// @CSharpLua.Template = bit.stringstream({0})
+    public extern StringStream(string initialBuffer);
+
     /// @CSharpLua.Template = bit.stringstream({0}, {1}, {2})
-    public extern StringStream(string initialBuffer = "", uint position = 1, string endianess = "little");
+    public extern StringStream(string initialBuffer, uint position = 1, string endianess = "little");
 
     // MY NOTE: These methods must begin with lower-case letter because we're not wrapping Starfall side just to have uppercase-first char.
 
 #if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
     public extern dynamic Buffer { get; }
 #else
     public extern dynamic getBuffer();
 #endif
 
 #if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
     public extern string String { get; }
 #else
     public extern string getString();
@@ -956,7 +1024,7 @@ public sealed partial class StringStream
 
     public extern uint tell();
 
-    public extern long size();
+    public extern int size();
 
     public extern string read(uint amount);
 
