@@ -7,21 +7,6 @@
 
 #pragma warning disable IDE0060 // Remove unused parameter
 #pragma warning disable IDE1006 // Naming Styles
-// ReSharper disable UnusedType.Global
-// ReSharper disable UnusedMember.Global
-// ReSharper disable UnusedParameter.Global
-// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-// ReSharper disable ConvertToConstant.Global
-// ReSharper disable InconsistentNaming
-// ReSharper disable AccessToModifiedClosure
-// ReSharper disable UnassignedGetOnlyAutoProperty
-// ReSharper disable ClassCannotBeInstantiated
-// ReSharper disable ArrangeTypeMemberModifiers
-// ReSharper disable CheckNamespace
-// ReSharper disable InvalidXmlDocComment
 // ReSharper disable All
 
 using System;
@@ -58,59 +43,59 @@ public static partial class _G
 
     public static extern dynamic REMOVEME_Internal_Return_Hack_REMOVEME();
 
-    /// @CSharpLua.Template = _G.Angle()
+    /// @CSharpLua.Template = _G.__Angle()
     [Pure]
     public static extern Angle Angle();
 
-    /// @CSharpLua.Template = _G.Angle({0})
+    /// @CSharpLua.Template = _G.__Angle({0})
     [Pure]
-    public static extern Angle Angle(Angle angle);
+    public static extern Angle Angle(Angle angle); // TODO: SF
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.Angle({0})
+    /// @CSharpLua.Template = _G.__Angle({0})
 #else
-    /// @CSharpLua.Template = _G.Angle({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.__Angle({0}, {0}, {0})
 #endif
     [Pure]
     public static extern Angle Angle(float pyr);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.Angle({0}, {1})
+    /// @CSharpLua.Template = _G.__Angle({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.Angle({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.__Angle({0}, {1}, 0)
 #endif
     [Pure]
     public static extern Angle Angle(float p, float y);
 
-    /// @CSharpLua.Template = _G.Angle({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.__Angle({0}, {1}, {2})
     [Pure]
     public static extern Angle Angle(float p, float y, float r);
 
-    /// @CSharpLua.Template = _G.Vector()
+    /// @CSharpLua.Template = _G.__Vector()
     [Pure]
     public static extern Vector Vector();
 
-    /// @CSharpLua.Template = _G.Vector({0})
+    /// @CSharpLua.Template = _G.__Vector({0})
     [Pure]
-    public static extern Vector Vector(Vector vector);
+    public static extern Vector Vector(Vector vector); // TODO: SF
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.Vector({0})
+    /// @CSharpLua.Template = _G.__Vector({0})
 #else
-    /// @CSharpLua.Template = _G.Vector({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.__Vector({0}, {0}, {0})
 #endif
     [Pure]
     public static extern Vector Vector(float xyz);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.Vector({0}, {1})
+    /// @CSharpLua.Template = _G.__Vector({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.Vector({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.__Vector({0}, {1}, 0)
 #endif
     [Pure]
     public static extern Vector Vector(float x, float y);
 
-    /// @CSharpLua.Template = _G.Vector({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.__Vector({0}, {1}, {2})
     [Pure]
     public static extern Vector Vector(float x, float y, float z);
 
@@ -118,24 +103,17 @@ public static partial class _G
     [Pure]
     public static extern VMatrix Matrix();
 
-    /// @CSharpLua.Template = _G.Matrix({0})
-    [Pure]
-    public static extern VMatrix Matrix(dynamic table);
+    ///// @CSharpLua.Template = _G.Matrix({0})
+    //[Pure]
+    //public static extern VMatrix Matrix(dynamic table);
 
     /// @CSharpLua.Template = _G.Matrix({0})
     [Pure]
-    public static extern VMatrix Matrix(VMatrix matrix);
+    public static extern VMatrix Matrix(VMatrix matrix); // TODO: SF
 
+    /// @CSharpLua.Template = _G.Matrix({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15})
     [Pure]
-    public static VMatrix Matrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return _G.Matrix(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44)
-        ]]
-        */
-    }
+    public static extern VMatrix Matrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44);
 
     /// @CSharpLua.Template = _G.Color({0}, {1}, {2})
     [Pure]
@@ -145,9 +123,9 @@ public static partial class _G
     [Pure]
     public static extern Color Color(byte red, byte green, byte blue, byte alpha);
 
-    /// @CSharpLua.Template = _G.Color({0})
-    [Pure]
-    public static extern Color Color(System.Drawing.Color color);
+    ///// @CSharpLua.Template = _G.Color({0})
+    //[Pure]
+    //public static extern Color Color(System.Drawing.Color color); // TODO
 
     /// @CSharpLua.Template = _G.assert({0})
     public static extern void Assert(bool condition);
@@ -417,25 +395,39 @@ public static partial class _G
     public static extern DLight DynamicLight(uint index, bool elight = false);
 #endif
 
-    /// @CSharpLua.Template = ScrW()
+    /// @CSharpLua.Template = _G.ScrW()
     [Pure]
     public static extern int ScrW();
 
-    /// @CSharpLua.Template = ScrH()
+    /// @CSharpLua.Template = _G.ScrH()
     [Pure]
     public static extern int ScrH();
 #endif
 }
 
-public sealed partial class Angle
+public sealed class Angle
 {
-    public float p { get; set; }
+    public float p, y, r;
 
-    public float y { get; set; }
+    /// @CSharpLua.Template = _G.__Angle()
+    public extern Angle();
 
-    public float r { get; set; }
+#if STARFALL
+    /// @CSharpLua.Template = _G.__Angle({0})
+#else
+    /// @CSharpLua.Template = _G.__Angle({0}, {0}, {0})
+#endif
+    public extern Angle(float pyr);
 
-    private extern Angle();
+#if STARFALL
+    /// @CSharpLua.Template = _G.__Angle({0}, {1})
+#else
+    /// @CSharpLua.Template = _G.__Angle({0}, {1}, 0)
+#endif
+    public extern Angle(float p, float y);
+
+    /// @CSharpLua.Template = _G.__Angle({0}, {1}, {2})
+    public extern Angle(float p, float y, float r);
 
     public float this[int index]
     {
@@ -558,7 +550,7 @@ public sealed partial class Angle
         */
     }
 
-    public static bool operator !(Angle angle)
+    public static bool operator !(Angle? angle)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -579,15 +571,29 @@ public sealed partial class Angle
     }
 }
 
-public sealed partial class Vector
+public sealed class Vector
 {
-    public float x { get; set; }
+    public float x, y, z;
 
-    public float y { get; set; }
+    /// @CSharpLua.Template = _G.__Vector()
+    public extern Vector();
 
-    public float z { get; set; }
+#if STARFALL
+    /// @CSharpLua.Template = _G.__Vector({0})
+#else
+    /// @CSharpLua.Template = _G.__Vector({0}, {0}, {0})
+#endif
+    public extern Vector(float xyz);
 
-    private extern Vector();
+#if STARFALL
+    /// @CSharpLua.Template = _G.__Vector({0}, {1})
+#else
+    /// @CSharpLua.Template = _G.__Vector({0}, {1}, 0)
+#endif
+    public extern Vector(float x, float y);
+
+    /// @CSharpLua.Template = _G.__Vector({0}, {1}, {2})
+    public extern Vector(float x, float y, float z);
 
     public float this[int index]
     {
@@ -710,7 +716,7 @@ public sealed partial class Vector
         */
     }
 
-    public static bool operator !(Vector vector)
+    public static bool operator !(Vector? vector)
     {
         return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
         /*
@@ -731,22 +737,31 @@ public sealed partial class Vector
     }
 }
 
+/// @CSharpLua.Ignore
 public sealed partial class VMatrix
 {
-    private extern VMatrix();
+    /// @CSharpLua.Template = _G.Matrix()
+    public extern VMatrix();
+
+    /// @CSharpLua.Template = _G.Matrix({0})
+    public extern VMatrix(VMatrix matrix);
+
+    /// @CSharpLua.Template = _G.Matrix({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15})
+    public extern VMatrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44);
 }
 
+/// @CSharpLua.Ignore
 public sealed partial class Color
 {
+    public byte r, g, b, a;
+
     private extern Color();
 
-    public byte r { get; set; }
+    /// @CSharpLua.Template = _G.Color({0}, {1}, {2})
+    public extern Color(byte r, byte g, byte b);
 
-    public byte g { get; set; }
-
-    public byte b { get; set; }
-
-    public byte a { get; set; }
+    /// @CSharpLua.Template = _G.Color({0}, {1}, {2}, {3})
+    public extern Color(byte r, byte g, byte b, byte a /*= 0xFF*/);
 }
 
 public abstract partial class EventBase
@@ -1458,97 +1473,109 @@ public static partial class CoreExLib
 /// @CSharpLua.Ignore
 public sealed class DLight
 {
+    private extern DLight();
+
 #if STARFALL
     /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
     public extern DLight(Vector pos, double size, double brightness, Color color);
+    
+    /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern DLight Create(Vector pos, double size, double brightness, Color color);
 #else
     /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
     public extern DLight(uint index, bool elight = false);
+    
+    /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
+    [Pure]
+    public static extern DLight Create(uint index, bool elight = false);
 #endif
 
-    public double brightness { get; set; }
+    public double brightness;
 
-    public uint decay { get; set; }
+    public uint decay;
 
-    public double dietime { get; set; }
+    public double dietime;
 
-    public Vector dir { get; set; }
+    public Vector dir;
 
-    public double innerangle { get; set; }
+    public double innerangle;
 
-    public double outerangle { get; set; }
+    public double outerangle;
 
-    //public double key { get; set; }
+    //public double key;
 
-    public double minlight { get; set; }
+    public double minlight;
 
-    public bool noworld { get; set; }
+    public bool noworld;
 
-    public bool nomodel { get; set; }
+    public bool nomodel;
 
-    public Vector pos { get; set; }
+    public Vector pos;
 
-    public double size { get; set; }
+    public double size;
 
-    public byte style { get; set; }
+    public byte style;
 
-    public byte r { get; set; }
+    public byte r;
 
-    public byte g { get; set; }
+    public byte g;
 
-    public byte b { get; set; }
+    public byte b;
 }
 
 /// @CSharpLua.Ignore
 public sealed class CamData
 {
-    // TODO
+    private extern CamData();
+    
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4})
+    [Pure]
+    public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar);
+    
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer);
+    
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, nil, {5})
+    [Pure]
+    public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, CamData_Ortho? ortho);
+    
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    [Pure]
+    public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer, CamData_Ortho? ortho);
+    
+    public Vector origin;
 
-    /// @CSharpLua.Template = CamData_ctor1({0}, {1}, {2}, {3}, {4}, {5}, {6})
-    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer = false, CamData_Ortho? ortho = default);
+    public Angle angles;
 
-    /// @CSharpLua.Template = CamData_ctor2({0}, {1}, {2}, {3}, {4})
-    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar);
+    public int fov;
 
-    /// @CSharpLua.Template = CamData_ctor3({0}, {1}, {2}, {3}, {4}, {5})
-    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, bool drawViewer);
+    public double znear;
 
-    /// @CSharpLua.Template = CamData_ctor4({0}, {1}, {2}, {3}, {4}, {5})
-    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho);
+    public double zfar;
 
-    /// @CSharpLua.Template = CamData_ctor5({0}, {1}, {2}, {3}, {4}, {5}, {6})
-    public extern CamData(Vector origin, Angle angles, double fov, double zNear, double zFar, CamData_Ortho ortho, bool drawViewer);
+    public bool drawviewer;
 
-    public Vector origin { get; set; }
-
-    public Angle angles { get; set; }
-
-    public double fov { get; set; }
-
-    public double znear { get; set; }
-
-    public double zfar { get; set; }
-
-    public bool drawviewer { get; set; }
-
-    public CamData_Ortho? ortho { get; set; }
+    public CamData_Ortho? ortho;
 }
 
 /// @CSharpLua.Ignore
 public sealed class CamData_Ortho
 {
-    // TODO
+    private extern CamData_Ortho();
+    
+    /// @CSharpLua.Template = _G.__CamData_OrthoCreate({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern CamData_Ortho Create(float? left = null, float? right = null, float? bottom = null, float? top = null);
 
-    /// @CSharpLua.Template = CamData_Ortho_ctor({0}, {1}, {2}, {3})
-    public extern CamData_Ortho(double left, double right, double top, double bottom);
+    public float left;
 
-    public double left { get; set; }
+    public float right;
 
-    public double right { get; set; }
+    public float bottom;
 
-    public double top { get; set; }
-
-    public double bottom { get; set; }
+    public float top;
 }
 #endif
 
@@ -1557,29 +1584,29 @@ public sealed class Debug_GetInfo
 {
     private extern Debug_GetInfo();
 
-    public long? currentline { get; }
+    public extern int? currentline { get; }
 
 #if !STARFALL
-    public Delegate? func { get; }
+    public extern Delegate? func { get; }
 #endif
 
-    public long? lastlinedefined { get; }
+    public extern int? lastlinedefined { get; }
 
-    public long? linedefined { get; }
+    public extern int? linedefined { get; }
 
-    public string? name { get; }
+    public extern string? name { get; }
 
-    public string? namewhat { get; }
+    public extern string? namewhat { get; }
 
-    public ulong? nparams { get; }
+    public extern uint? nparams { get; }
 
-    public ulong? nups { get; }
+    public extern uint? nups { get; }
 
-    public string? short_src { get; }
+    public extern string? short_src { get; }
 
-    public string? source { get; }
+    public extern string? source { get; }
 
-    public string? what { get; }
+    public extern string? what { get; }
 }
 
 /// @CSharpLua.Ignore
@@ -1630,10 +1657,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsValid
-    {
-        get;
-    }
+    public extern bool IsValid { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1645,10 +1669,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsValidPhys
-    {
-        get;
-    }
+    public extern bool IsValidPhys { get; }
 #else
 #if SERVER
     [Pure]
@@ -1662,10 +1683,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsPlayer
-    {
-        get;
-    }
+    public extern bool IsPlayer { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1677,10 +1695,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsVehicle
-    {
-        get;
-    }
+    public extern bool IsVehicle { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1692,10 +1707,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsWeapon
-    {
-        get;
-    }
+    public extern bool IsWeapon { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1707,10 +1719,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsOnFire
-    {
-        get;
-    }
+    public extern bool IsOnFire { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1722,10 +1731,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsOnGround
-    {
-        get;
-    }
+    public extern bool IsOnGround { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1738,10 +1744,7 @@ public partial class BaseEntity
 #if SERVER
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool IsPlayerHolding
-    {
-        get;
-    }
+    public extern bool IsPlayerHolding { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1753,10 +1756,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public BaseEntity IsWeldedTo
-    {
-        get;
-    }
+    public extern BaseEntity IsWeldedTo { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1769,10 +1769,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int EntIndex
-    {
-        get;
-    }
+    public extern int EntIndex { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1791,7 +1788,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Health
+    public extern int Health
     {
         get;
 #if SERVER && !STARFALL
@@ -1813,7 +1810,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int MaxHealth
+    public extern int MaxHealth
     {
         get;
 #if SERVER && !STARFALL
@@ -1835,7 +1832,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Color Color
+    public extern Color Color
     {
         get;
 #if SERVER
@@ -1860,7 +1857,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector Pos
+    public extern Vector Pos
     {
         get;
 #if SERVER
@@ -1885,7 +1882,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Angle Angles
+    public extern Angle Angles
     {
         get;
 #if SERVER
@@ -1910,7 +1907,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public virtual Vector EyePos { get; }
+    public extern virtual Vector EyePos { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1922,7 +1919,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public virtual Angle EyeAngles { get; }
+    public extern virtual Angle EyeAngles { get; }
 #else
     [Pure]
 #if STARFALL
@@ -1934,7 +1931,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector Velocity
+    public extern Vector Velocity
     {
         get;
 #if SERVER
@@ -1959,7 +1956,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public virtual BaseEntity? Parent
+    public extern virtual BaseEntity Parent
     {
         get;
 #if SERVER
@@ -1969,22 +1966,22 @@ public partial class BaseEntity
 #else
 #if STARFALL
     [Pure]
-    public extern virtual BaseEntity? getParent();
+    public extern virtual BaseEntity getParent();
 #if SERVER
-    public extern virtual void setParent(BaseEntity? parent);
+    public extern virtual void setParent(BaseEntity parent);
 #endif
 #else
     [Pure]
-    public extern virtual BaseEntity? GetParent();
+    public extern virtual BaseEntity GetParent();
 #if SERVER
-    public extern virtual void SetParent(BaseEntity? parent);
+    public extern virtual void SetParent(BaseEntity parent);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public string Material
+    public extern string Material
     {
         get;
 #if SERVER
@@ -2009,7 +2006,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector Forward { get; }
+    public extern Vector Forward { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2021,7 +2018,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector Right { get; }
+    public extern Vector Right { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2033,7 +2030,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public double CreationTime { get; }
+    public extern double CreationTime { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2045,7 +2042,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public COLLISION_GROUP CollisionGroup
+    public extern COLLISION_GROUP CollisionGroup
     {
         get;
 #if SERVER
@@ -2070,7 +2067,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public bool Persistent
+    public extern bool Persistent
     {
         get;
 #if SERVER
@@ -2112,86 +2109,136 @@ public partial class BasePlayer : BaseEntity
 #endif
     public extern BasePlayer(int userId);
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsAlive { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isAlive();
 #else
     public extern bool Alive();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsBot { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isBot();
 #else
     public extern bool IsBot();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsNPC { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isNPC();
 #else
     public extern bool IsNPC();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsConnected { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isConnected();
 #else
     public extern bool IsConnected();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsAdmin { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isAdmin();
 #else
     public extern bool IsAdmin();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsSuperAdmin { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isSuperAdmin();
 #else
     public extern bool IsSuperAdmin();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsCrouching { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isCrouching();
 #else
     public extern bool Crouching();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsSprinting { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isSprinting();
 #else
     public extern bool IsSprinting();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsFrozen { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isFrozen();
 #else
     public extern bool IsFrozen();
 #endif
-
-#if STARFALL
-    [Pure]
-    public extern bool isNoclipped();
 #endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsFlashlightOn { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isFlashlightOn();
 #else
     public extern bool FlashlightIsOn();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsTyping { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isTyping();
 #else
     public extern bool IsTyping();
+#endif
 #endif
 
     [Pure]
@@ -2201,23 +2248,33 @@ public partial class BasePlayer : BaseEntity
     public extern bool IsUserGroup(string group);
 #endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool InVehicle { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool inVehicle();
 #else
     public extern bool InVehicle();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool HasGodMode { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool hasGodMode();
 #else
     public extern bool HasGodMode();
 #endif
+#endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Armor
+    public extern int Armor
     {
         get;
 #if SERVER && !STARFALL
@@ -2239,7 +2296,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int MaxArmor
+    public extern int MaxArmor
     {
         get;
 #if SERVER && !STARFALL
@@ -2261,7 +2318,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Team
+    public extern int Team
     {
         get;
 #if SERVER && !STARFALL
@@ -2283,7 +2340,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Deaths
+    public extern int Deaths
     {
         get;
 #if SERVER && !STARFALL
@@ -2305,7 +2362,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Frags
+    public extern int Frags
     {
         get;
 #if SERVER && !STARFALL
@@ -2327,7 +2384,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Weapon ActiveWeapon
+    public extern Weapon ActiveWeapon
     {
         get;
 #if SERVER && !STARFALL
@@ -2349,7 +2406,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector AimVector { get; }
+    public extern Vector AimVector { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2361,7 +2418,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public double FOV
+    public extern int FOV
     {
         get;
 #if SERVER && !STARFALL
@@ -2371,19 +2428,19 @@ public partial class BasePlayer : BaseEntity
 #else
 #if STARFALL
     [Pure]
-    public extern double getFOV();
+    public extern int getFOV();
 #else
     [Pure]
-    public extern double GetFOV();
+    public extern int GetFOV();
 #if SERVER
-    public extern void SetFOV(double fov);
+    public extern void SetFOV(int fov);
 #endif
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public double JumpPower
+    public extern double JumpPower
     {
         get;
 #if SERVER && !STARFALL
@@ -2405,7 +2462,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public double MaxSpeed
+    public extern double MaxSpeed
     {
         get;
 #if SERVER && !STARFALL
@@ -2427,7 +2484,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public double RunSpeed
+    public extern double RunSpeed
     {
         get;
 #if SERVER && !STARFALL
@@ -2449,7 +2506,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vector ShootPos { get; }
+    public extern Vector ShootPos { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2461,7 +2518,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Vehicle Vehicle { get; }
+    public extern Vehicle Vehicle { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2473,7 +2530,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int Ping { get; }
+    public extern int Ping { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2485,7 +2542,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int UserID { get; }
+    public extern int UserID { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2497,7 +2554,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public string SteamID { get; }
+    public extern string SteamID { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2509,7 +2566,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public string SteamID64 { get; }
+    public extern string SteamID64 { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2521,7 +2578,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public string Name { get; }
+    public extern string Name { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2535,7 +2592,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public TraceResult EyeTrace { get; }
+    public extern TraceResult EyeTrace { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2547,7 +2604,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public BaseEntity ViewEntity
+    public extern BaseEntity ViewEntity
     {
         get;
 #if SERVER && !STARFALL
@@ -2569,7 +2626,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public BaseEntity ViewModel { get; }
+    public extern BaseEntity ViewModel { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2581,7 +2638,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Weapon[] Weapons { get; }
+    public extern Weapon[] Weapons { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2600,7 +2657,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public BaseEntity GroundEntity
+    public extern BaseEntity GroundEntity
     {
         get;
 #if SERVER && !STARFALL
@@ -2622,7 +2679,7 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public int AmmoCount { get; }
+    public extern int AmmoCount { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2641,30 +2698,45 @@ public partial class BasePlayer : BaseEntity
 
 #if CLIENT
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsMuted { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isMuted();
 #else
     public extern bool IsMuted();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsSpeaking { get; }
+#else
     [Pure]
 #if STARFALL
     public extern bool isSpeaking();
 #else
     public extern bool IsSpeaking();
 #endif
+#endif
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern double VoiceVolume { get; }
+#else
     [Pure]
 #if STARFALL
     public extern double voiceVolume();
 #else
     public extern double VoiceVolume();
 #endif
+#endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public string FriendStatus { get; }
+    public extern string FriendStatus { get; }
 #else
     [Pure]
 #if STARFALL
@@ -2805,10 +2877,8 @@ public static partial class strlib
     public static extern string chars(params byte[] bytes);
 
 #if STARFALL
-
     /// @CSharpLua.Template = string.comma({0})
 #else
-
     /// @CSharpLua.Template = string.Comma({0})
 #endif
     [Pure]
@@ -3134,7 +3204,7 @@ public static partial class table
     public static extern string concat(dynamic table, string concatenator, long startPos, long endPos);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.copy({0})
+    /// @CSharpLua.Template = table.copy({0})
 #else
     /// @CSharpLua.Template = table.Copy({0})
 #endif
@@ -3142,7 +3212,7 @@ public static partial class table
     public static extern dynamic Copy(dynamic table);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.count({0})
+    /// @CSharpLua.Template = table.count({0})
 #else
     /// @CSharpLua.Template = table.Count({0})
 #endif
@@ -3150,14 +3220,14 @@ public static partial class table
     public static extern int Count(dynamic table);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.empty({0})
+    /// @CSharpLua.Template = table.empty({0})
 #else
     /// @CSharpLua.Template = table.Empty({0})
 #endif
     public static extern void Empty(dynamic table);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.getKeys({0})
+    /// @CSharpLua.Template = table.getKeys({0})
 #else
     /// @CSharpLua.Template = table.GetKeys({0})
 #endif
@@ -3165,7 +3235,7 @@ public static partial class table
     public static extern dynamic GetKeys(dynamic table);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.isEmpty({0})
+    /// @CSharpLua.Template = table.isEmpty({0})
 #else
     /// @CSharpLua.Template = table.IsEmpty({0})
 #endif
@@ -3173,7 +3243,7 @@ public static partial class table
     public static extern bool IsEmpty(dynamic table);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.isSequential({0})
+    /// @CSharpLua.Template = table.isSequential({0})
 #else
     /// @CSharpLua.Template = table.IsSequential({0})
 #endif
@@ -3187,7 +3257,7 @@ public static partial class table
     public static extern T remove<T>(dynamic table, int key);
 
 #if STARFALL
-	/// @CSharpLua.Template = table.reverse({0})
+    /// @CSharpLua.Template = table.reverse({0})
 #else
     /// @CSharpLua.Template = table.Reverse({0})
 #endif
@@ -3216,7 +3286,7 @@ public static partial class math
     public static extern double acos(double cos);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.angleDifference({0}, {1})
+    /// @CSharpLua.Template = math.angleDifference({0}, {1})
 #else
     /// @CSharpLua.Template = math.AngleDifference({0}, {1})
 #endif
@@ -3224,7 +3294,7 @@ public static partial class math
     public static extern double AngleDifference(double a, double b);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.approach({0}, {1}, {2})
+    /// @CSharpLua.Template = math.approach({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.Approach({0}, {1}, {2})
 #endif
@@ -3232,7 +3302,7 @@ public static partial class math
     public static extern double Approach(double current, double target, double change);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.approachAngle({0}, {1}, {2})
+    /// @CSharpLua.Template = math.approachAngle({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.ApproachAngle({0}, {1}, {2})
 #endif
@@ -3252,7 +3322,7 @@ public static partial class math
     public static extern double atan2(double y, double x);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.binToInt({0})
+    /// @CSharpLua.Template = math.binToInt({0})
 #else
     /// @CSharpLua.Template = math.BinToInt({0})
 #endif
@@ -3260,7 +3330,7 @@ public static partial class math
     public static extern T BinToInt<T>(string binaryString) where T : unmanaged;
 
 #if STARFALL
-	/// @CSharpLua.Template = math.bSplinePoint({0}, {1}, {2})
+    /// @CSharpLua.Template = math.bSplinePoint({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.BSplinePoint({0}, {1}, {2})
 #endif
@@ -3268,7 +3338,7 @@ public static partial class math
     public static extern Vector BSplinePoint(double tDiff, Vector[] points, double tMax = 1.0);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.calcBSplineN({0}, {1}, {2}, {3})
+    /// @CSharpLua.Template = math.calcBSplineN({0}, {1}, {2}, {3})
 #else
     /// @CSharpLua.Template = math.calcBSplineN({0}, {1}, {2}, {3})
 #endif
@@ -3280,7 +3350,7 @@ public static partial class math
     public static extern double ceil(double num);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.clamp({0}, {1}, {2})
+    /// @CSharpLua.Template = math.clamp({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.Clamp({0}, {1}, {2})
 #endif
@@ -3300,7 +3370,7 @@ public static partial class math
     public static extern double deg(double radians);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.distance({0}, {1}, {2}, {3})
+    /// @CSharpLua.Template = math.distance({0}, {1}, {2}, {3})
 #else
     /// @CSharpLua.Template = math.Distance({0}, {1}, {2}, {3})
 #endif
@@ -3308,7 +3378,7 @@ public static partial class math
     public static extern double Distance(double x1, double y1, double x2, double y2);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.easeInOut({0}, {1}, {2})
+    /// @CSharpLua.Template = math.easeInOut({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.EaseInOut({0}, {1}, {2})
 #endif
@@ -3332,7 +3402,7 @@ public static partial class math
     public static extern (double, double) frexp(double x);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.intToBin({0})
+    /// @CSharpLua.Template = math.intToBin({0})
 #else
     /// @CSharpLua.Template = math.IntToBin({0})
 #endif
@@ -3368,7 +3438,7 @@ public static partial class math
     public static extern (long, double) modf(double num);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.normalizeAngle({0})
+    /// @CSharpLua.Template = math.normalizeAngle({0})
 #else
     /// @CSharpLua.Template = math.NormalizeAngle({0})
 #endif
@@ -3409,7 +3479,7 @@ public static partial class math
 #endif
 
 #if STARFALL
-	/// @CSharpLua.Template = math.remap({0}, {1}, {2}, {3}, {4})
+    /// @CSharpLua.Template = math.remap({0}, {1}, {2}, {3}, {4})
 #else
     /// @CSharpLua.Template = math.Remap({0}, {1}, {2}, {3}, {4})
 #endif
@@ -3417,7 +3487,7 @@ public static partial class math
     public static extern double Remap(double value, double inMin, double inMax, double outMin, double outMax);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.round({0}, {1})
+    /// @CSharpLua.Template = math.round({0}, {1})
 #else
     /// @CSharpLua.Template = math.Round({0}, {1})
 #endif
@@ -3445,7 +3515,7 @@ public static partial class math
     public static extern double tanh(double num);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.timeFraction({0}, {1}, {2})
+    /// @CSharpLua.Template = math.timeFraction({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = math.TimeFraction({0}, {1}, {2})
 #endif
@@ -3457,7 +3527,7 @@ public static partial class math
     public static extern double Truncate(double num, int digits = 0);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.lerp({0}, {1}, {2})
+    /// @CSharpLua.Template = math.lerp({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = _G.Lerp({0}, {1}, {2})
 #endif
@@ -3465,7 +3535,7 @@ public static partial class math
     public static extern double Lerp(double t, double from, double to);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.lerpAngle({0}, {1}, {2})
+    /// @CSharpLua.Template = math.lerpAngle({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = _G.LerpAngle({0}, {1}, {2})
 #endif
@@ -3473,7 +3543,7 @@ public static partial class math
     public static extern Angle LerpAngle(float ratio, Angle from, Angle to);
 
 #if STARFALL
-	/// @CSharpLua.Template = math.lerpVector({0}, {1}, {2})
+    /// @CSharpLua.Template = math.lerpVector({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = _G.LerpVector({0}, {1}, {2})
 #endif
@@ -3619,12 +3689,136 @@ public static partial class input
 /// @CSharpLua.Ignore
 public sealed partial class Material
 {
+    private extern Material();
 }
 
 #if CLIENT
 /// @CSharpLua.Ignore
 public static partial class render
 {
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool StencilEnable { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilEnable({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilEnable({0})
+#endif
+    public static extern void SetStencilEnable(bool stencilEnable);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = render.clearStencil()
+#else
+    /// @CSharpLua.Template = render.ClearStencil()
+#endif
+    public static extern void ClearStencil();
+
+#if STARFALL
+    /// @CSharpLua.Template = render.clearBuffersObeyStencil({0}, {1}, {2}, {3}, {4})
+#else
+    /// @CSharpLua.Template = render.ClearBuffersObeyStencil({0}, {1}, {2}, {3}, {4})
+#endif
+    public static extern void ClearBuffersObeyStencil(byte r, byte g, byte b, byte a, bool depth);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.clearStencilBufferRectangle({0}, {1}, {2}, {3}, {4})
+#else
+    /// @CSharpLua.Template = render.ClearStencilBufferRectangle({0}, {1}, {2}, {3}, {4})
+#endif
+    public static extern void ClearStencilBufferRectangle(int originX, int originY, int endX, int endY, int stencilValue);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern STENCIL StencilCompareFunction { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilCompareFunction({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilCompareFunction({0})
+#endif
+    public static extern void SetStencilCompareFunction(STENCIL compareFunction);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern STENCIL StencilFailOperation { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilFailOperation({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilFailOperation({0})
+#endif
+    public static extern void SetStencilFailOperation(STENCIL failOperation);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern STENCIL StencilPassOperation { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilPassOperation({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilPassOperation({0})
+#endif
+    public static extern void SetStencilPassOperation(STENCIL passOperation);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern STENCIL StencilZFailOperation { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilZFailOperation({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilZFailOperation({0})
+#endif
+    public static extern void SetStencilZFailOperation(STENCIL zFailOperation);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern uint StencilReferenceValue { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilReferenceValue({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilReferenceValue({0})
+#endif
+    public static extern void SetStencilReferenceValue(uint referenceValue);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern byte StencilTestMask { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilTestMask({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilTestMask({0})
+#endif
+    public static extern void SetStencilTestMask(byte testMask);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern byte StencilWriteMask { set; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = render.setStencilWriteMask({0})
+#else
+    /// @CSharpLua.Template = render.SetStencilWriteMask({0})
+#endif
+    public static extern void SetStencilWriteMask(byte writeMask);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = render.resetStencil()
+#else
+    /// @CSharpLua.Template = render.ResetStencil()
+#endif
+    public static extern void ResetStencil();
 }
 
 /// @CSharpLua.Ignore
@@ -3641,6 +3835,130 @@ public static partial class surface
 
     /// @CSharpLua.Template = surface.SetTextColor({0}, {1}, {2}, {3})
     public static extern void SetTextColor(int r, int g, int b, int a);
+}
+
+/// @CSharpLua.Ignore
+public sealed partial class Markup
+{
+#if STARFALL
+    /// @CSharpLua.Template = render.parseMarkup({0})
+#else
+    /// @CSharpLua.Template = markup.Parse({0})
+#endif
+    public extern Markup(string str);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.parseMarkup({0}, {1})
+#else
+    /// @CSharpLua.Template = markup.Parse({0}, {1})
+#endif
+    public extern Markup(string str, int maxWidth);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.parseMarkup({0})
+#else
+    /// @CSharpLua.Template = markup.Parse({0})
+#endif
+    [Pure]
+    public static extern Markup Parse(string str);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.parseMarkup({0}, {1})
+#else
+    /// @CSharpLua.Template = markup.Parse({0}, {1})
+#endif
+    [Pure]
+    public static extern Markup Parse(string str, int maxWidth);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern int Width { get; }
+#else
+    [Pure]
+    public extern int GetWidth();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern int Height { get; }
+#else
+    [Pure]
+    public extern int GetHeight();
+#endif
+
+    public extern void Draw(int x, int y, TEXT_ALIGN xAlign, TEXT_ALIGN yAlign);
+
+    public extern void Draw(int x, int y, TEXT_ALIGN xAlign, TEXT_ALIGN yAlign, byte alpha);
+}
+
+/// @CSharpLua.Ignore
+public static class MarkupExtensions
+{
+#if STARFALL
+    /// @CSharpLua.Template = System.Tuple({0}:getSize())
+#else
+    /// @CSharpLua.Template = System.Tuple({0}:Size())
+#endif
+    [Pure]
+    public static extern (int, int) GetSize(this Markup @this);
+}
+
+/// @CSharpLua.Ignore
+public sealed class RenderCamData
+{
+    private extern RenderCamData();
+    
+    /// @CSharpLua.Template = _G.__RenderCamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})
+    [Pure]
+    public static extern RenderCamData Create(int? x = null, int? y = null, int? w = null, int? h = null, string type = "3D", Vector? origin = null, Angle? angles = null, int? fov = null, double? aspect = null, double? zfar = null, double? znear = null, bool? subrect = false, bool? bloomtone = false, RenderCamData_Rect? offcenter = null, RenderCamData_Rect? ortho = null);
+
+    public int x;
+
+    public int y;
+
+    public int w;
+
+    public int h;
+
+    public string type;
+
+    public Vector origin;
+
+    public Angle angles;
+
+    public int fov;
+
+    public double aspect;
+
+    public double zfar;
+
+    public double znear;
+
+    public bool subrect;
+
+    public bool bloomtone;
+
+    public RenderCamData_Rect? offcenter;
+
+    public RenderCamData_Rect? ortho;
+}
+
+/// @CSharpLua.Ignore
+public sealed class RenderCamData_Rect
+{
+    private extern RenderCamData_Rect();
+    
+    /// @CSharpLua.Template = _G.__RenderCamData_RectCreate({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern RenderCamData_Rect Create(float? left = null, float? right = null, float? bottom = null, float? top = null);
+
+    public float left;
+
+    public float right;
+
+    public float bottom;
+
+    public float top;
 }
 #endif
 
@@ -3659,21 +3977,21 @@ public static partial class constraint
 /// @CSharpLua.Ignore
 public static partial class util
 {
-#if STARFALL
-    /// @CSharpLua.Template = trace.trace({0})
-#else
     /// @CSharpLua.Template = util.TraceLine({0})
-#endif
     [Pure]
-    public static extern TraceResult? TraceLine(Trace traceData);
-
 #if STARFALL
-    /// @CSharpLua.Template = trace.traceHull({0})
+    public static extern TraceResult TraceLine(Trace traceData);
 #else
-    /// @CSharpLua.Template = util.TraceHull({0})
+    public static extern TraceResult? TraceLine(Trace traceData);
 #endif
+
+    /// @CSharpLua.Template = util.TraceHull({0})
     [Pure]
+#if STARFALL
+    public static extern TraceResult TraceHull(HullTrace traceData);
+#else
     public static extern TraceResult? TraceHull(HullTrace traceData);
+#endif
 
 #if STARFALL
     /// @CSharpLua.Template = System.Tuple(trace.intersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
@@ -3765,148 +4083,225 @@ public static partial class util
 }
 
 /// @CSharpLua.Ignore
-public sealed partial class Trace
+public sealed class Trace
 {
+    private extern Trace();
+
 #if STARFALL
-    public Trace(Vector start, Vector endpos, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null)
-    {
-        this.start = start;
-        this.endpos = endpos;
-        this.filter = filter;
-        this.mask = mask;
-        this.collisiongroup = collisiongroup;
-        this.ignoreworld = ignoreworld;
-    }
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, nil, {2}, {3}, {4})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 #else
-    public Trace(Vector start, Vector endpos, BaseEntity? filter = null, MASK? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, dynamic? output = null)
-    {
-        /*
-        [[
-          return {["start"]=start, ["endpos"]=endpos, ["filter"]=filter, ["mask"]=mask, ["collisiongroup"]=collisiongroup, ["ignoreworld"]=ignoreworld, ["output"]=output}
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, nil, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    [Pure]
+    public static extern Trace Create(Vector start, Vector endpos, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
 #endif
 
-    public Vector start { get; set; }
+    public Vector start;
 
-    public Vector endpos { get; set; }
+    public Vector endpos;
 
     // BaseEntity / BaseEntity[] / Func<BaseEntity, bool> / Action<BaseEntity> / null
-    public dynamic filter { get; set; }
+    public dynamic? filter;
 
     // MASK / CONTENTS (combination)
-    public uint? mask { get; set; }
+    public uint? mask;
 
-    public COLLISION_GROUP? collisiongroup { get; set; }
+    public COLLISION_GROUP? collisiongroup;
 
-    public bool? ignoreworld { get; set; }
-
-#if !STARFALL
-    public dynamic output { get; set; }
-#endif
-
-    public dynamic ToTuple()
-    {
-        return (start, endpos, filter, mask, collisiongroup, ignoreworld);
-    }
-}
-
-/// @CSharpLua.Ignore
-public sealed partial class HullTrace
-{
-#if STARFALL
-    public HullTrace(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity? filter = null, MASK? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null) {
-        /*
-        [[
-          return start, endpos, maxs, mins, filter, mask, collisiongroup, ignoreworld
-        ]]
-        */
-    }
-#else
-    public HullTrace(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity? filter = null, MASK? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, dynamic? output = null)
-    {
-        /*
-        [[
-          return {["start"]=start, ["endpos"]=endpos, ["maxs"]=maxs, ["mins"]=mins, ["filter"]=filter, ["mask"]=mask, ["collisiongroup"]=collisiongroup, ["ignoreworld"]=ignoreworld, ["output"]=output}
-        ]]
-        */
-    }
-#endif
-
-    public Vector start { get; set; }
-
-    public Vector endpos { get; set; }
-
-    public Vector maxs { get; set; }
-
-    public Vector mins { get; set; }
-
-    // BaseEntity / BaseEntity[] / Func<BaseEntity, bool> / Action<BaseEntity> / null
-    public dynamic filter { get; set; }
-
-    // MASK / CONTENTS (combination)
-    public uint mask { get; set; }
-
-    public COLLISION_GROUP collisiongroup { get; set; }
-
-    public bool ignoreworld { get; set; }
+    public bool? ignoreworld;
 
 #if !STARFALL
-    public dynamic output { get; set; }
+    public TraceResult? output;
 #endif
 }
 
 /// @CSharpLua.Ignore
-public sealed partial class TraceResult
+public sealed class HullTrace
+{
+    private extern HullTrace();
+
+#if STARFALL
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, nil, {4}, {5}, {6})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+#else
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, nil, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+
+    /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    [Pure]
+    public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null, TraceResult? output = null);
+#endif
+
+    public Vector start;
+
+    public Vector endpos;
+
+    public Vector maxs;
+
+    public Vector mins;
+
+    // BaseEntity / BaseEntity[] / Func<BaseEntity, bool> / Action<BaseEntity> / null
+    public dynamic? filter;
+
+    // MASK / CONTENTS (combination)
+    public uint? mask;
+
+    public COLLISION_GROUP? collisiongroup;
+
+    public bool? ignoreworld;
+
+#if !STARFALL
+    public TraceResult? output;
+#endif
+}
+
+/// @CSharpLua.Ignore
+public static class TraceExtensions
+{
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this Trace @this, BaseEntity filter); // TODO: SF
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this Trace @this, BaseEntity[] filter);
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this Trace @this, Func<BaseEntity, bool> filter);
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this Trace @this, Action<BaseEntity> filter);
+
+    /// @CSharpLua.Template = {0}.filter = nil
+    public static extern void ResetFilter(this Trace @this);
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this HullTrace @this, BaseEntity filter); // TODO: SF
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this HullTrace @this, BaseEntity[] filter);
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this HullTrace @this, Func<BaseEntity, bool> filter);
+
+    /// @CSharpLua.Template = {0}.filter = {1}
+    public static extern void SetFilter(this HullTrace @this, Action<BaseEntity> filter);
+
+    /// @CSharpLua.Template = {0}.filter = nil
+    public static extern void ResetFilter(this HullTrace @this);
+}
+
+/// @CSharpLua.Ignore
+public sealed class TraceResult
 {
     private extern TraceResult();
 
-    public BaseEntity Entity { get; }
+    public extern BaseEntity Entity { get; }
 
-    public double Fraction { get; }
+    public extern double Fraction { get; }
 
-    public double FractionLeftSolid { get; }
+    public extern double FractionLeftSolid { get; }
 
-    public bool Hit { get; }
+    public extern bool Hit { get; }
 
-    public int HitBox { get; }
+    public extern int HitBox { get; }
 
-    public HITGROUP HitGroup { get; }
+    public extern HITGROUP HitGroup { get; }
 
-    public bool HitNoDraw { get; }
+    public extern bool HitNoDraw { get; }
 
-    public bool HitNonWorld { get; }
+    public extern bool HitNonWorld { get; }
 
-    public Vector HitNormal { get; }
+    public extern Vector HitNormal { get; }
 
-    public Vector HitPos { get; }
+    public extern Vector HitPos { get; }
 
-    public bool HitSky { get; }
+    public extern bool HitSky { get; }
 
-    public string HitTexture { get; }
+    public extern string HitTexture { get; }
 
-    public bool HitWorld { get; }
+    public extern bool HitWorld { get; }
 
-    public MAT MatType { get; }
+    public extern MAT MatType { get; }
 
-    public Vector Normal { get; }
+    public extern Vector Normal { get; }
 
-    public int PhysicsBone { get; }
+    public extern int PhysicsBone { get; }
 
-    public Vector StartPos { get; }
+    public extern Vector StartPos { get; }
 
-    public int /*byte*/ SurfaceProps { get; }
+    public extern int /*byte*/ SurfaceProps { get; }
 
-    public bool StartSolid { get; }
+    public extern bool StartSolid { get; }
 
-    public bool AllSolid { get; }
+    public extern bool AllSolid { get; }
 
-    public SURF SurfaceFlags { get; }
+    public extern SURF SurfaceFlags { get; }
 
-    public DISPSURF DispFlags { get; }
+    public extern DISPSURF DispFlags { get; }
 
-    public CONTENTS Contents { get; }
+    public extern CONTENTS Contents { get; }
 }
 
 /// @CSharpLua.Ignore
@@ -4348,6 +4743,8 @@ public partial interface IGModAudioChannel
 /// @CSharpLua.Ignore
 public sealed partial class Sound
 {
+    private extern Sound();
+
     public extern bool IsPlaying();
 
     public extern void Play();
@@ -4437,7 +4834,7 @@ public static partial class net
     /// @CSharpLua.Template = net.Receive({0}, {1})
 #endif
     public static extern void Receive(string messageName, Action<int, BasePlayer> callback);
-    
+
     /// @CSharpLua.Template = net.Broadcast()
     public static extern void Broadcast();
 #endif
@@ -5326,6 +5723,7 @@ public enum BASS_ERROR
 }
 
 #if CLIENT
+/// @CSharpLua.Ignore
 public enum TEXT_ALIGN
 {
     LEFT,
@@ -5333,5 +5731,40 @@ public enum TEXT_ALIGN
     RIGHT,
     TOP,
     BOTTOM
+}
+
+/// @CSharpLua.Ignore
+public enum STENCILCOMPARISONFUNCTION
+{
+    NEVER = 1, // Never passes.
+    LESS = 2, // Passes where the reference value is less than the stencil value.
+    EQUAL = 3, // Passes where the reference value is equal to the stencil value.
+    LESSEQUAL = 4, // Passes where the reference value is less than or equal to the stencil value.
+    GREATER = 5, // Passes where the reference value is greater than the stencil value.
+    NOTEQUAL = 6, // Passes where the reference value is not equal to the stencil value.
+    GREATEREQUAL = 7, // Passes where the reference value is greater than or equal to the stencil value.
+    ALWAYS = 8 // Always passes.
+}
+
+/// @CSharpLua.Ignore
+public enum STENCIL
+{
+    NEVER = 1, // Never passes.
+    LESS = 2, // Passes where the reference value is less than the stencil value.
+    EQUAL = 3, // Passes where the reference value is equal to the stencil value.
+    LESSEQUAL = 4, // Passes where the reference value is less than or equal to the stencil value.
+    GREATER = 5, // Passes where the reference value is greater than the stencil value.
+    NOTEQUAL = 6, // Passes where the reference value is not equal to the stencil value.
+    GREATEREQUAL = 7, // Passes where the reference value is greater than or equal to the stencil value.
+    ALWAYS = 8, // Always passes.
+
+    KEEP = 1, // Preserves the existing stencil buffer value.
+    ZERO = 2, // Sets the value in the stencil buffer to 0.
+    REPLACE = 3, // Sets the value in the stencil buffer to the reference value, set using `render.SetStencilReferenceValue`.
+    INCRSAT = 4, // Increments the value in the stencil buffer by 1, clamping the result.
+    DECRSAT = 5, // Decrements the value in the stencil buffer by 1, clamping the result.
+    INVERT = 6, // Inverts the value in the stencil buffer.
+    INCR = 7, // Increments the value in the stencil buffer by 1, wrapping around on overflow.
+    DECR = 8 // Decrements the value in the stencil buffer by 1, wrapping around on overflow.
 }
 #endif

@@ -1,8 +1,4 @@
-﻿//#define CLIENT // TODO: Remove me
-//#define SERVER // TODO: Remove me
-//#define FEATURE_PROPERTIES // TODO: Remove me
-
-#nullable enable
+﻿#nullable enable
 #pragma warning disable 660, 1591, 661, 8600, 8602, 8618
 #pragma warning disable CA1050 // Declare types in namespaces
 #pragma warning disable CA1822 // Mark members as static
@@ -48,11 +44,11 @@ public static partial class _G
     [Pure]
     public static extern Hologram Hologram(Vector pos, Angle ang, string model, Vector scale);
 
-    /// @CSharpLua.Template = System.Tuple(hasPermission({0}))
+    /// @CSharpLua.Template = System.Tuple(_G.hasPermission({0}))
     [Pure]
     public static extern (bool, string?) HasPermission(string perm);
 
-    /// @CSharpLua.Template = System.Tuple(hasPermission({0}, {1}))
+    /// @CSharpLua.Template = System.Tuple(_G.hasPermission({0}, {1}))
     [Pure]
     public static extern (bool, string?) HasPermission(string perm, object? obj);
 
@@ -107,6 +103,7 @@ public static partial class _G
     // TODO
 }
 
+/// @CSharpLua.Ignore
 public partial class BaseEntity
 {
 #if SERVER
@@ -114,7 +111,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public BaseEntity[] LinkedComponents { get; }
+    public extern BaseEntity[] LinkedComponents { get; }
 #else
     [Pure]
     public extern BaseEntity[] getLinkedComponents();
@@ -122,17 +119,29 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public Wirelink Wirelink { get; }
+    public extern Wirelink Wirelink { get; }
 #else
     [Pure]
     public extern Wirelink getWirelink();
 #endif
+
+    public extern void LinkComponent(BaseEntity? ent);
 #endif
 
     /// @CSharpLua.NoField
-    public BasePlayer Owner { get; }
+    public extern BasePlayer Owner { get; }
+}
 
-    public extern void LinkComponent(BaseEntity? ent);
+/// @CSharpLua.Ignore
+public partial class BasePlayer
+{
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool IsNoclipped { get; }
+#else
+    [Pure]
+    public extern bool isNoclipped();
+#endif
 }
 
 #region Hooks / Events
@@ -436,10 +445,7 @@ public sealed partial class Wirelink
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern BaseEntity Entity
-    {
-        get;
-    }
+    public extern BaseEntity Entity { get; }
 #else
     [Pure]
     public extern BaseEntity Entity();
@@ -447,10 +453,7 @@ public sealed partial class Wirelink
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern bool IsValid
-    {
-        get;
-    }
+    public extern bool IsValid { get; }
 #else
     [Pure]
     public extern bool IsValid();
@@ -473,10 +476,7 @@ public sealed partial class Wirelink
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern dynamic Inputs
-    {
-        get;
-    }
+    public extern dynamic Inputs { get; }
 #else
     [Pure]
     public extern dynamic Inputs();
@@ -484,10 +484,7 @@ public sealed partial class Wirelink
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern dynamic Outputs
-    {
-        get;
-    }
+    public extern dynamic Outputs { get; }
 #else
     [Pure]
     public extern dynamic Outputs();
@@ -726,13 +723,45 @@ public static partial class math
 /// @CSharpLua.Ignore
 public static partial class util
 {
+    /// @CSharpLua.Template = trace.trace({0}, {1}, nil, {3}, {4}, {5})
+    [Pure]
+    public static extern TraceResult TraceLine(Vector start, Vector endpos, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, nil, {5}, {6}, {7})
+    [Pure]
+    public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
     /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
-    public static extern TraceResult? TraceLine(Vector start, Vector endpos, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    public static extern TraceResult TraceLine(Vector start, Vector endpos, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 
     /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
     [Pure]
-    public static extern TraceResult? TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity? filter = null, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+    public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern TraceResult TraceLine(Vector start, Vector endpos, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern TraceResult TraceLine(Vector start, Vector endpos, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.trace({0}, {1}, {2}, {3}, {4}, {5})
+    [Pure]
+    public static extern TraceResult TraceLine(Vector start, Vector endpos, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
+
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    [Pure]
+    public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 }
 
 /// @CSharpLua.Ignore
@@ -921,7 +950,7 @@ public static partial class render
 
     /// @CSharpLua.Template = render.createFont({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
     [Pure]
-    public static extern string CreateFont(string fontName, int fontSize = 16, int weight = 400, bool antialias = true, bool additive = true, bool shadow = false, bool outline = false, bool blur = false, bool extended = true);
+    public static extern string CreateFont(string fontName, int fontSize = 13, int weight = 500, bool antialias = true, bool additive = false, bool shadow = false, bool outline = false, int blur = 0, bool extended = false);
 
     /// @CSharpLua.Template = render.setFont({0})
     public static extern void SetFont(string fontName);
@@ -935,6 +964,14 @@ public static partial class render
 
     /// @CSharpLua.Template = render.drawSimpleText({0}, {1}, {2}, {3}, {4})
     public static extern void DrawSimpleText(int x, int y, string text, TEXT_ALIGN xAlignment, TEXT_ALIGN yAlignment);
+
+    /// @CSharpLua.Template = render.parseMarkup({0})
+    [Pure]
+    public static extern Markup ParseMarkup(string str);
+
+    /// @CSharpLua.Template = render.parseMarkup({0}, {1})
+    [Pure]
+    public static extern Markup ParseMarkup(string str, int maxWidth);
 
     /// @CSharpLua.Template = System.Tuple(render.cursorPos())
     [Pure]
@@ -960,8 +997,28 @@ public static partial class render
     [Pure]
     public static extern bool IsHUDActive();
 
-    /// @CSharpLua.Template = render.setHUDActive()
-    public static extern void SetHUDActive();
+    /// @CSharpLua.Template = render.setHUDActive({0})
+    public static extern void SetHUDActive(bool? active = default);
+
+    /// @CSharpLua.Template = render.pushMatrix({0})
+    public static extern void PushMatrix(VMatrix matrix);
+
+    /// @CSharpLua.Template = render.pushMatrix({0}, {1})
+    public static extern void PushMatrix(VMatrix matrix, bool world);
+
+    /// @CSharpLua.Template = render.popMatrix()
+    public static extern void PopMatrix();
+
+    /// @CSharpLua.Template = render.enableScissorRect({0}, {1}, {2}, {3})
+    public static extern void EnableScissorRect(int startX, int startY, int endX, int endY);
+
+    /// @CSharpLua.Template = render.disableScissorRect()
+    public static extern void DisableScissorRect();
+}
+
+/// @CSharpLua.Ignore
+public sealed partial class Material
+{
 }
 #endif
 
