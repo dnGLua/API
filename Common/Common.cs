@@ -4949,6 +4949,14 @@ public static partial class net
     public static extern BaseEntity ReadEntity();
 
 #if STARFALL
+    /// @CSharpLua.Template = net.readEntity()
+#else
+    /// @CSharpLua.Template = net.ReadEntity()
+#endif
+    [Pure]
+    public static extern T ReadEntity<T>() where T : BaseEntity;
+
+#if STARFALL
     /// @CSharpLua.Template = net.writeEntity({0})
 #else
     /// @CSharpLua.Template = net.WriteEntity({0})
