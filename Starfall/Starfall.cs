@@ -18,6 +18,10 @@ internal static class Starfall { /* Reserved */ }
 /// @CSharpLua.Ignore
 public static partial class _G
 {
+    /// @CSharpLua.Template = _G.loadstring({0})
+    [Pure]
+    public static extern TDelegate CompileString<TDelegate>(string code) where TDelegate : Delegate;
+
     /// @CSharpLua.NoField
     [Pure]
     public static extern BasePlayer Owner { get; }
@@ -901,6 +905,51 @@ public static partial class fastlz
 }
 
 /// @CSharpLua.Ignore
+public static partial class von
+{
+    /// @CSharpLua.Template = von.deserialize({0})
+    [Pure]
+    public static extern dynamic Deserialize(string str);
+
+    /// @CSharpLua.Template = von.serialize({0})
+    [Pure]
+    public static extern string Serialize(dynamic table);
+}
+
+/// @CSharpLua.Ignore
+public static partial class game
+{
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool IsLAN { get; }
+#else
+    /// @CSharpLua.Template = game.isLan()
+    [Pure]
+    public static extern bool IsLAN();
+#endif
+
+#if CLIENT
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool HasFocus { get; }
+#else
+    /// @CSharpLua.Template = game.hasFocus()
+    [Pure]
+    public static extern bool HasFocus();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern (Vector, float) SunInfo { get; }
+#endif
+
+    /// @CSharpLua.Template = game.getSunInfo()
+    [Pure]
+    public static extern (Vector, float) GetSunInfo();
+#endif
+}
+
+/// @CSharpLua.Ignore
 public static partial class http
 {
 #if FEATURE_PROPERTIES
@@ -917,24 +966,129 @@ public static partial class http
 /// @CSharpLua.Ignore
 public static partial class render
 {
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern Color Color { set; }
+#endif
+
+	/// @CSharpLua.Template = render.setColor({0})
+	public static extern void SetColor(Color color);
+
     /// @CSharpLua.Template = render.setRGBA({0})
     public static extern void SetDrawColor(Color clr);
 
     /// @CSharpLua.Template = render.setRGBA({0}, {1}, {2}, {3})
-    public static extern void SetDrawColor(int r, int g, int b, int a);
+    public static extern void SetDrawColor(byte r, byte g, byte b, byte a);
+
+    /// @CSharpLua.Template = render.createMaterial({0})
+    [Pure]
+    public static extern Material CreateMaterial(string data);
+
+    /// @CSharpLua.Template = render.createMaterial({0}, {1})
+    [Pure]
+    public static extern Material CreateMaterial(string data, Action<Material?, string, int, int, Action<int, int, int, int>> cb);
 
     /// @CSharpLua.Template = render.createMaterial({0}, {1}, {2})
     [Pure]
-    public static extern Material CreateMaterial(string data, Action<Material, string, int, int, Action<int, int, int, int>> cb, Action<Material, string> done);
+    public static extern Material CreateMaterial(string data, Action<Material?, string, int, int, Action<int, int, int, int>> cb, Action<Material, string> done);
 
     /// @CSharpLua.Template = render.destroyTexture({0})
     public static extern void DestroyTexture(Material material);
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern Material? Material { set; }
+#endif
+
     /// @CSharpLua.Template = render.setMaterial({0})
-    public static extern void SetMaterial(Material material);
+    public static extern void SetMaterial(Material? material);
+
+    /// @CSharpLua.Template = render.setMaterialEffectAdd({0})
+    public static extern void SetMaterialEffectAdd(Material material);
+
+    /// @CSharpLua.Template = render.setMaterialEffectAdd({0})
+    public static extern void SetMaterialEffectAdd(string material);
+
+    /// @CSharpLua.Template = render.setMaterialEffectSub({0})
+    public static extern void SetMaterialEffectSub(Material material);
+
+    /// @CSharpLua.Template = render.setMaterialEffectSub({0})
+    public static extern void SetMaterialEffectSub(string material);
+
+    /// @CSharpLua.Template = render.setMaterialEffectBloom({0}, {1}, {2}, {3}, {4})
+    public static extern void SetMaterialEffectBloom(Material material, float levelR = 1f, float levelG = 1f, float levelB = 1f, float colorMul = 1f);
+
+    /// @CSharpLua.Template = render.setMaterialEffectBloom({0}, {1}, {2}, {3}, {4})
+    public static extern void SetMaterialEffectBloom(string material, float levelR = 1f, float levelG = 1f, float levelB = 1f, float colorMul = 1f);
+
+    /// @CSharpLua.Template = render.setMaterialEffectDownsample({0}, {1}, {2})
+    public static extern void SetMaterialEffectDownsample(Material material, float darken, float multiply);
+
+    /// @CSharpLua.Template = render.setMaterialEffectDownsample({0}, {1}, {2})
+    public static extern void SetMaterialEffectDownsample(string material, float darken, float multiply);
+
+    /// @CSharpLua.Template = render.setMaterialEffectColorModify({0}, {1})
+    public static extern void SetMaterialEffectSub(Material material, ColorModify colorModify);
+
+    /// @CSharpLua.Template = render.setMaterialEffectColorModify({0}, {1})
+    public static extern void SetMaterialEffectSub(string material, ColorModify colorModify);
 
     /// @CSharpLua.Template = render.drawBlurEffect({0}, {1}, {2})
     public static extern void DrawBlurEffect(double blurX, double blurY, int passes);
+
+    /// @CSharpLua.Template = render.renderTargetExists({0})
+    [Pure]
+    public static extern bool RenderTargetExists(string name);
+
+    /// @CSharpLua.Template = render.createRenderTarget({0})
+    public static extern void CreateRenderTarget(string name);
+
+    /// @CSharpLua.Template = render.destroyRenderTarget({0})
+    public static extern void DestroyRenderTarget(string name);
+
+    /// @CSharpLua.Template = render.selectRenderTarget({0})
+    public static extern void SelectRenderTarget(string? name);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern string? RenderTargetTexture { set; }
+#endif
+
+    /// @CSharpLua.Template = render.setRenderTargetTexture({0})
+    public static extern void SetRenderTargetTexture(string? name);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern BaseEntity TextureFromScreen { set; }
+#endif
+
+    /// @CSharpLua.Template = render.setTextureFromScreen({0})
+    public static extern void SetTextureFromScreen(BaseEntity ent);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern TEXFILTER FilterMag { set; }
+#endif
+
+    /// @CSharpLua.Template = render.setFilterMag({0})
+    public static extern void SetFilterMag(TEXFILTER nearFilter);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern TEXFILTER FilterMin { set; }
+#endif
+
+    /// @CSharpLua.Template = render.setFilterMin({0})
+    public static extern void SetFilterMin(TEXFILTER farFilter);
+
+    /// @CSharpLua.Template = render.clear({0}, {1})
+    public static extern void Clear(Color? color = null, bool depth = false);
+
+    /// @CSharpLua.Template = render.drawRoundedBox({0}, {1}, {2}, {3}, {4})
+    public static extern void DrawRoundedBox(int radius, int x, int y, int w, int h);
+
+    /// @CSharpLua.Template = render.drawRoundedBoxEx({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    public static extern void DrawRoundedBoxEx(int radius, int x, int y, int w, int h, bool tl, bool tr, bool bl, bool br);
 
     /// @CSharpLua.Template = render.drawRectFast({0}, {1}, {2}, {3})
     public static extern void DrawRectFast(int x, int y, int w, int h);
@@ -945,12 +1099,50 @@ public static partial class render
     /// @CSharpLua.Template = render.drawRectOutline({0}, {1}, {2}, {3}, {4})
     public static extern void DrawRectOutline(int x, int y, int w, int h, int thickness);
 
+    /// @CSharpLua.Template = render.drawCircle({0}, {1}, {2})
+    public static extern void DrawCircle(int x, int y, int radius);
+
+    /// @CSharpLua.Template = render.drawTexturedRectFast({0}, {1}, {2}, {3})
+    public static extern void DrawTexturedRectFast(int x, int y, int w, int h);
+
+    /// @CSharpLua.Template = render.drawTexturedRect({0}, {1}, {2}, {3})
+    public static extern void DrawTexturedRect(int x, int y, int w, int h);
+
+    /// @CSharpLua.Template = render.drawTexturedRectUVFast({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    public static extern void DrawTexturedRectUVFast(int x, int y, int w, int h, float startU, float startV, float endU, float endV, bool uvHack);
+
+    /// @CSharpLua.Template = render.drawTexturedRectUV({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
+    public static extern void DrawTexturedRectUV(int x, int y, int w, int h, float startU, float startV, float endU, float endV);
+
+    /// @CSharpLua.Template = render.drawTexturedRectRotatedFast({0}, {1}, {2}, {3}, {4})
+    public static extern void DrawTexturedRectRotatedFast(int x, int y, int w, int h, double rotation);
+
+    /// @CSharpLua.Template = render.drawTexturedRectRotated({0}, {1}, {2}, {3}, {4})
+    public static extern void DrawTexturedRectRotated(int x, int y, int w, int h, double rotation);
+
+    /// @CSharpLua.Template = render.drawPixelsRGB({0}, {1}, {2}, {3}, {4})
+    public static extern void DrawPixelsRGB(int w, int h, dynamic dataR, dynamic dataG, dynamic dataB);
+
+    /// @CSharpLua.Template = render.drawPixelsRGBA({0}, {1}, {2}, {3}, {4}, {5})
+    public static extern void DrawPixelsRGBA(int w, int h, dynamic dataR, dynamic dataG, dynamic dataB, dynamic dataA);
+
+    /// @CSharpLua.Template = render.drawPixelsSubrectRGB({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10})
+    public static extern void DrawPixelsSubrectRGB(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH, int subrectW, int subrectH, dynamic dataR, dynamic dataG, dynamic dataB);
+
+    /// @CSharpLua.Template = render.drawPixelsSubrectRGBA({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11})
+    public static extern void DrawPixelsSubrectRGBA(int dstX, int dstY, int srcX, int srcY, int srcW, int srcH, int subrectW, int subrectH, dynamic dataR, dynamic dataG, dynamic dataB, dynamic dataA);
+
     /// @CSharpLua.Template = render.drawLine({0}, {1}, {2}, {3})
     public static extern void DrawLine(int x1, int y1, int x2, int y2);
 
     /// @CSharpLua.Template = render.createFont({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
     [Pure]
-    public static extern string CreateFont(string fontName, int fontSize = 13, int weight = 500, bool antialias = true, bool additive = false, bool shadow = false, bool outline = false, int blur = 0, bool extended = false);
+    public static extern string CreateFont(string fontName, int fontSize = 16, int weight = 400, bool antialias = false, bool additive = false, bool shadow = false, bool outline = false, int blur = 0, bool extended = false);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern string Font { set; }
+#endif
 
     /// @CSharpLua.Template = render.setFont({0})
     public static extern void SetFont(string fontName);
@@ -973,6 +1165,17 @@ public static partial class render
     [Pure]
     public static extern Markup ParseMarkup(string str, int maxWidth);
 
+    /// @CSharpLua.Template = render.drawPoly({0})
+    public static extern void DrawPoly(Vertex[] vertices);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool EnableDepth { set; }
+#else
+    /// @CSharpLua.Template = render.enableDepth({0})
+    public static extern void EnableDepth(bool enable);
+#endif
+
     /// @CSharpLua.Template = System.Tuple(render.cursorPos())
     [Pure]
     public static extern (int, int) CursorPos();
@@ -985,13 +1188,49 @@ public static partial class render
     [Pure]
     public static extern (int, int) CursorPos(BasePlayer ply, BaseEntity screen);
 
+    /// @CSharpLua.Template = render.GetScreenInfo({0})
+    [Pure]
+    public static extern ScreenInfo GetScreenInfo(BaseEntity screen);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern BaseEntity ScreenEntity { get; }
+#endif
+
+    /// @CSharpLua.Template = render.getScreenEntity()
+    [Pure]
+    public static extern BaseEntity GetScreenEntity();
+
+    /// @CSharpLua.Template = render.readPixel({0}, {1})
+    [Pure]
+    public static extern Color ReadPixel(int x, int y);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern (int, int) Resolution { get; }
+#endif
+
     /// @CSharpLua.Template = System.Tuple(render.getResolution())
     [Pure]
     public static extern (int, int) GetResolution();
 
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern (int, int) GameResolution { get; }
+#endif
+
     /// @CSharpLua.Template = System.Tuple(render.getGameResolution())
     [Pure]
     public static extern (int, int) GetGameResolution();
+
+    /// @CSharpLua.Template = render.traceSurfaceColor({0}, {1})
+    [Pure]
+    public static extern Color TraceSurfaceColor(Vector vec1, Vector vec2);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool HUDActive { get; set; }
+#endif
 
     /// @CSharpLua.Template = render.isHUDActive()
     [Pure]
@@ -999,6 +1238,24 @@ public static partial class render
 
     /// @CSharpLua.Template = render.setHUDActive({0})
     public static extern void SetHUDActive(bool? active = default);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool IsInRenderView { get; }
+#else
+    /// @CSharpLua.Template = render.isInRenderView()
+    [Pure]
+    public static extern bool IsInRenderView();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern int RenderViewsLeft { get; }
+#else
+    /// @CSharpLua.Template = render.renderViewsLeft()
+    [Pure]
+    public static extern int RenderViewsLeft();
+#endif
 
     /// @CSharpLua.Template = render.pushMatrix({0})
     public static extern void PushMatrix(VMatrix matrix);
@@ -1014,11 +1271,79 @@ public static partial class render
 
     /// @CSharpLua.Template = render.disableScissorRect()
     public static extern void DisableScissorRect();
+
+    /// @CSharpLua.Template = render.resetStencil()
+    public static extern void ResetStencil();
+
+    /// @CSharpLua.Template = render.pushViewMatrix({0})
+    public static extern void PushViewMatrix(RenderCamData renderData);
+
+    /// @CSharpLua.Template = render.popViewMatrix()
+    public static extern void PopViewMatrix();
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern Color BackgroundColor { set; }
+#endif
+
+    /// @CSharpLua.Template = render.setBackgroundColor({0})
+    public static extern void SetBackgroundColor(Color color);
+
+    /// @CSharpLua.Template = render.setBackgroundColor({0}, {1})
+    public static extern void SetBackgroundColor(Color color, BaseEntity screen);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern string? ChipOverlay { set; }
+#else
+    /// @CSharpLua.Template = render.setChipOverlay({0})
+    public static extern void SetChipOverlay(string? name);
+#endif
+
+    /// @CSharpLua.Template = render.setScreenDimensions({0}, {1}, {2}, {3}, {4})
+    public static extern void SetScreenDimensions(BaseEntity screen, int x, int y, int w, int h);
 }
 
 /// @CSharpLua.Ignore
 public sealed partial class Material
 {
+    public extern void Destroy();
+}
+
+/// @CSharpLua.Ignore
+public sealed class ScreenInfo
+{
+    private extern ScreenInfo();
+
+    /// <summary>Pretty name of model</summary>
+    public extern string Name { get; }
+
+    /// <summary>Offset of screen from prop</summary>
+    public extern Vector offset { get; }
+
+    /// <summary>Screen rotation</summary>
+    public extern Angle rot { get; }
+
+    /// <summary>Resolution/scale</summary>
+    public extern float RS { get; }
+
+    /// <summary>Inverted aspect ratio (height divided by width)</summary>
+    public extern float RatioX { get; }
+
+    /// <summary>Corner of screen in local coordinates (relative to offset?)</summary>
+    public extern float x1 { get; }
+
+    /// <summary>Corner of screen in local coordinates (relative to offset?)</summary>
+    public extern float x2 { get; }
+
+    /// <summary>Corner of screen in local coordinates (relative to offset?)</summary>
+    public extern float y1 { get; }
+
+    /// <summary>Corner of screen in local coordinates (relative to offset?)</summary>
+    public extern float y2 { get; }
+
+    /// <summary>Screen plane offset in local coordinates (relative to offset?)</summary>
+    public extern float z { get; }
 }
 #endif
 

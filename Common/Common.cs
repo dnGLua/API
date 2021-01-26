@@ -43,6 +43,10 @@ public static partial class _G
 
     public static extern dynamic REMOVEME_Internal_Return_Hack_REMOVEME();
 
+    /// @CSharpLua.Template = reinterpret_cast({0})
+    [Pure]
+    public static extern TTo reinterpret_cast<TFrom, TTo>(TFrom value);
+
     /// @CSharpLua.Template = _G.__Angle()
     [Pure]
     public static extern Angle Angle();
@@ -126,6 +130,16 @@ public static partial class _G
     ///// @CSharpLua.Template = _G.Color({0})
     //[Pure]
     //public static extern Color Color(System.Drawing.Color color); // TODO
+
+#if CLIENT
+    /// @CSharpLua.Template = _G.__VertexCreate({0}, {1})
+    [Pure]
+    public static extern Vertex Vertex(float x, float y);
+
+    /// @CSharpLua.Template = _G.__VertexCreate({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern Vertex Vertex(float x, float y, float u, float v);
+#endif
 
     /// @CSharpLua.Template = _G.assert({0})
     public static extern void Assert(bool condition);
@@ -353,12 +367,6 @@ public static partial class _G
 #endif
     [Pure]
     public static extern Delegate CompileString(string code, string chunkName);
-
-#if STARFALL
-    /// @CSharpLua.Template = _G.loadstring({0})
-    [Pure]
-    public static extern TDelegate CompileString<TDelegate>(string code) where TDelegate : Delegate;
-#endif
 
 #if STARFALL
     /// @CSharpLua.Template = _G.loadstring({0}, {1})
@@ -1478,14 +1486,14 @@ public sealed class DLight
 #if STARFALL
     /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
     public extern DLight(Vector pos, double size, double brightness, Color color);
-    
+
     /// @CSharpLua.Template = light.create({0}, {1}, {2}, {3})
     [Pure]
     public static extern DLight Create(Vector pos, double size, double brightness, Color color);
 #else
     /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
     public extern DLight(uint index, bool elight = false);
-    
+
     /// @CSharpLua.Template = _G.DynamicLight({0}, {1})
     [Pure]
     public static extern DLight Create(uint index, bool elight = false);
@@ -1527,24 +1535,34 @@ public sealed class DLight
 /// @CSharpLua.Ignore
 public sealed class CamData
 {
-    private extern CamData();
-    
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4})
+    public extern CamData(Vector origin, Angle angles, int fov, double znear, double zfar);
+
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5})
+    public extern CamData(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer);
+
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, nil, {5})
+    public extern CamData(Vector origin, Angle angles, int fov, double znear, double zfar, CamData_Ortho? ortho);
+
+    /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
+    public extern CamData(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer, CamData_Ortho? ortho);
+
     /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4})
     [Pure]
     public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar);
-    
+
     /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
     public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer);
-    
+
     /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, nil, {5})
     [Pure]
     public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, CamData_Ortho? ortho);
-    
+
     /// @CSharpLua.Template = _G.__CamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6})
     [Pure]
     public static extern CamData Create(Vector origin, Angle angles, int fov, double znear, double zfar, bool drawviewer, CamData_Ortho? ortho);
-    
+
     public Vector origin;
 
     public Angle angles;
@@ -1563,19 +1581,14 @@ public sealed class CamData
 /// @CSharpLua.Ignore
 public sealed class CamData_Ortho
 {
-    private extern CamData_Ortho();
-    
+    /// @CSharpLua.Template = _G.__CamData_OrthoCreate({0}, {1}, {2}, {3})
+    public extern CamData_Ortho(float? left = null, float? right = null, float? bottom = null, float? top = null);
+
     /// @CSharpLua.Template = _G.__CamData_OrthoCreate({0}, {1}, {2}, {3})
     [Pure]
     public static extern CamData_Ortho Create(float? left = null, float? right = null, float? bottom = null, float? top = null);
 
-    public float left;
-
-    public float right;
-
-    public float bottom;
-
-    public float top;
+    public float left, right, bottom, top;
 }
 #endif
 
@@ -3813,12 +3826,157 @@ public static partial class render
     public static extern void SetStencilWriteMask(byte writeMask);
 #endif
 
-#if STARFALL
-    /// @CSharpLua.Template = render.resetStencil()
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern int LightingMode { set; }
 #else
-    /// @CSharpLua.Template = render.ResetStencil()
+#if STARFALL
+	/// @CSharpLua.Template = render.setLightingMode({0})
+#else
+	/// @CSharpLua.Template = render.SetLightingMode({0})
 #endif
-    public static extern void ResetStencil();
+	public static extern void SetLightingMode(int mode);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern MATERIAL_CULLMODE CullMode { set; }
+#else
+#if STARFALL
+	/// @CSharpLua.Template = render.setCullMode({0})
+#else
+	/// @CSharpLua.Template = render.CullMode({0})
+#endif
+	public static extern void CullMode(MATERIAL_CULLMODE cullMode);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = render.clearDepth()
+#else
+    /// @CSharpLua.Template = render.ClearDepth()
+#endif
+    public static extern void ClearDepth();
+
+#if STARFALL
+    /// @CSharpLua.Template = render.capturePixels()
+#else
+    /// @CSharpLua.Template = render.CapturePixels()
+#endif
+    public static extern void CapturePixels();
+
+#if STARFALL
+    /// @CSharpLua.Template = render.enableClipping({0})
+#else
+    /// @CSharpLua.Template = render.EnableClipping({0})
+#endif
+    public static extern bool EnableClipping(bool enable);
+
+    /// @CSharpLua.Template = render.pushCustomClipPlane({0}, {1})
+    public static extern void PushCustomClipPlane(Vector normal, float distance);
+
+    /// @CSharpLua.Template = render.popCustomClipPlane()
+    public static extern void PopCustomClipPlane();
+
+#if STARFALL
+    /// @CSharpLua.Template = render.computeLighting({0}, {1})
+#else
+    /// @CSharpLua.Template = render.ComputeLighting({0}, {1})
+#endif
+    [Pure]
+    public static extern Vector ComputeLighting(Vector pos, Vector normal);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.computeDynamicLighting({0}, {1})
+#else
+    /// @CSharpLua.Template = render.ComputeDynamicLighting({0}, {1})
+#endif
+    [Pure]
+    public static extern Vector ComputeDynamicLighting(Vector pos, Vector normal);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.getLightColor({0})
+#else
+    /// @CSharpLua.Template = render.GetLightColor({0})
+#endif
+    [Pure]
+    public static extern Vector GetLightColor(Vector pos);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.getAmbientLightColor()
+#else
+    /// @CSharpLua.Template = render.GetAmbientLightColor()
+#endif
+    [Pure]
+    public static extern Vector GetAmbientLightColor();
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogMod({0})
+#else
+    /// @CSharpLua.Template = render.FogMod({0})
+#endif
+    public static extern void FogMod(MATERIAL_FOG fogMode);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogColor({0})
+    public static extern void FogColor(Color color);
+#else
+    /// @CSharpLua.Template = render.FogColor({0}, {1}, {2})
+    public static extern void FogColor(byte r, byte g, byte b);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogDensity({0})
+#else
+    /// @CSharpLua.Template = render.FogMaxDensity({0})
+#endif
+    public static extern void FogMaxDensity(float density);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogStart({0})
+#else
+    /// @CSharpLua.Template = render.FogStart({0})
+#endif
+    public static extern void FogStart(float distance);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogEnd({0})
+#else
+    /// @CSharpLua.Template = render.FogEnd({0})
+#endif
+    public static extern void FogEnd(float distance);
+
+#if STARFALL
+    /// @CSharpLua.Template = render.setFogHeight({0})
+#else
+    /// @CSharpLua.Template = render.SetFogZ({0})
+#endif
+    public static extern void SetFogZ(float height);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool SupportsHDR { get; }
+#else
+    [Pure]
+#if STARFALL
+    /// @CSharpLua.Template = render.supportsHDR()
+#else
+    /// @CSharpLua.Template = render.SupportsHDR()
+#endif
+    public static extern bool SupportsHDR();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool HDREnabled { get; }
+#else
+    [Pure]
+#if STARFALL
+    /// @CSharpLua.Template = render.getHDREnabled()
+#else
+    /// @CSharpLua.Template = render.GetHDREnabled()
+#endif
+    public static extern bool GetHDREnabled();
+#endif
 }
 
 /// @CSharpLua.Ignore
@@ -3828,13 +3986,13 @@ public static partial class surface
     public static extern void SetDrawColor(Color color);
 
     /// @CSharpLua.Template = surface.SetDrawColor({0}, {1}, {2}, {3})
-    public static extern void SetDrawColor(int r, int g, int b, int a);
+    public static extern void SetDrawColor(byte r, byte g, byte b, byte a);
 
     /// @CSharpLua.Template = surface.SetTextColor({0})
     public static extern void SetTextColor(Color color);
 
     /// @CSharpLua.Template = surface.SetTextColor({0}, {1}, {2}, {3})
-    public static extern void SetTextColor(int r, int g, int b, int a);
+    public static extern void SetTextColor(byte r, byte g, byte b, byte a);
 }
 
 /// @CSharpLua.Ignore
@@ -3906,8 +4064,9 @@ public static class MarkupExtensions
 /// @CSharpLua.Ignore
 public sealed class RenderCamData
 {
-    private extern RenderCamData();
-    
+    /// @CSharpLua.Template = _G.__RenderCamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})
+    public extern RenderCamData(int? x = null, int? y = null, int? w = null, int? h = null, string type = "3D", Vector? origin = null, Angle? angles = null, int? fov = null, double? aspect = null, double? zfar = null, double? znear = null, bool? subrect = false, bool? bloomtone = false, RenderCamData_Rect? offcenter = null, RenderCamData_Rect? ortho = null);
+
     /// @CSharpLua.Template = _G.__RenderCamDataCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14})
     [Pure]
     public static extern RenderCamData Create(int? x = null, int? y = null, int? w = null, int? h = null, string type = "3D", Vector? origin = null, Angle? angles = null, int? fov = null, double? aspect = null, double? zfar = null, double? znear = null, bool? subrect = false, bool? bloomtone = false, RenderCamData_Rect? offcenter = null, RenderCamData_Rect? ortho = null);
@@ -3946,19 +4105,43 @@ public sealed class RenderCamData
 /// @CSharpLua.Ignore
 public sealed class RenderCamData_Rect
 {
-    private extern RenderCamData_Rect();
-    
+    /// @CSharpLua.Template = _G.__RenderCamData_RectCreate({0}, {1}, {2}, {3})
+    public extern RenderCamData_Rect(float? left = null, float? right = null, float? bottom = null, float? top = null);
+
     /// @CSharpLua.Template = _G.__RenderCamData_RectCreate({0}, {1}, {2}, {3})
     [Pure]
     public static extern RenderCamData_Rect Create(float? left = null, float? right = null, float? bottom = null, float? top = null);
 
-    public float left;
+    public float left, right, bottom, top;
+}
 
-    public float right;
+/// @CSharpLua.Ignore
+public sealed class ColorModify
+{
+    /// @CSharpLua.Template = _G.__ColorModifyCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    public extern ColorModify(float addr = 0f, float addg = 0f, float addb = 0f, float brightness = 0f, float colour = 1f, float contrast = 1f, float mulr = 1f, float mulg = 1f, float mulb = 1f);
 
-    public float bottom;
+    /// @CSharpLua.Template = _G.__ColorModifyCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8})
+    [Pure]
+    public static extern ColorModify CreateColorModify(float addr = 0f, float addg = 0f, float addb = 0f, float brightness = 0f, float colour = 1f, float contrast = 1f, float mulr = 1f, float mulg = 1f, float mulb = 1f);
 
-    public float top;
+    public float addr, addg, addb, brightness, colour, contrast, mulr, mulg, mulb;
+}
+
+/// @CSharpLua.Ignore
+public sealed partial class Vertex
+{
+    /// @CSharpLua.Template = _G.__VertexCreate({0}, {1})
+    public extern Vertex(float x, float y);
+
+    /// @CSharpLua.Template = _G.__VertexCreate({0}, {1}, {2}, {3})
+    public extern Vertex(float x, float y, float u, float v);
+
+    /// @CSharpLua.Template = _G.__VertexCreate({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern Vertex Create(float x, float y, float u = 0f, float v = 0f);
+
+    public float x, y, u, v;
 }
 #endif
 
@@ -3975,8 +4158,113 @@ public static partial class constraint
 #endif
 
 /// @CSharpLua.Ignore
+public static partial class game
+{
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern string Map { get; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = game.getMap()
+#else
+    /// @CSharpLua.Template = game.GetMap()
+#endif
+    [Pure]
+    public static extern string GetMap();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern string HostName { get; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = game.getHostname()
+#else
+    /// @CSharpLua.Template = _G.GetHostName()
+#endif
+    [Pure]
+    public static extern string GetMap();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool IsDedicated { get; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = game.isDedicated()
+#else
+    /// @CSharpLua.Template = game.IsDedicated()
+#endif
+    [Pure]
+    public static extern bool IsDedicated();
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern int MaxPlayers { get; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = game.maxPlayers()
+#else
+    /// @CSharpLua.Template = game.MaxPlayers()
+#endif
+    [Pure]
+    public static extern int MaxPlayers();
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = game.isMounted({0})
+#else
+    /// @CSharpLua.Template = _G.IsMounted({0})
+#endif
+    [Pure]
+    public static extern bool IsMounted(string gameId);
+}
+
+/// @CSharpLua.Ignore
+public static partial class system
+{
+#if CLIENT
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern bool HasFocus { get; }
+#else
+#if STARFALL
+    /// @CSharpLua.Template = game.hasFocus()
+#else
+    /// @CSharpLua.Template = system.HasFocus()
+#endif
+    [Pure]
+    public static extern bool HasFocus();
+#endif
+#endif
+}
+
+#if CLIENT
+public sealed class SunInfo
+{
+    private extern SunInfo();
+
+    public extern Vector direction { get; }
+
+    public extern float obstruction { get; }
+}
+#endif
+
+/// @CSharpLua.Ignore
 public static partial class util
 {
+#if CLIENT
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public static extern SunInfo SunInfo { get; }
+#endif
+
+    /// @CSharpLua.Template = util.GetSunInfo()
+    [Pure]
+    public static extern SunInfo GetSunInfo();
+#endif
+
     /// @CSharpLua.Template = util.TraceLine({0})
     [Pure]
 #if STARFALL
@@ -4091,19 +4379,19 @@ public sealed class Trace
     /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, nil, {2}, {3}, {4})
     [Pure]
     public static extern Trace Create(Vector start, Vector endpos, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
     public static extern Trace Create(Vector start, Vector endpos, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
     public static extern Trace Create(Vector start, Vector endpos, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
     public static extern Trace Create(Vector start, Vector endpos, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__TraceCreate({0}, {1}, {2}, {3}, {4}, {5})
     [Pure]
     public static extern Trace Create(Vector start, Vector endpos, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
@@ -4157,19 +4445,19 @@ public sealed class HullTrace
     /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, nil, {4}, {5}, {6})
     [Pure]
     public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
     [Pure]
     public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
     [Pure]
     public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, BaseEntity[] filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
     [Pure]
     public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Func<BaseEntity, bool> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
-    
+
     /// @CSharpLua.Template = _G.__HullTraceCreate({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})
     [Pure]
     public static extern HullTrace Create(Vector start, Vector endpos, Vector maxs, Vector mins, Action<BaseEntity> filter, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
@@ -4259,9 +4547,9 @@ public sealed class TraceResult
 
     public extern BaseEntity Entity { get; }
 
-    public extern double Fraction { get; }
+    public extern float Fraction { get; }
 
-    public extern double FractionLeftSolid { get; }
+    public extern float FractionLeftSolid { get; }
 
     public extern bool Hit { get; }
 
@@ -5739,6 +6027,38 @@ public enum TEXT_ALIGN
     RIGHT,
     TOP,
     BOTTOM
+}
+
+/// @CSharpLua.Ignore
+public enum TEXFILTER
+{
+    NONE = 0,
+    POINT = 1,
+    LINEAR = 2,
+    ANISOTROPIC = 3
+}
+
+/// @CSharpLua.Ignore
+public enum MATERIAL_CULLMODE
+{
+    /// <summary>Counter-clock-wise cull mode</summary>
+    CCW = 0,
+
+    /// <summary>Clock-wise cull mode</summary>
+    CW = 1
+}
+
+/// @CSharpLua.Ignore
+public enum MATERIAL_FOG
+{
+    /// <summary>No fog</summary>
+    NONE = 0,
+
+    /// <summary>Linear fog</summary>
+    LINEAR = 1,
+
+    /// <summary>For use in conjunction with `render.SetFogZ`. Does not work if start distance is bigger than end distance. Ignores density setting. Seems to be broken? Used for underwater fog by the engine.</summary>
+    LINEAR_BELOW_FOG_Z = 2
 }
 
 /// @CSharpLua.Ignore

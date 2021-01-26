@@ -30,7 +30,7 @@
 		<PackageTags>csharp api gmod starfall starfallex gmod-lua glua dnglua</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageVersion>0.1.2</PackageVersion>
+		<PackageVersion>0.1.3</PackageVersion>
 		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
