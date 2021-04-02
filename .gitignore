@@ -249,4 +249,4 @@ ModelManifest.xml
 .fake/
 
 # Custom
-/nupkg
+/nupkg/
