@@ -48,13 +48,13 @@ public static partial class _G
     [Pure]
     public static extern Hologram Hologram(Vector pos, Angle ang, string model, Vector scale);
 
-    /// @CSharpLua.Template = System.Tuple(_G.hasPermission({0}))
+    /// @CSharpLua.Template = _G.HasPermission({0})
     [Pure]
-    public static extern (bool, string?) HasPermission(string perm);
+    public static extern (bool has, string? message) HasPermission(string perm);
 
-    /// @CSharpLua.Template = System.Tuple(_G.hasPermission({0}, {1}))
+    /// @CSharpLua.Template = _G.HasPermission({0}, {1})
     [Pure]
-    public static extern (bool, string?) HasPermission(string perm, object? obj);
+    public static extern (bool has, string? message) HasPermission(string perm, object? obj);
 
 #if CLIENT
     /// @CSharpLua.Template = _G.permissionRequestSatisfied()
@@ -110,26 +110,60 @@ public static partial class _G
 /// @CSharpLua.Ignore
 public partial class BaseEntity
 {
-#if SERVER
-    public extern void Unparent();
-
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
     public extern BaseEntity[] LinkedComponents { get; }
 #else
     [Pure]
-    public extern BaseEntity[] getLinkedComponents();
+    public extern BaseEntity[] GetLinkedComponents();
 #endif
+
+#if SERVER
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern BaseEntity IsWeldedTo { get; }
+#else
+    [Pure]
+    public extern BaseEntity IsWeldedTo();
+#endif
+
+    public extern void Unparent();
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
     public extern Wirelink Wirelink { get; }
 #else
     [Pure]
-    public extern Wirelink getWirelink();
+    public extern Wirelink GetWirelink();
 #endif
 
     public extern void LinkComponent(BaseEntity? ent);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool ComponentLocksControls { set; }
+#else
+    public extern void SetComponentLocksControls(bool enable);
+#endif
+
+    // TODO
+
+    public extern void AddCollisionListener(Action<CollisionData> callback);
+
+    public extern void RemoveCollisionListener();
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern bool DrawShadow { set; }
+#else
+    public extern void SetDrawShadow(bool drawShadow);
+#endif
+
+    public extern void SetDrawShadow(bool drawShadow, BasePlayer ply);
+
+    public extern void SetDrawShadow(bool drawShadow, BasePlayer[] ply);
+
 #endif
 
     /// @CSharpLua.NoField
@@ -145,6 +179,10 @@ public partial class BasePlayer
 #else
     [Pure]
     public extern bool isNoclipped();
+#endif
+
+#if SERVER && !FEATURE_PROPERTIES
+    public extern virtual void setEyeAngles(Angle eyeAngles);
 #endif
 }
 
@@ -421,6 +459,7 @@ public sealed partial class Hologram : BaseEntity
 }
 
 #if SERVER
+
 public sealed partial class Wirelink
 {
     /// @CSharpLua.Template = wire.getWirelink({0})
@@ -538,13 +577,13 @@ public static partial class wire
     /// @CSharpLua.Template = wire.delete({0}, {1})
     public static extern void Delete(BaseEntity entityWithInput, string inputName);
 
-    /// @CSharpLua.Template = System.Tuple(wire.getInputs({0}))
+    /// @CSharpLua.Template = wire.GetInputs({0})
     [Pure]
-    public static extern (string[], string[]) GetInputs(BaseEntity entity);
+    public static extern (string[] names, string[] values) GetInputs(BaseEntity entity);
 
-    /// @CSharpLua.Template = System.Tuple(wire.getOutputs({0}))
+    /// @CSharpLua.Template = wire.GetOutputs({0})
     [Pure]
-    public static extern (string[], string[]) GetOutputs(BaseEntity entity);
+    public static extern (string[] names, string[] values) GetOutputs(BaseEntity entity);
 
     /// @CSharpLua.Template = wire.addInput({0}, {1})
     public static extern bool AddInput(string inputName, string inputType);
@@ -656,20 +695,21 @@ public static partial class prop
 
     /// @CSharpLua.Template = prop.createCustom({0}, {1}, {2}, {3})
     [Pure]
-    public static extern BaseEntity CreateCustom(Vector pos, Angle angles, dynamic verticles, bool frozen = false);
+    public static extern BaseEntity CreateCustom(Vector pos, Angle angles, dynamic vertices, bool frozen = false);
 
     /// @CSharpLua.Template = prop.createRagdoll({0}, {1})
     [Pure]
     public static extern BaseEntity CreateRagdoll(string model, bool frozen = false);
 
-    /// @CSharpLua.Template = prop.createSent({0}, {1}, {2}, {3})
+    /// @CSharpLua.Template = prop.createSent({0}, {1}, {2}, {3}, {4})
     [Pure]
-    public static extern BaseEntity CreateSent(Vector pos, Angle angles, bool frozen = false, dynamic? data = null);
+    public static extern BaseEntity CreateSent(Vector pos, Angle angles, string className, bool frozen = false, dynamic? data = null);
 
-    /// @CSharpLua.Template = prop.createSent({0}, {1}, {3}, {2})
+    /// @CSharpLua.Template = prop.createSent({0}, {1}, {2}, {4}, {3})
     [Pure]
-    public static extern BaseEntity CreateSent(Vector pos, Angle angles, dynamic? data, bool frozen = false);
+    public static extern BaseEntity CreateSent(Vector pos, Angle angles, string className, dynamic? data, bool frozen = false);
 }
+
 #endif
 
 /// @CSharpLua.Ignore
@@ -727,11 +767,11 @@ public static partial class math
 /// @CSharpLua.Ignore
 public static partial class util
 {
-    /// @CSharpLua.Template = trace.trace({0}, {1}, nil, {3}, {4}, {5})
+    /// @CSharpLua.Template = trace.trace({0}, {1}, nil, {2}, {3}, {4})
     [Pure]
     public static extern TraceResult TraceLine(Vector start, Vector endpos, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 
-    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, nil, {5}, {6}, {7})
+    /// @CSharpLua.Template = trace.traceHull({0}, {1}, {2}, {3}, nil, {4}, {5}, {6})
     [Pure]
     public static extern TraceResult TraceHull(Vector start, Vector endpos, Vector maxs, Vector mins, uint? mask = /*MASK.SOLID*/null, COLLISION_GROUP? collisiongroup = /*COLLISION_GROUP.NONE*/null, bool? ignoreworld = /*false*/null);
 
@@ -826,6 +866,8 @@ public static partial class player
     public static extern BasePlayer[] GetAll(Func<BasePlayer, bool> filter);
 }
 
+#if CLIENT
+
 /// @CSharpLua.Ignore
 public static partial class bass
 {
@@ -845,6 +887,60 @@ public static partial class bass
     public static extern int SoundsLeft();
 #endif
 }
+
+/// @CSharpLua.Ignore
+public partial interface IGModAudioChannel
+{
+    // SF: "Bass"
+
+    void Destroy();
+}
+
+/// @CSharpLua.Ignore
+public static partial class convar
+{
+    /// @CSharpLua.Template = convar.exists({0})
+    [Pure]
+    public static extern bool Exists(string name);
+
+    /// @CSharpLua.Template = convar.getDefault({0})
+    [Pure]
+    public static extern string GetDefault(string name);
+
+    /// @CSharpLua.Template = convar.getMin({0})
+    [Pure]
+    public static extern float? GetMin(string name);
+
+    /// @CSharpLua.Template = convar.getMax({0})
+    [Pure]
+    public static extern float? GetMax(string name);
+
+    /// @CSharpLua.Template = convar.getBool({0})
+    [Pure]
+    public static extern bool GetBool(string name);
+
+    /// @CSharpLua.Template = convar.getInt({0})
+    [Pure]
+    public static extern int GetInt(string name);
+
+    /// @CSharpLua.Template = convar.getFloat({0})
+    [Pure]
+    public static extern float GetFloat(string name);
+
+    /// @CSharpLua.Template = convar.getString({0})
+    [Pure]
+    public static extern string GetString(string name);
+
+    /// @CSharpLua.Template = convar.getFlags({0})
+    [Pure]
+    public static extern FCVAR GetFlags(string name);
+
+    /// @CSharpLua.Template = convar.hasFlag({0})
+    [Pure]
+    public static extern bool HasFlag(string name, FCVAR flag);
+}
+
+#endif
 
 /// @CSharpLua.Ignore
 public static partial class sound
@@ -885,14 +981,6 @@ public sealed partial class Sound
 }
 
 /// @CSharpLua.Ignore
-public partial interface IGModAudioChannel
-{
-    // SF: "Bass"
-
-    void Destroy();
-}
-
-/// @CSharpLua.Ignore
 public static partial class fastlz
 {
     /// @CSharpLua.Template = fastlz.compress({0})
@@ -929,6 +1017,7 @@ public static partial class game
 #endif
 
 #if CLIENT
+
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
     public static extern bool HasFocus { get; }
@@ -938,14 +1027,15 @@ public static partial class game
     public static extern bool HasFocus();
 #endif
 
-#if FEATURE_PROPERTIES
-    /// @CSharpLua.NoField
-    public static extern (Vector, float) SunInfo { get; }
-#endif
+// #if FEATURE_PROPERTIES
+//     /// @CSharpLua.NoField
+//     public static extern (Vector direction, float obstruction) SunInfo { get; }
+// #endif
 
-    /// @CSharpLua.Template = game.getSunInfo()
+    /// @CSharpLua.Template = game.GetSunInfo()
     [Pure]
-    public static extern (Vector, float) GetSunInfo();
+    public static extern (Vector direction, float obstruction) GetSunInfo();
+
 #endif
 }
 
@@ -963,6 +1053,7 @@ public static partial class http
 }
 
 #if CLIENT
+
 /// @CSharpLua.Ignore
 public static partial class render
 {
@@ -1082,7 +1173,7 @@ public static partial class render
     public static extern void SetFilterMin(TEXFILTER farFilter);
 
     /// @CSharpLua.Template = render.clear({0}, {1})
-    public static extern void Clear(Color? color = null, bool depth = false);
+    public static extern void Clear(Color? color = null, bool depth = false); // TODO: Add stencil param to SF
 
     /// @CSharpLua.Template = render.drawRoundedBox({0}, {1}, {2}, {3}, {4})
     public static extern void DrawRoundedBox(int radius, int x, int y, int w, int h);
@@ -1141,15 +1232,24 @@ public static partial class render
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
+    public static extern string DefaultFont { get; }
+#endif
+
+    /// @CSharpLua.Template = render.getDefaultFont()
+    [Pure]
+    public static extern string GetDefaultFont();
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
     public static extern string Font { set; }
 #endif
 
     /// @CSharpLua.Template = render.setFont({0})
     public static extern void SetFont(string fontName);
 
-    /// @CSharpLua.Template = System.Tuple(render.getTextSize({0}))
+    /// @CSharpLua.Template = render.GetTextSize({0})
     [Pure]
-    public static extern (int, int) GetTextSize(string text);
+    public static extern (int w, int h) GetTextSize(string text);
 
     /// @CSharpLua.Template = render.drawText({0}, {1}, {2}, {3})
     public static extern void DrawText(int x, int y, string text, TEXT_ALIGN alignment);
@@ -1166,7 +1266,7 @@ public static partial class render
     public static extern Markup ParseMarkup(string str, int maxWidth);
 
     /// @CSharpLua.Template = render.drawPoly({0})
-    public static extern void DrawPoly(Vertex[] vertices);
+    public static extern void DrawPoly(Vertex[] vertices); // TODO: test
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
@@ -1176,17 +1276,17 @@ public static partial class render
     public static extern void EnableDepth(bool enable);
 #endif
 
-    /// @CSharpLua.Template = System.Tuple(render.cursorPos())
+    /// @CSharpLua.Template = render.GetCursorPos()
     [Pure]
-    public static extern (int, int) CursorPos();
+    public static extern (int x, int y) CursorPos();
 
-    /// @CSharpLua.Template = System.Tuple(render.cursorPos({0}))
+    /// @CSharpLua.Template = render.GetCursorPos({0})
     [Pure]
-    public static extern (int, int) CursorPos(BasePlayer ply);
+    public static extern (int x, int y) CursorPos(BasePlayer ply);
 
-    /// @CSharpLua.Template = System.Tuple(render.cursorPos({0}, {1}))
+    /// @CSharpLua.Template = render.GetCursorPos({0}, {1})
     [Pure]
-    public static extern (int, int) CursorPos(BasePlayer ply, BaseEntity screen);
+    public static extern (int x, int y) CursorPos(BasePlayer ply, BaseEntity screen);
 
     /// @CSharpLua.Template = render.GetScreenInfo({0})
     [Pure]
@@ -1207,21 +1307,21 @@ public static partial class render
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public static extern (int, int) Resolution { get; }
+    public static extern (int w, int h) Resolution { get; }
 #endif
 
-    /// @CSharpLua.Template = System.Tuple(render.getResolution())
+    /// @CSharpLua.Template = render.GetResolution()
     [Pure]
-    public static extern (int, int) GetResolution();
+    public static extern (int w, int h) GetResolution();
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public static extern (int, int) GameResolution { get; }
+    public static extern (int w, int h) GameResolution { get; }
 #endif
 
-    /// @CSharpLua.Template = System.Tuple(render.getGameResolution())
+    /// @CSharpLua.Template = render.GetGameResolution()
     [Pure]
-    public static extern (int, int) GetGameResolution();
+    public static extern (int w, int h) GetGameResolution();
 
     /// @CSharpLua.Template = render.traceSurfaceColor({0}, {1})
     [Pure]
@@ -1345,6 +1445,7 @@ public sealed class ScreenInfo
     /// <summary>Screen plane offset in local coordinates (relative to offset?)</summary>
     public extern float z { get; }
 }
+
 #endif
 
 /// @CSharpLua.Ignore
@@ -1356,11 +1457,11 @@ public static partial class bit
 
     /// @CSharpLua.Template = bit.stringstream({0})
     [Pure]
-    public static extern StringStream StringStream(string initialBuffer);
+    public static extern StringStream StringStream(string initialBuffer /*= ""*/);
 
     /// @CSharpLua.Template = bit.stringstream({0}, {1}, {2})
     [Pure]
-    public static extern StringStream StringStream(string initialBuffer, uint position = 1, string endianess = "little");
+    public static extern StringStream StringStream(string initialBuffer /*= ""*/, uint position /*= 1*/, string endianess = "little");
 }
 
 /// @CSharpLua.Ignore
@@ -1373,10 +1474,10 @@ public sealed partial class StringStream
     public extern StringStream();
 
     /// @CSharpLua.Template = bit.stringstream({0})
-    public extern StringStream(string initialBuffer);
+    public extern StringStream(string initialBuffer /*= ""*/);
 
     /// @CSharpLua.Template = bit.stringstream({0}, {1}, {2})
-    public extern StringStream(string initialBuffer, uint position = 1, string endianess = "little");
+    public extern StringStream(string initialBuffer /*= ""*/, uint position /*= 1*/, string endianess = "little");
 
     // MY NOTE: These methods must begin with lower-case letter because we're not wrapping Starfall side just to have uppercase-first char.
 

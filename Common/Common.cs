@@ -38,68 +38,84 @@ public static partial class _G
 #endif
         ;
 
-    /// @CSharpLua.Template = NULL
-    public static readonly BaseEntity NULL;
+    /// @CSharpLua.Template = _G.__STARFALL__
+    public static readonly bool __STARFALL__ =
+#if STARFALL
+            true
+#else
+            false
+#endif
+        ;
+
+    /// @CSharpLua.Template = _G.NULL
+    public static readonly BaseEntity NULL = Entity(-2);
+
+    /// @CSharpLua.Template = _G.angle_zero
+    public static readonly Angle angle_zero = Angle();
+
+    /// @CSharpLua.Template = _G.vector_origin
+    public static readonly Vector vector_origin = Vector();
 
     public static extern dynamic REMOVEME_Internal_Return_Hack_REMOVEME();
 
-    /// @CSharpLua.Template = reinterpret_cast({0})
+    /// @CSharpLua.Template = _G.reinterpret_cast({0})
     [Pure]
-    public static extern TTo reinterpret_cast<TFrom, TTo>(TFrom value);
+    //[return: MaybeNull]
+    public static extern TTo reinterpret_cast<TTo>(object? value);
 
-    /// @CSharpLua.Template = _G.__Angle()
+    /// @CSharpLua.Template = _G.Angle()
     [Pure]
     public static extern Angle Angle();
 
-    /// @CSharpLua.Template = _G.__Angle({0})
+    /// @CSharpLua.Template = _G.Angle({0})
     [Pure]
     public static extern Angle Angle(Angle angle); // TODO: SF
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Angle({0})
+    /// @CSharpLua.Template = _G.Angle({0})
 #else
-    /// @CSharpLua.Template = _G.__Angle({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.Angle({0}, {0}, {0})
 #endif
     [Pure]
     public static extern Angle Angle(float pyr);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Angle({0}, {1})
+    /// @CSharpLua.Template = _G.Angle({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.__Angle({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.Angle({0}, {1}, 0)
 #endif
     [Pure]
     public static extern Angle Angle(float p, float y);
 
-    /// @CSharpLua.Template = _G.__Angle({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.Angle({0}, {1}, {2})
     [Pure]
     public static extern Angle Angle(float p, float y, float r);
 
-    /// @CSharpLua.Template = _G.__Vector()
+    /// @CSharpLua.Template = _G.Vector()
     [Pure]
     public static extern Vector Vector();
 
-    /// @CSharpLua.Template = _G.__Vector({0})
+    /// @CSharpLua.Template = _G.Vector({0})
     [Pure]
     public static extern Vector Vector(Vector vector); // TODO: SF
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Vector({0})
+    /// @CSharpLua.Template = _G.Vector({0})
 #else
-    /// @CSharpLua.Template = _G.__Vector({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.Vector({0}, {0}, {0})
 #endif
     [Pure]
     public static extern Vector Vector(float xyz);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Vector({0}, {1})
+    /// @CSharpLua.Template = _G.Vector({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.__Vector({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.Vector({0}, {1}, 0)
 #endif
     [Pure]
     public static extern Vector Vector(float x, float y);
 
-    /// @CSharpLua.Template = _G.__Vector({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.Vector({0}, {1}, {2})
     [Pure]
     public static extern Vector Vector(float x, float y, float z);
 
@@ -125,7 +141,7 @@ public static partial class _G
 
     /// @CSharpLua.Template = _G.Color({0}, {1}, {2}, {3})
     [Pure]
-    public static extern Color Color(byte red, byte green, byte blue, byte alpha);
+    public static extern Color Color(byte red, byte green, byte blue, byte alpha /*= 255*/);
 
     ///// @CSharpLua.Template = _G.Color({0})
     //[Pure]
@@ -138,7 +154,7 @@ public static partial class _G
 
     /// @CSharpLua.Template = _G.__VertexCreate({0}, {1}, {2}, {3})
     [Pure]
-    public static extern Vertex Vertex(float x, float y, float u, float v);
+    public static extern Vertex Vertex(float x, float y, float u /*= 0*/, float v /*= 0*/);
 #endif
 
     /// @CSharpLua.Template = _G.assert({0})
@@ -173,18 +189,21 @@ public static partial class _G
     [Pure]
     public static extern string type(object? value);
 
-    /// @CSharpLua.Template = System.Tuple(_G.pcall({0}, {*1}))
+    /// @CSharpLua.Template = _G.__ProtectedCall(nil, {0}, {*1})
     public static extern (bool, object?[]?) pcall<TDelegate>(TDelegate func, params object?[]? args) where TDelegate : Delegate;
 
-    ////#if STARFALL
     ////  /// @CSharpLua.Template = _G.include({0})
     ////  public static extern void include(string path);
 
+    ////#if STARFALL
     ////  /// @CSharpLua.Template = _G.require({0})
     ////  public static extern T require<T>(string path);
+
+    ////  /// @CSharpLua.Template = _G.require({0})
+    ////  public static extern void Require(string path);
     ////#else
     ////  /// @CSharpLua.Template = _G.require({0})
-    ////  public static extern void require(string path);
+    ////  public static extern void require(string name);
     ////#endif
 
     ///// @CSharpLua.Template = _G.getmetatable({0})
@@ -194,19 +213,19 @@ public static partial class _G
     //public static extern dynamic setmetatable(dynamic table, dynamic? metatable = null);
 
     ///// @CSharpLua.Template = _G.getfenv({0})
-    //public static extern dynamic getfenv(long index = 1);
+    //public static extern dynamic getfenv(int index = 1);
 
     ///// @CSharpLua.Template = _G.getfenv({0})
     //public static extern dynamic getfenv<TDelegate>(TDelegate func) where TDelegate : Delegate;
 
     ///// @CSharpLua.Template = _G.select({0})
     //[Pure]
-    //public static extern ulong? select(string count = "#");
+    //public static extern int? select(string count = "#");
 
     ///// @CSharpLua.Template = _G.select({0}, {*1})
     //[Pure]
-    //public static extern object? select(ulong index, params object?[]? args);
-    ////public static extern T? select<T>(ulong index, params object?[]? args);
+    //public static extern object? select(int index, params object?[]? args);
+    ////public static extern T? select<T>(int index, params object?[]? args);
 
     ///// @CSharpLua.Template = _G.unpack({0})
     //[Pure]
@@ -214,7 +233,7 @@ public static partial class _G
 
     ///// @CSharpLua.Template = _G.unpack({0}, {1}, {2})
     //[Pure]
-    //public static extern object?[]? unpack(dynamic table, double startIndex, double endIndex);
+    //public static extern object?[]? unpack(dynamic table, int startIndex, int endIndex);
 
     ///// @CSharpLua.Template = _G.next({0}, {1})
     //[Pure]
@@ -368,20 +387,20 @@ public static partial class _G
     [Pure]
     public static extern Delegate CompileString(string code, string chunkName);
 
-#if STARFALL
-    /// @CSharpLua.Template = _G.loadstring({0}, {1})
-#else
-    /// @CSharpLua.Template = _G.CompileString({0}, {1})
-#endif
-    [Pure]
-    public static extern TDelegate CompileString<TDelegate>(string code, string chunkName) where TDelegate : Delegate;
+    // #if STARFALL
+    //     /// @CSharpLua.Template = _G.loadstring({0}, {1})
+    // #else
+    //     /// @CSharpLua.Template = _G.CompileString({0}, {1})
+    // #endif
+    //     [Pure]
+    //     public static extern TDelegate CompileString<TDelegate>(string code, string chunkName) where TDelegate : Delegate;
 
 #if STARFALL
     /// @CSharpLua.Template = _G.concmd({0})
     public static extern void ConCmd(string command);
 #else
 #if CLIENT
-    /// @CSharpLua.Template = LocalPlayer():ConCommand({0})
+    /// @CSharpLua.Template = _G.LocalPlayer():ConCommand({0})
     public static extern void ConCmd(string command);
 
     /// @CSharpLua.Template = _G.RunConsoleCommand({0})
@@ -413,336 +432,147 @@ public static partial class _G
 #endif
 }
 
-public sealed class Angle
+/// @CSharpLua.Ignore
+public static partial class NativeExtensions
+{
+    /// @CSharpLua.Template = ({0})
+    [Pure]
+    //[return: MaybeNull]
+    public static extern TTo unsafe_cast<TTo>(this object? @this);
+
+    /// @CSharpLua.Template = _G.tostring({0})
+    [Pure]
+    public static extern string tostring(this object? value);
+}
+
+/// @CSharpLua.Ignore
+public sealed partial class Angle
 {
     public float p, y, r;
 
-    /// @CSharpLua.Template = _G.__Angle()
+    /// @CSharpLua.Template = _G.Angle()
     public extern Angle();
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Angle({0})
+    /// @CSharpLua.Template = _G.Angle({0})
 #else
-    /// @CSharpLua.Template = _G.__Angle({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.Angle({0}, {0}, {0})
 #endif
     public extern Angle(float pyr);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Angle({0}, {1})
+    /// @CSharpLua.Template = _G.Angle({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.__Angle({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.Angle({0}, {1}, 0)
 #endif
     public extern Angle(float p, float y);
 
-    /// @CSharpLua.Template = _G.__Angle({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.Angle({0}, {1}, {2})
     public extern Angle(float p, float y, float r);
 
-    public float this[int index]
-    {
-        get
-        {
-            return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-            /*
-            [[
-              return this[index]
-            ]]
-            */
-        }
-        set
-        {
-            /*
-            [[
-              this[index] = value
-            ]]
-            */
-        }
-    }
+    /// @CSharpLua.Template = _G.tostring({0})
+    public extern override string ToString();
 
-    public static bool operator ==(Angle? left, Angle? right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left == right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} == {1}
+    public static extern bool operator ==(Angle? left, object? right);
 
-    public static bool operator !=(Angle? left, Angle? right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left ~= right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} ~= {1}
+    public static extern bool operator !=(Angle? left, object? right);
 
-    public static Angle operator +(Angle left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left + right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} + {1}
+    public static extern Angle operator +(Angle left, Angle right);
 
-    public static Angle operator -(Angle left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left - right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} - {1}
+    public static extern Angle operator -(Angle left, Angle right);
 
-    public static Angle operator *(Angle left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Angle operator *(Angle left, Angle right);
 
-    public static Angle operator *(Angle left, float right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Angle operator *(Angle left, float right);
 
-    public static Angle operator *(float left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Angle operator *(float left, Angle right);
 
-    public static Angle operator /(Angle left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Angle operator /(Angle left, Angle right);
 
-    public static Angle operator /(Angle left, float right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Angle operator /(Angle left, float right);
 
-    public static Angle operator /(float left, Angle right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Angle operator /(float left, Angle right);
 
-    public static bool operator !(Angle? angle)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return not angle
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = (not {0})
+    public static extern bool operator !(Angle? angle);
 
-    public static Angle operator -(Angle angle)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return -angle
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = -{0}
+    public static extern Angle operator -(Angle angle);
 }
 
-public sealed class Vector
+/// @CSharpLua.Ignore
+public sealed partial class Vector
 {
     public float x, y, z;
 
-    /// @CSharpLua.Template = _G.__Vector()
+    /// @CSharpLua.Template = _G.Vector()
     public extern Vector();
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Vector({0})
+    /// @CSharpLua.Template = _G.Vector({0})
 #else
-    /// @CSharpLua.Template = _G.__Vector({0}, {0}, {0})
+    /// @CSharpLua.Template = _G.Vector({0}, {0}, {0})
 #endif
     public extern Vector(float xyz);
 
 #if STARFALL
-    /// @CSharpLua.Template = _G.__Vector({0}, {1})
+    /// @CSharpLua.Template = _G.Vector({0}, {1})
 #else
-    /// @CSharpLua.Template = _G.__Vector({0}, {1}, 0)
+    /// @CSharpLua.Template = _G.Vector({0}, {1}, 0)
 #endif
     public extern Vector(float x, float y);
 
-    /// @CSharpLua.Template = _G.__Vector({0}, {1}, {2})
+    /// @CSharpLua.Template = _G.Vector({0}, {1}, {2})
     public extern Vector(float x, float y, float z);
 
-    public float this[int index]
-    {
-        get
-        {
-            return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-            /*
-            [[
-              return this[index]
-            ]]
-            */
-        }
-        set
-        {
-            /*
-            [[
-              this[index] = value
-            ]]
-            */
-        }
-    }
+    /// @CSharpLua.Template = _G.tostring({0})
+    public extern override string ToString();
 
-    public static bool operator ==(Vector? left, Vector? right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left == right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} == {1}
+    public static extern bool operator ==(Vector? left, object? right);
 
-    public static bool operator !=(Vector? left, Vector? right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left ~= right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} ~= {1}
+    public static extern bool operator !=(Vector? left, object? right);
 
-    public static Vector operator +(Vector left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left + right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} + {1}
+    public static extern Vector operator +(Vector left, Vector right);
 
-    public static Vector operator -(Vector left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left - right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} - {1}
+    public static extern Vector operator -(Vector left, Vector right);
 
-    public static Vector operator *(Vector left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Vector operator *(Vector left, Vector right);
 
-    public static Vector operator *(Vector left, float right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Vector operator *(Vector left, float right);
 
-    public static Vector operator *(float left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left * right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern Vector operator *(float left, Vector right);
 
-    public static Vector operator /(Vector left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Vector operator /(Vector left, Vector right);
 
-    public static Vector operator /(Vector left, float right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Vector operator /(Vector left, float right);
 
-    public static Vector operator /(float left, Vector right)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return left / right
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = {0} / {1}
+    public static extern Vector operator /(float left, Vector right);
 
-    public static bool operator !(Vector? vector)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return not vector
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = (not {0})
+    public static extern bool operator !(Vector? vector);
 
-    public static Vector operator -(Vector vector)
-    {
-        return _G.REMOVEME_Internal_Return_Hack_REMOVEME();
-        /*
-        [[
-          return -vector
-        ]]
-        */
-    }
+    /// @CSharpLua.Template = -{0}
+    public static extern Vector operator -(Vector vector);
 }
 
 /// @CSharpLua.Ignore
@@ -756,6 +586,27 @@ public sealed partial class VMatrix
 
     /// @CSharpLua.Template = _G.Matrix({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15})
     public extern VMatrix(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34, float m41, float m42, float m43, float m44);
+
+    /// @CSharpLua.Template = _G.tostring({0})
+    public extern override string ToString();
+
+    /// @CSharpLua.Template = {0} == {1}
+    public static extern bool operator ==(VMatrix? left, object? right);
+
+    /// @CSharpLua.Template = {0} ~= {1}
+    public static extern bool operator !=(VMatrix? left, object? right);
+
+    /// @CSharpLua.Template = {0} + {1}
+    public static extern VMatrix operator +(VMatrix left, VMatrix right);
+
+    /// @CSharpLua.Template = {0} - {1}
+    public static extern VMatrix operator -(VMatrix left, VMatrix right);
+
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern VMatrix operator *(VMatrix left, VMatrix right);
+
+    /// @CSharpLua.Template = {0} * {1}
+    public static extern VMatrix operator *(VMatrix left, Vector right);
 }
 
 /// @CSharpLua.Ignore
@@ -769,7 +620,10 @@ public sealed partial class Color
     public extern Color(byte r, byte g, byte b);
 
     /// @CSharpLua.Template = _G.Color({0}, {1}, {2}, {3})
-    public extern Color(byte r, byte g, byte b, byte a /*= 0xFF*/);
+    public extern Color(byte r, byte g, byte b, byte a /*= 255*/);
+
+    /// @CSharpLua.Template = _G.tostring({0})
+    public extern override string ToString();
 }
 
 public abstract partial class EventBase
@@ -802,7 +656,7 @@ public abstract partial class EventBase
         // TODO: order/priority support
         if (CaptureThis)
         {
-            hook.Add(EventName, ID, this);
+            hook.Add(EventName, ID, this); // See HookEx for implementation.
         }
         else
         {
@@ -823,6 +677,8 @@ public abstract partial class EventBase
         IsActive = false;
     }
 }
+
+#region Hooks / Events
 
 public sealed partial class Tick : EventBase
 {
@@ -892,18 +748,26 @@ public sealed partial class KeyPress : EventBase
 {
     private const string ID = "KeyPress";
 
-    public KeyPress(Action<BasePlayer, IN_KEY> func) : base(ID, func, false) { }
+    public KeyPress(Action<BasePlayer, IN_KEY> func) : base(ID, func, false)
+    {
+    }
 
-    public KeyPress(Action<EventBase, BasePlayer, IN_KEY> func) : base(ID, func, true) { }
+    public KeyPress(Action<EventBase, BasePlayer, IN_KEY> func) : base(ID, func, true)
+    {
+    }
 }
 
 public sealed partial class KeyRelease : EventBase
 {
     private const string ID = "KeyRelease";
 
-    public KeyRelease(Action<BasePlayer, IN_KEY> func) : base(ID, func, false) { }
+    public KeyRelease(Action<BasePlayer, IN_KEY> func) : base(ID, func, false)
+    {
+    }
 
-    public KeyRelease(Action<EventBase, BasePlayer, IN_KEY> func) : base(ID, func, true) { }
+    public KeyRelease(Action<EventBase, BasePlayer, IN_KEY> func) : base(ID, func, true)
+    {
+    }
 }
 
 public sealed partial class PhysgunDrop : EventBase
@@ -1379,6 +1243,8 @@ public sealed partial class PhysgunReload : EventBase
 }
 #endif
 
+#endregion
+
 public abstract class Realm
 {
     public virtual void Main()
@@ -1397,14 +1263,6 @@ public abstract partial class Serverside : Realm
 /// @CSharpLua.Ignore
 public static partial class CoreExLib
 {
-    #region StarfallCompat
-
-    /// @CSharpLua.Template = _G.__String({0})
-    [Pure]
-    public static extern string str(this string value);
-
-    #endregion
-
     /// @CSharpLua.Template = {0}[{1}]
     [Pure]
     public static extern T get<T>(this Array array, dynamic index);
@@ -1478,6 +1336,7 @@ public static partial class CoreExLib
 }
 
 #if CLIENT
+
 /// @CSharpLua.Ignore
 public sealed class DLight
 {
@@ -1499,37 +1358,96 @@ public sealed class DLight
     public static extern DLight Create(uint index, bool elight = false);
 #endif
 
-    public double brightness;
+    // MY NOTE: These fields are actually case-insensitive.
 
-    public uint decay;
+    // TODO: Starfall is missing getter methods.
 
-    public double dietime;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double Brightness { get; set; }
 
-    public Vector dir;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public uint Decay { get; set; }
 
-    public double innerangle;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double DieTime { get; set; }
 
-    public double outerangle;
+#if STARFALL
+    /// @CSharpLua.NoField
+    public Vector Direction { get; set; }
+#else
+    public Vector Dir { get; set; }
+#endif
 
-    //public double key;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double InnerAngle { get; set; }
 
-    public double minlight;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double OuterAngle { get; set; }
 
-    public bool noworld;
+    //#if !STARFALL
+    //public double Key { get; set; }
+    //#endif
 
-    public bool nomodel;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double MinLight { get; set; }
 
-    public Vector pos;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public bool NoWorld { get; set; }
 
-    public double size;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public bool NoModel { get; set; }
 
-    public byte style;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public Vector Pos { get; set; }
 
-    public byte r;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public double Size { get; set; }
 
-    public byte g;
+#if STARFALL
+    /// @CSharpLua.NoField
+#endif
+    public byte Style { get; set; }
 
-    public byte b;
+#if STARFALL
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern Color Color { get; set; }
+#else
+    [Pure]
+    public extern Color GetColor();
+    public extern void SetColor(Color color);
+#endif
+#else
+    public byte R { get; set; }
+
+    public byte G { get; set; }
+
+    public byte B { get; set; }
+#endif
+
+#if STARFALL
+    public extern void Draw();
+#endif
 }
 
 /// @CSharpLua.Ignore
@@ -1590,6 +1508,7 @@ public sealed class CamData_Ortho
 
     public float left, right, bottom, top;
 }
+
 #endif
 
 /// @CSharpLua.Ignore
@@ -1642,20 +1561,28 @@ public static partial class debug
     public static extern Debug_GetInfo? GetInfo(ulong index, string flags = "flnSu");
 
 #if STARFALL
-    /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
+    /// @CSharpLua.Template = _G.debugGetLocal({0}, {1})
 #else
-    /// @CSharpLua.Template = System.Tuple(debug.getlocal({0}, {1}))
+    /// @CSharpLua.Template = System.ValueTuple(debug.getlocal({0}, {1}))
 #endif
     [Pure]
-    public static extern (string?, TLocal?) GetLocal<TDelegate, TLocal>(TDelegate func, long index) where TDelegate : Delegate;
+#if STARFALL
+    public static extern string? GetLocal<TDelegate>(TDelegate func, long index) where TDelegate : Delegate;
+#else
+    public static extern (string? name, TLocal? value) GetLocal<TDelegate, TLocal>(TDelegate func, long index) where TDelegate : Delegate;
+#endif
 
 #if STARFALL
-    /// @CSharpLua.Template = System.Tuple(_G.debugGetLocal({0}, {1}))
+    /// @CSharpLua.Template = _G.debugGetLocal({0}, {1})
 #else
-    /// @CSharpLua.Template = System.Tuple(debug.getlocal({0}, {1}))
+    /// @CSharpLua.Template = System.ValueTuple(debug.getlocal({0}, {1}))
 #endif
     [Pure]
-    public static extern (string?, TLocal?) GetLocal<TLocal>(ulong level, long index);
+#if STARFALL
+    public static extern string? GetLocal(ulong level, long index);
+#else
+    public static extern (string? name, TLocal? value) GetLocal<TLocal>(ulong level, long index);
+#endif
 }
 
 /// @CSharpLua.Ignore
@@ -1755,6 +1682,7 @@ public partial class BaseEntity
 #endif
 
 #if SERVER
+
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
     public extern bool IsPlayerHolding { get; }
@@ -1767,17 +1695,6 @@ public partial class BaseEntity
 #endif
 #endif
 
-#if FEATURE_PROPERTIES
-    /// @CSharpLua.NoField
-    public extern BaseEntity IsWeldedTo { get; }
-#else
-    [Pure]
-#if STARFALL
-    public extern BaseEntity isWeldedTo();
-#else
-    public extern BaseEntity IsWeldedTo();
-#endif
-#endif
 #endif
 
 #if FEATURE_PROPERTIES
@@ -1845,76 +1762,77 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern Color Color
+    public extern virtual Color Color
     {
         get;
-#if SERVER
         set;
-#endif
     }
 #else
 #if STARFALL
     [Pure]
-    public extern Color getColor();
-#if SERVER
-    public extern void setColor(Color color);
-#endif
+    public extern virtual Color getColor();
+    public extern virtual void setColor(Color color);
 #else
     [Pure]
-    public extern Color GetColor();
-#if SERVER
-    public extern void SetColor(Color color);
-#endif
+    public extern virtual Color GetColor();
+    public extern virtual void SetColor(Color color);
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern Vector Pos
+    public extern bool NoDraw
     {
         get;
-#if SERVER
         set;
-#endif
     }
 #else
 #if STARFALL
     [Pure]
-    public extern Vector getPos();
-#if SERVER
-    public extern void setPos(Vector pos);
-#endif
+    public extern bool getNoDraw();
+    public extern void setNoDraw(bool noDraw);
 #else
     [Pure]
-    public extern Vector GetPos();
-#if SERVER
-    public extern void SetPos(Vector pos);
-#endif
+    public extern bool GetNoDraw();
+    public extern void SetNoDraw(bool noDraw);
 #endif
 #endif
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern Angle Angles
+    public extern virtual Vector Pos
     {
         get;
-#if SERVER
         set;
-#endif
     }
 #else
 #if STARFALL
     [Pure]
-    public extern Angle getAngles();
-#if SERVER
-    public extern void setAngles(Angle angles);
-#endif
+    public extern virtual Vector getPos();
+    public extern virtual void setPos(Vector pos);
 #else
     [Pure]
-    public extern Angle GetAngles();
-#if SERVER
-    public extern void SetAngles(Angle angles);
+    public extern virtual Vector GetPos();
+    public extern virtual void SetPos(Vector pos);
 #endif
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern virtual Angle Angles
+    {
+        get;
+        set;
+    }
+#else
+#if STARFALL
+    [Pure]
+    public extern virtual Angle getAngles();
+    public extern virtual void setAngles(Angle angles);
+#else
+    [Pure]
+    public extern virtual Angle GetAngles();
+    public extern virtual void SetAngles(Angle angles);
 #endif
 #endif
 
@@ -1932,7 +1850,13 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern virtual Angle EyeAngles { get; }
+    public extern virtual Angle EyeAngles
+    {
+        get;
+#if SERVER
+        set;
+#endif
+    }
 #else
     [Pure]
 #if STARFALL
@@ -1944,7 +1868,7 @@ public partial class BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
-    public extern Vector Velocity
+    public extern virtual Vector Velocity
     {
         get;
 #if SERVER
@@ -1954,15 +1878,15 @@ public partial class BaseEntity
 #else
 #if STARFALL
     [Pure]
-    public extern Vector getVelocity();
+    public extern virtual Vector getVelocity();
 #if SERVER
-    public extern void setVelocity(Vector velocity);
+    public extern virtual void setVelocity(Vector velocity);
 #endif
 #else
     [Pure]
-    public extern Vector GetVelocity();
+    public extern virtual Vector GetVelocity();
 #if SERVER
-    public extern void SetVelocity(Vector velocity);
+    public extern virtual void SetVelocity(Vector velocity);
 #endif
 #endif
 #endif
@@ -1972,23 +1896,38 @@ public partial class BaseEntity
     public extern virtual BaseEntity Parent
     {
         get;
-#if SERVER
         set;
-#endif
     }
 #else
 #if STARFALL
     [Pure]
     public extern virtual BaseEntity getParent();
-#if SERVER
     public extern virtual void setParent(BaseEntity parent);
-#endif
 #else
     [Pure]
     public extern virtual BaseEntity GetParent();
-#if SERVER
     public extern virtual void SetParent(BaseEntity parent);
 #endif
+#endif
+
+    public extern virtual void SetParent(BaseEntity parent, int attachmentId);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern string Model
+    {
+        get;
+        set;
+    }
+#else
+#if STARFALL
+    [Pure]
+    public extern string getModel();
+    public extern void setModel(string model);
+#else
+    [Pure]
+    public extern string GetModel();
+    public extern void SetModel(string model);
 #endif
 #endif
 
@@ -1997,24 +1936,44 @@ public partial class BaseEntity
     public extern string Material
     {
         get;
-#if SERVER
         set;
-#endif
     }
 #else
 #if STARFALL
     [Pure]
     public extern string getMaterial();
-#if SERVER
     public extern void setMaterial(string material);
-#endif
 #else
     [Pure]
     public extern string GetMaterial();
-#if SERVER
     public extern void SetMaterial(string material);
 #endif
 #endif
+
+    [Pure]
+    public extern string GetSubMaterial(int index);
+
+    public extern void SetSubMaterial(int index, string material);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern string[] Materials { get; }
+#else
+    [Pure]
+    public extern string[] GetMaterials();
+#endif
+
+    [Pure]
+    public extern int GetBodygroup(int index);
+
+    public extern void SetBodygroup(int index, int bodygroup);
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern BodyGroupData[] BodyGroups { get; }
+#else
+    [Pure]
+    public extern BodyGroupData[] GetBodyGroups();
 #endif
 
 #if FEATURE_PROPERTIES
@@ -2110,6 +2069,16 @@ public partial class BaseEntity
     public extern int GetHitBoxCount(int group);
 
     // TODO
+
+#if SERVER
+
+#if STARFALL
+    public extern virtual void remove();
+#else
+    public extern virtual void Remove();
+#endif
+
+#endif
 }
 
 /// @CSharpLua.Ignore
@@ -2273,6 +2242,7 @@ public partial class BasePlayer : BaseEntity
 #endif
 #endif
 
+#if SERVER // Due to GMod bug
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
     public extern bool HasGodMode { get; }
@@ -2282,6 +2252,7 @@ public partial class BasePlayer : BaseEntity
     public extern bool hasGodMode();
 #else
     public extern bool HasGodMode();
+#endif
 #endif
 #endif
 
@@ -2519,6 +2490,40 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
+    public extern double DuckSpeed
+    {
+        get;
+#if SERVER && !STARFALL
+        set;
+#endif
+    }
+#else
+#if STARFALL
+    [Pure]
+    public extern double getDuckSpeed();
+#else
+    [Pure]
+    public extern double GetDuckSpeed();
+#if SERVER
+    public extern void SetDuckSpeed(double duckSpeed);
+#endif
+#endif
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern BaseEntity EntityInUse { get; }
+#else
+    [Pure]
+#if STARFALL
+    public extern BaseEntity getEntityInUse();
+#else
+    public extern BaseEntity GetEntityInUse();
+#endif
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
     public extern Vector ShootPos { get; }
 #else
     [Pure]
@@ -2617,6 +2622,28 @@ public partial class BasePlayer : BaseEntity
 
 #if FEATURE_PROPERTIES
     /// @CSharpLua.NoField
+    public extern double ModelScale
+    {
+        get;
+#if SERVER && !STARFALL
+        set;
+#endif
+    }
+#else
+#if STARFALL
+    [Pure]
+    public extern double getModelScale();
+#else
+    [Pure]
+    public extern double GetModelScale();
+#if SERVER
+    public extern void SetModelScale(double scale);
+#endif
+#endif
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
     public extern BaseEntity ViewEntity
     {
         get;
@@ -2645,7 +2672,7 @@ public partial class BasePlayer : BaseEntity
 #if STARFALL
     public extern BaseEntity getViewModel();
 #else
-    public extern BaseEntity GetViewModel();
+    public extern BaseEntity GetViewModel(int index = 0);
 #endif
 #endif
 
@@ -2690,16 +2717,18 @@ public partial class BasePlayer : BaseEntity
 #endif
 #endif
 
-#if FEATURE_PROPERTIES
-    /// @CSharpLua.NoField
-    public extern int AmmoCount { get; }
-#else
     [Pure]
 #if STARFALL
-    public extern int getAmmoCount();
+    public extern int getAmmoCount(int id);
 #else
-    public extern int AmmoCount();
+    public extern int GetAmmoCount(int id);
 #endif
+
+    [Pure]
+#if STARFALL
+    public extern int getAmmoCount(string id);
+#else
+    public extern int GetAmmoCount(string id);
 #endif
 
     [Pure]
@@ -2760,6 +2789,32 @@ public partial class BasePlayer : BaseEntity
 #endif
 
 #endif
+
+#if SERVER
+
+#if STARFALL
+    public extern void dropWeapon(Weapon weapon, Vector? target = null, Vector? velocity = null);
+
+    public extern void dropWeapon(string weapon, Vector? target = null, Vector? velocity = null);
+#else
+    public extern void DropWeapon(Weapon weapon, Vector? target = null, Vector? velocity = null);
+
+    public extern void DropNamedWeapon(string weapon, Vector? target = null, Vector? velocity = null);
+#endif
+
+#if FEATURE_PROPERTIES
+    /// @CSharpLua.NoField
+    public extern HITGROUP LastHitGroup { get; }
+#else
+    [Pure]
+#if STARFALL
+    public extern HITGROUP lastHitGroup();
+#else
+    public extern HITGROUP LastHitGroup();
+#endif
+#endif
+
+#endif
 }
 
 #if SERVER
@@ -2805,8 +2860,66 @@ public partial class Weapon : BaseEntity
 }
 
 /// @CSharpLua.Ignore
+public sealed class BodyGroupData
+{
+    private extern BodyGroupData();
+
+    /// <summary>Index of the body group.</summary>
+    public extern int id { get; }
+
+    /// <summary>Name of the body group.</summary>
+    public extern string name { get; }
+
+    /// <summary>Amount of subgroups.</summary>
+    public extern int num { get; }
+
+    /// <summary>A zero-indexed table that is of length <see cref="num"/> with values being the name of the smd mesh file of the respective body group value.</summary>
+    public extern string[] submodels { get; }
+}
+
+/// @CSharpLua.Ignore
+public sealed class CollisionData
+{
+    private extern CollisionData();
+
+    public extern Vector HitPos { get; }
+
+    public extern BaseEntity HitEntity { get; }
+
+    public extern Vector OurOldVelocity { get; }
+
+    public extern PhysObj HitObject { get; }
+
+    public extern double DeltaTime { get; }
+
+    public extern Vector TheirOldVelocity { get; }
+
+    public extern double Speed { get; }
+
+    public extern Vector HitNormal { get; }
+
+    public extern PhysObj PhysObject { get; }
+
+    public extern int /*byte*/ OurSurfaceProps { get; }
+
+    public extern int /*byte*/ TheirSurfaceProps { get; }
+
+    public extern double HitSpeed { get; }
+
+    public extern Vector OurNewVelocity { get; }
+
+    public extern Vector TheirNewVelocity { get; }
+
+    public extern Vector OurOldAngularVelocity { get; }
+
+    public extern Vector TheirOldAngularVelocity { get; }
+}
+
+/// @CSharpLua.Ignore
 public static partial class ents
 {
+    // TODO: Wrap array-returning APIs
+
 #if STARFALL
     /// @CSharpLua.Template = find.all()
 #else
@@ -2885,7 +2998,7 @@ public static partial class strlib
     [Pure]
     public static extern byte[] bytes(string str, int? startPos = 1, int? endPos = null);
 
-    /// @CSharpLua.Template = strlib.chars({*0})
+    /// @CSharpLua.Template = string.char({*0})
     [Pure]
     public static extern string chars(params byte[] bytes);
 
@@ -2901,6 +3014,10 @@ public static partial class strlib
     [Pure]
     public static extern string dump<T>(T func) where T : Delegate;
 
+    /// @CSharpLua.Template = string.dump({0}, {1})
+    [Pure]
+    public static extern string dump<T>(T func, bool stripDebugInfo /*= false*/) where T : Delegate;
+
 #if STARFALL
     /// @CSharpLua.Template = string.endsWith({0}, {1})
 #else
@@ -2909,29 +3026,29 @@ public static partial class strlib
     [Pure]
     public static extern string endsWith(string str, string end);
 
-#if STARFALL
-    /// @CSharpLua.Template = string.explode({0}, {1})
-#else
-    /// @CSharpLua.Template = string.Explode({0}, {1})
-#endif
+    /// @CSharpLua.Template = strlib.explode({0}, {1})
     [Pure]
     public static extern string[] explode(string separator, string str);
 
-#if STARFALL
-    /// @CSharpLua.Template = string.explode({0}, {1}, {2})
-#else
-    /// @CSharpLua.Template = string.Explode({0}, {1}, {2})
-#endif
+    /// @CSharpLua.Template = strlib.explode({0}, {1}, {2})
     [Pure]
-    public static extern string[] explode(string separator, string str, bool usePatterns);
+    public static extern string[] explode(string separator, string str, bool usePatterns /*= false*/);
 
-    /// @CSharpLua.Template = System.Tuple(string.find({0}, {1}, {2}, {3}))
+    /// @CSharpLua.Template = strlib.find({0}, {1})
     [Pure]
-    public static extern (int?, int?, string?) find(string haystack, string needle, int startPos = 1, bool noPatterns = false);
+    public static extern (int? startPos, int? endPos, string? captured) find(string haystack, string needle);
+
+    /// @CSharpLua.Template = strlib.find({0}, {1}, {2})
+    [Pure]
+    public static extern (int? startPos, int? endPos, string? captured) find(string haystack, string needle, int startPos /*= 1*/);
+
+    /// @CSharpLua.Template = strlib.find({0}, {1}, {2}, {3})
+    [Pure]
+    public static extern (int? startPos, int? endPos, string? captured) find(string haystack, string needle, int startPos /*= 1*/, bool noPatterns /*= false*/);
 
     /// @CSharpLua.Template = string.format({0}, {*1})
     [Pure]
-    public static extern string format(string format, params object[] args);
+    public static extern string format(string format, params object?[]? args);
 
 #if STARFALL
     /// @CSharpLua.Template = string.formattedTime({0})
@@ -2939,7 +3056,7 @@ public static partial class strlib
     /// @CSharpLua.Template = string.FormattedTime({0})
 #endif
     [Pure]
-    public static extern dynamic formattedTime(double time);
+    public static extern FormattedTimeTable formattedTime(double time);
 
 #if STARFALL
     /// @CSharpLua.Template = string.formattedTime({0}, {1})
@@ -2973,20 +3090,25 @@ public static partial class strlib
     [Pure]
     public static extern string getPathFromFilename(string inputString);
 
-    /// @CSharpLua.Template = strlib.gmatch({0}, {1})
-    public static extern string[] gmatch(string data, string pattern);
+    // /// @CSharpLua.Template = strlib.gmatch({0}, {1})
+    // [Pure]
+    // public static extern IEnumerable<string[]> gmatch(string data, string pattern); // TODO
 
-    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    /// @CSharpLua.Template = strlib.gsub({0}, {1}, {2})
     [Pure]
-    public static extern (string, int) gsub(string input, string pattern, string replacement);
+    public static extern (string result, int count) gsub(string input, string pattern, string replacement);
 
-    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    /// @CSharpLua.Template = strlib.gsub({0}, {1}, {2})
     [Pure]
-    public static extern (string, int) gsub(string input, string pattern, dynamic replacement);
+    public static extern (string result, int count) gsub(string input, string pattern, dynamic replacement);
 
-    /// @CSharpLua.Template = string.gsub({0}, {1}, {2})
+    /// @CSharpLua.Template = strlib.gsub({0}, {1}, {2})
     [Pure]
-    public static extern (string, int) gsub(string input, string pattern, Action<string[]> replacement);
+    public static extern (string result, int count) gsub(string input, string pattern, Func<string, string> replacement);
+
+    /// @CSharpLua.Template = table.concat({1}, {0})
+    [Pure]
+    public static extern string implode(string separator, dynamic table);
 
 #if STARFALL
     /// @CSharpLua.Template = string.javascriptSafe({0})
@@ -3014,11 +3136,11 @@ public static partial class strlib
 
     /// @CSharpLua.Template = strlib.match({0}, {1})
     [Pure]
-    public static extern string[]? match(string str, string pattern);
+    public static extern string[] match(string str, string pattern);
 
     /// @CSharpLua.Template = strlib.match({0}, {1}, {2})
     [Pure]
-    public static extern string[]? match(string str, string pattern, int startPos);
+    public static extern string[] match(string str, string pattern, int startPos /*= 1*/);
 
 #if STARFALL
     /// @CSharpLua.Template = string.niceSize({0})
@@ -3080,11 +3202,7 @@ public static partial class strlib
     [Pure]
     public static extern string setChar(string inputString, int index, string replacementChar);
 
-#if STARFALL
-    /// @CSharpLua.Template = string.split({0}, {1})
-#else
-    /// @CSharpLua.Template = string.Split({0}, {1})
-#endif
+    /// @CSharpLua.Template = strlib.explode({1}, {0})
     [Pure]
     public static extern string[] split(string inputString, string separator);
 
@@ -3094,7 +3212,7 @@ public static partial class strlib
     /// @CSharpLua.Template = string.StartWith({0}, {1})
 #endif
     [Pure]
-    public static extern bool startWith(string inputString, string start);
+    public static extern bool startsWith(string inputString, string start);
 
 #if STARFALL
     /// @CSharpLua.Template = string.stripExtension({0})
@@ -3128,13 +3246,9 @@ public static partial class strlib
     [Pure]
     public static extern string toMinutesSecondsMilliseconds(double time);
 
-#if STARFALL
-    /// @CSharpLua.Template = string.toTable({0})
-#else
-    /// @CSharpLua.Template = string.ToTable({0})
-#endif
+    /// @CSharpLua.Template = strlib.toTable({0})
     [Pure]
-    public static extern byte[] toTable(string str);
+    public static extern byte[] toTable(string str); // TODO
 
 #if STARFALL
     /// @CSharpLua.Template = string.trim({0})
@@ -3150,7 +3264,7 @@ public static partial class strlib
     /// @CSharpLua.Template = string.Trim({0}, {1})
 #endif
     [Pure]
-    public static extern string trim(string inputString, string toMatch = "%s");
+    public static extern string trim(string inputString, string toMatch /*= "%s"*/);
 
 #if STARFALL
     /// @CSharpLua.Template = string.trimLeft({0}, {1})
@@ -3176,6 +3290,14 @@ public static partial class strlib
 /// @CSharpLua.Ignore
 public static class StringExtensions
 {
+    #region StarfallCompat
+
+    /// @CSharpLua.Template = _G.__String({0})
+    [Pure]
+    public static extern string str(this string @this);
+
+    #endregion
+
     /// @CSharpLua.Template = string.lower({0})
     [Pure]
     public static extern string lower(this string @this);
@@ -3199,6 +3321,22 @@ public static class StringExtensions
 #endif
     [Pure]
     public static extern string trim(this string @this);
+
+    // TODO
+}
+
+/// @CSharpLua.Ignore
+public sealed class FormattedTimeTable
+{
+    private extern FormattedTimeTable();
+
+    public extern int h { get; }
+
+    public extern int m { get; }
+
+    public extern int s { get; }
+
+    public extern double ms { get; }
 }
 
 /// @CSharpLua.Ignore
@@ -3210,11 +3348,11 @@ public static partial class table
 
     /// @CSharpLua.Template = table.concat({0}, {1}, {2})
     [Pure]
-    public static extern string concat(dynamic table, string concatenator, long startPos);
+    public static extern string concat(dynamic table, string concatenator, long startPos /*= 1*/);
 
     /// @CSharpLua.Template = table.concat({0}, {1}, {2}, {3})
     [Pure]
-    public static extern string concat(dynamic table, string concatenator, long startPos, long endPos);
+    public static extern string concat(dynamic table, string concatenator, long startPos /*= 1*/, long endPos /*= #table*/);
 
 #if STARFALL
     /// @CSharpLua.Template = table.copy({0})
@@ -3264,10 +3402,18 @@ public static partial class table
     public static extern bool IsSequential(dynamic table);
 
     /// @CSharpLua.Template = table.remove({0})
+    [Pure]
     public static extern T remove<T>(dynamic table);
 
     /// @CSharpLua.Template = table.remove({0}, {1})
+    [Pure]
     public static extern T remove<T>(dynamic table, int key);
+
+    /// @CSharpLua.Template = table.remove({0})
+    public static extern void Remove(dynamic table);
+
+    /// @CSharpLua.Template = table.remove({0}, {1})
+    public static extern void Remove(dynamic table, int key);
 
 #if STARFALL
     /// @CSharpLua.Template = table.reverse({0})
@@ -3410,9 +3556,9 @@ public static partial class math
     [Pure]
     public static extern double fmod(double num, double modulator);
 
-    /// @CSharpLua.Template = System.Tuple(math.frexp({0}))
+    /// @CSharpLua.Template = System.ValueTuple(math.frexp({0}))
     [Pure]
-    public static extern (double, double) frexp(double x);
+    public static extern (double multiplier, double exponent) frexp(double x);
 
 #if STARFALL
     /// @CSharpLua.Template = math.intToBin({0})
@@ -3446,9 +3592,9 @@ public static partial class math
     [Pure]
     public static extern double min(params double[] numbers);
 
-    /// @CSharpLua.Template = System.Tuple(math.modf({0}))
+    /// @CSharpLua.Template = System.ValueTuple(math.modf({0}))
     [Pure]
-    public static extern (long, double) modf(double num);
+    public static extern (long integral, double fractional) modf(double num);
 
 #if STARFALL
     /// @CSharpLua.Template = math.normalizeAngle({0})
@@ -3620,8 +3766,202 @@ public static partial class bit
 public static partial class file
 {
 #if (STARFALL && CLIENT) || !STARFALL
-    // TODO
+
+#if STARFALL
+    /// @CSharpLua.Template = file.open({0}, {1})
+#else
+    /// @CSharpLua.Template = file.Open({0}, {1})
 #endif
+    [Pure]
+    public static extern File? Open(string path, string mode);
+
+#if !STARFALL
+    /// @CSharpLua.Template = file.Open({0}, {1}, {2})
+    [Pure]
+    public static extern File? Open(string path, string mode, string gamePath /*= "DATA"*/);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = file.read({0})
+#else
+    /// @CSharpLua.Template = file.Read({0})
+#endif
+    [Pure]
+    public static extern string? Read(string path);
+
+#if !STARFALL
+    /// @CSharpLua.Template = file.Read({0}, {1})
+    [Pure]
+    public static extern string? Read(string path, string gamePath /*= "DATA"*/);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = file.write({0}, {1})
+#else
+    /// @CSharpLua.Template = file.Write({0}, {1})
+#endif
+    public static extern void Write(string path, string content);
+
+#if STARFALL
+    /// @CSharpLua.Template = file.writeTemp({0}, {1})
+    [Pure]
+    public static extern string WriteTemp(string path, string content);
+
+    /// @CSharpLua.Template = file.existsTemp({0})
+    [Pure]
+    public static extern string? ExistsTemp(string path);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = file.append({0}, {1})
+#else
+    /// @CSharpLua.Template = file.Append({0}, {1})
+#endif
+    public static extern void Append(string path, string content);
+
+#if STARFALL
+    /// @CSharpLua.Template = file.exists({0})
+#else
+    /// @CSharpLua.Template = file.Exists({0})
+#endif
+    [Pure]
+    public static extern bool Exists(string path);
+
+#if !STARFALL
+    /// @CSharpLua.Template = file.Exists({0}, {1})
+    [Pure]
+    public static extern bool Exists(string path, string gamePath /*= "DATA"*/);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = file.delete({0})
+    public static extern bool Delete(string path);
+#else
+    /// @CSharpLua.Template = file.Delete({0})
+    public static extern void Delete(string path);
+#endif
+
+#if STARFALL
+    /// @CSharpLua.Template = file.createDir({0})
+#else
+    /// @CSharpLua.Template = file.CreateDir({0})
+#endif
+    public static extern void CreateDir(string name);
+
+#if STARFALL
+    /// @CSharpLua.Template = System.ValueTuple(file.find({0}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) Find(string path);
+
+    /// @CSharpLua.Template = System.ValueTuple(file.find({0}, {1}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) Find(string path, string sorting /*= "nameasc"*/);
+
+    /// @CSharpLua.Template = System.ValueTuple(file.findInGame({0}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) FindInGame(string path);
+
+    /// @CSharpLua.Template = System.ValueTuple(file.findInGame({0}, {1}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) FindInGame(string path, string sorting /*= "nameasc"*/);
+#else
+    /// @CSharpLua.Template = System.ValueTuple(file.Find({0}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) Find(string path);
+
+    /// @CSharpLua.Template = System.ValueTuple(file.Find({0}, {1}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) Find(string path, string gamePath);
+
+    /// @CSharpLua.Template = System.ValueTuple(file.Find({0}, {1}, {2}))
+    [Pure]
+    public static extern (string[]? files, string[]? directories) Find(string path, string gamePath, string sorting /*= "nameasc"*/);
+#endif
+
+#endif
+}
+
+/// @CSharpLua.Ignore
+public sealed partial class File
+{
+#if STARFALL
+    /// @CSharpLua.Template = file.open({0}, {1})
+#else
+    /// @CSharpLua.Template = file.Open({0}, {1})
+#endif
+    public extern File(string path, string mode);
+
+#if !STARFALL
+    /// @CSharpLua.Template = file.Open({0}, {1}, {2})
+    public extern File(string path, string mode, string gamePath /*= "DATA"*/);
+#endif
+
+    public extern void Flush();
+
+    public extern void Close();
+
+    public extern void Seek(int position);
+
+    public extern int Skip(int amount);
+
+    [Pure]
+    public extern bool EndOfFile(); // TODO: SF
+
+    [Pure]
+    public extern int Tell();
+
+    [Pure]
+    public extern int Size();
+
+    [Pure]
+    public extern string? Read(int length);
+
+    [Pure]
+    public extern bool ReadBool();
+
+    [Pure]
+    public extern byte ReadByte();
+
+    [Pure]
+    public extern double ReadDouble();
+
+    [Pure]
+    public extern float ReadFloat();
+
+    [Pure]
+    public extern string ReadLine();
+
+    [Pure]
+    public extern int ReadLong();
+
+    [Pure]
+    public extern short ReadShort();
+
+    [Pure]
+    public extern uint ReadULong(); // TODO: SF
+
+    [Pure]
+    public extern ushort ReadUShort(); // TODO: SF
+
+    public extern void Write(string value);
+
+    public extern void WriteBool(bool value);
+
+    public extern void WriteByte(byte value);
+
+    public extern void WriteDouble(double value);
+
+    public extern void WriteFloat(float value);
+
+    public extern void WriteLine(string value);
+
+    public extern void WriteLong(int value);
+
+    public extern void WriteShort(short value);
+
+    public extern void WriteULong(uint value); // TODO: SF
+
+    public extern void WriteUShort(ushort value); // TODO: SF
 }
 
 /// @CSharpLua.Ignore
@@ -3695,17 +4035,18 @@ public static partial class http
 }
 
 /// @CSharpLua.Ignore
-public static partial class input
-{
-}
-
-/// @CSharpLua.Ignore
 public sealed partial class Material
 {
     private extern Material();
 }
 
 #if CLIENT
+
+/// @CSharpLua.Ignore
+public static partial class input
+{
+}
+
 /// @CSharpLua.Ignore
 public static partial class render
 {
@@ -3910,11 +4251,11 @@ public static partial class render
     public static extern Vector GetAmbientLightColor();
 
 #if STARFALL
-    /// @CSharpLua.Template = render.setFogMod({0})
+    /// @CSharpLua.Template = render.setFogMode({0})
 #else
-    /// @CSharpLua.Template = render.FogMod({0})
+    /// @CSharpLua.Template = render.FogMode({0})
 #endif
-    public static extern void FogMod(MATERIAL_FOG fogMode);
+    public static extern void FogMode(MATERIAL_FOG fogMode);
 
 #if STARFALL
     /// @CSharpLua.Template = render.setFogColor({0})
@@ -3986,13 +4327,13 @@ public static partial class surface
     public static extern void SetDrawColor(Color color);
 
     /// @CSharpLua.Template = surface.SetDrawColor({0}, {1}, {2}, {3})
-    public static extern void SetDrawColor(byte r, byte g, byte b, byte a);
+    public static extern void SetDrawColor(byte r, byte g, byte b, byte a = 0xFF);
 
     /// @CSharpLua.Template = surface.SetTextColor({0})
     public static extern void SetTextColor(Color color);
 
     /// @CSharpLua.Template = surface.SetTextColor({0}, {1}, {2}, {3})
-    public static extern void SetTextColor(byte r, byte g, byte b, byte a);
+    public static extern void SetTextColor(byte r, byte g, byte b, byte a = 0xFF);
 }
 
 /// @CSharpLua.Ignore
@@ -4053,12 +4394,12 @@ public sealed partial class Markup
 public static class MarkupExtensions
 {
 #if STARFALL
-    /// @CSharpLua.Template = System.Tuple({0}:getSize())
+    /// @CSharpLua.Template = System.ValueTuple({0}:getSize())
 #else
-    /// @CSharpLua.Template = System.Tuple({0}:Size())
+    /// @CSharpLua.Template = System.ValueTuple({0}:Size())
 #endif
     [Pure]
-    public static extern (int, int) GetSize(this Markup @this);
+    public static extern (int w, int h) GetSize(this Markup @this);
 }
 
 /// @CSharpLua.Ignore
@@ -4143,6 +4484,7 @@ public sealed partial class Vertex
 
     public float x, y, u, v;
 }
+
 #endif
 
 /// @CSharpLua.Ignore
@@ -4282,12 +4624,12 @@ public static partial class util
 #endif
 
 #if STARFALL
-    /// @CSharpLua.Template = System.Tuple(trace.intersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
+    /// @CSharpLua.Template = System.ValueTuple(trace.intersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
 #else
-    /// @CSharpLua.Template = System.Tuple(util.IntersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
+    /// @CSharpLua.Template = System.ValueTuple(util.IntersectRayWithOBB({0}, {1}, {2}, {3}, {4}, {5}))
 #endif
     [Pure]
-    public static extern (Vector?, Vector?, double?) IntersectRayWithOBB(Vector rayStart, Vector rayDelta, Vector boxOrigin, Angle boxAngles, Vector boxMins, Vector boxMaxs);
+    public static extern (Vector? position, Vector? normal, double? fraction) IntersectRayWithOBB(Vector rayStart, Vector rayDelta, Vector boxOrigin, Angle boxAngles, Vector boxMins, Vector boxMaxs);
 
 #if STARFALL
     /// @CSharpLua.Template = trace.intersectRayWithPlane({0}, {1}, {2}, {3})
@@ -4359,7 +4701,7 @@ public static partial class util
     /// @CSharpLua.Template = util.TableToJSON({0}, {1})
 #endif
     [Pure]
-    public static extern string TableToJSON(dynamic table, bool prettyPrint);
+    public static extern string TableToJSON(dynamic table, bool prettyPrint /*= false*/);
 
 #if STARFALL
     /// @CSharpLua.Template = json.decode({0})
@@ -4626,6 +4968,7 @@ public static partial class sound
 }
 
 #if CLIENT
+
 /// @CSharpLua.Ignore
 public static partial class bass
 {
@@ -4776,6 +5119,8 @@ public partial interface IGModAudioChannel
 {
     // SF: "Bass"
 
+    // TODO: Use feature-properties where possible.
+
     [Pure]
 #if STARFALL
     double getAverageBitRate(); // TODO
@@ -4813,9 +5158,9 @@ public partial interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-    (double, double) getLevels();
+    (double left, double right) getLevels();
 #else
-    (double, double) GetLevel();
+    (double left, double right) GetLevel();
 #endif
 
     [Pure]
@@ -4876,9 +5221,9 @@ public partial interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-    (double, double, double) get3DCone(); // TODO
+    (double innerAngle, double outerAngle, double outerVolume) get3DCone(); // TODO
 #else
-    (double, double, double) Get3DCone();
+    (double innerAngle, double outerAngle, double outerVolume) Get3DCone();
 #endif
 
 #if STARFALL
@@ -4889,9 +5234,9 @@ public partial interface IGModAudioChannel
 
     [Pure]
 #if STARFALL
-    (double, double) get3DFadeDistance();
+    (double min, double max) get3DFadeDistance();
 #else
-    (double, double) Get3DFadeDistance();
+    (double min, double max) Get3DFadeDistance();
 #endif
 
 #if STARFALL
@@ -5026,6 +5371,7 @@ public partial interface IGModAudioChannel
     void Stop();
 #endif
 }
+
 #endif
 
 /// @CSharpLua.Ignore
@@ -5046,6 +5392,7 @@ public sealed partial class Sound
 public static partial class net
 {
     // TODO: Make instance class?
+    // TODO: Generic reader/writer methods.
 
 #if STARFALL
     /// @CSharpLua.Template = net.start({0})
@@ -5128,13 +5475,13 @@ public static partial class net
 #endif
 
 #if !STARFALL
-    /// @CSharpLua.Template = net.BytesLeft()
+    /// @CSharpLua.Template = System.ValueTuple(net.BytesLeft())
     [Pure]
-    public static extern (int?, int?) BytesLeft();
+    public static extern (int? inBytes, int? inBits) BytesLeft();
 
-    /// @CSharpLua.Template = net.BytesWritten()
+    /// @CSharpLua.Template = System.ValueTuple(net.BytesWritten())
     [Pure]
-    public static extern (int?, int?) BytesWritten();
+    public static extern (int? inBytes, int? inBits) BytesWritten();
 #endif
 
 #if STARFALL
@@ -5681,16 +6028,7 @@ public static partial class hook
     public static extern void Remove(string eventName, string id);
 }
 
-#if !STARFALL
-/// @CSharpLua.Ignore
-public static partial class concommand
-{
-    /// @CSharpLua.Template = concommand.Add({0}, {1}, {2}, {3}, {4})
-    public static extern void Add(string name, Action<BasePlayer, string, string[], string> callback, Func<string, string, string[]>? autoComplete = default, string? helpText = default, FCVAR flags = default);
-
-    /// @CSharpLua.Template = concommand.Remove({0})
-    public static extern void Remove(string name);
-}
+#region Enums
 
 /// @CSharpLua.Ignore
 [Flags]
@@ -5698,7 +6036,6 @@ public enum FCVAR
 {
     NONE = 0
 }
-#endif
 
 /// @CSharpLua.Ignore
 [Flags]
@@ -5952,6 +6289,8 @@ public enum MASK : uint
     ALL = 4294967295 // Anything that is not empty space
 }
 
+#if CLIENT
+
 /// @CSharpLua.Ignore
 public enum GMOD_CHANNEL
 {
@@ -6018,7 +6357,6 @@ public enum BASS_ERROR
     UNSTREAMABLE = 47
 }
 
-#if CLIENT
 /// @CSharpLua.Ignore
 public enum TEXT_ALIGN
 {
@@ -6095,4 +6433,7 @@ public enum STENCIL
     INCR = 7, // Increments the value in the stencil buffer by 1, wrapping around on overflow.
     DECR = 8 // Decrements the value in the stencil buffer by 1, wrapping around on overflow.
 }
+
 #endif
+
+#endregion
