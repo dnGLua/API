@@ -19,14 +19,16 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<Title>dnGLua.API.GarrysMod</Title>
 		<Authors>Cheatoid</Authors>
 		<Owners>dnGLua</Owners>
 		<Company>dnGLua</Company>
-		<Copyright>Copyright (c) dnGLua and Contributors</Copyright>
+		<Copyright>Copyright © dnGLua and Contributors</Copyright>
 		<PackageId>dnGLua.API.GarrysMod</PackageId>
 		<Description>Garry's Mod standard library API for C#.</Description>
 		<RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/GarrysMod</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
 		<PackageTags>csharp api gmod garrysmod garrys-mod gmod-lua glua dnglua</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

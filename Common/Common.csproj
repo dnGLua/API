@@ -19,18 +19,20 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<Title>dnGLua.API.Common</Title>
 		<Authors>Cheatoid</Authors>
 		<Owners>dnGLua</Owners>
 		<Company>dnGLua</Company>
-		<Copyright>Copyright (c) dnGLua and Contributors</Copyright>
+		<Copyright>Copyright © dnGLua and Contributors</Copyright>
 		<PackageId>dnGLua.API.Common</PackageId>
 		<Description>Common GLua library API for C#.</Description>
 		<RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/Common</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
 		<PackageTags>csharp api gmod-lua glua common dnglua</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageVersion>0.1.3</PackageVersion>
+		<PackageVersion>0.1.4</PackageVersion>
 		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
