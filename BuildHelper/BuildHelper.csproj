@@ -4,8 +4,8 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>latest</LangVersion>
-        <AssemblyName>dnGLua.API.CodeGenerator</AssemblyName>
-        <RootNamespace>dnGLua.API.CodeGenerator</RootNamespace>
+        <AssemblyName>dnGLua.BuildHelper</AssemblyName>
+        <RootNamespace>dnGLua.BuildHelper</RootNamespace>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 

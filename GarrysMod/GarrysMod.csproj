@@ -1,59 +1,59 @@
 <Project>
 
-	<Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
 
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<IsPackable>true</IsPackable>
-		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<ContentTargetFolders>contentFiles</ContentTargetFolders>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-		<NoWarn>CS8021</NoWarn>
-		<NoBuild>true</NoBuild>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-		<PackageOutputPath>$(SolutionDir)nupkg</PackageOutputPath>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>contentFiles</ContentTargetFolders>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <NoWarn>CS8021</NoWarn>
+        <NoBuild>true</NoBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <PackageOutputPath>$(SolutionDir)nupkg</PackageOutputPath>
+    </PropertyGroup>
 
-	<PropertyGroup>
-		<Title>dnGLua.API.GarrysMod</Title>
-		<Authors>Cheatoid</Authors>
-		<Owners>dnGLua</Owners>
-		<Company>dnGLua</Company>
-		<Copyright>Copyright © dnGLua and Contributors</Copyright>
-		<PackageId>dnGLua.API.GarrysMod</PackageId>
-		<Description>Garry's Mod standard library API for C#.</Description>
-		<RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/GarrysMod</PackageProjectUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>csharp api gmod garrysmod garrys-mod gmod-lua glua dnglua</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageVersion>0.1.0</PackageVersion>
-		<PackageReleaseNotes>Initial release.</PackageReleaseNotes>
-	</PropertyGroup>
+    <PropertyGroup>
+        <Title>dnGLua.API.GarrysMod</Title>
+        <Authors>Cheatoid</Authors>
+        <Owners>dnGLua</Owners>
+        <Company>dnGLua</Company>
+        <Copyright>Copyright © dnGLua and Contributors</Copyright>
+        <PackageId>dnGLua.API.GarrysMod</PackageId>
+        <Description>Garry's Mod standard library API for C#.</Description>
+        <RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/dnGLua/API/tree/main/GarrysMod</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>csharp api gmod garrysmod garrys-mod gmod-lua glua dnglua</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageVersion>0.1.0</PackageVersion>
+        <PackageReleaseNotes>Initial release.</PackageReleaseNotes>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<Compile Update="@(Compile)">
-			<Pack>true</Pack>
-			<PackagePath>$(ContentTargetFolders)\cs\$(TargetFramework)\$(PackageId)\%(RecursiveDir)\</PackagePath>
-		</Compile>
-	</ItemGroup>
+    <ItemGroup>
+        <Compile Update="@(Compile)">
+            <Pack>true</Pack>
+            <PackagePath>$(ContentTargetFolders)\cs\$(TargetFramework)\$(PackageId)\%(RecursiveDir)\</PackagePath>
+        </Compile>
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Remove="@(PackageReference)" />
-		<ProjectReference Include="..\Common\Common.csproj" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Remove="@(PackageReference)"/>
+        <ProjectReference Include="..\Common\Common.csproj"/>
+    </ItemGroup>
 
-	<Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+    <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
 
-	<Target Name="Compile" />
-	<Target Name="CopyFilesToOutputDirectory" />
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Exec Command="&quot;$(SolutionDir)Build/$(OutDir)Build.exe&quot; --clean-nuget" />
-	</Target>
+    <Target Name="Compile"/>
+    <Target Name="CopyFilesToOutputDirectory"/>
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="&quot;$(SolutionDir)BuildHelper/$(OutDir)dnGLua.BuildHelper.exe&quot; --clean-nuget"/>
+    </Target>
 
 </Project>

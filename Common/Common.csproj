@@ -1,58 +1,58 @@
 <Project>
 
-	<Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+    <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk"/>
 
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-		<Nullable>enable</Nullable>
-		<IsPackable>true</IsPackable>
-		<IncludeBuildOutput>false</IncludeBuildOutput>
-		<ContentTargetFolders>contentFiles</ContentTargetFolders>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-		<NoWarn>CS8021</NoWarn>
-		<NoBuild>true</NoBuild>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
-		<PackageOutputPath>$(SolutionDir)nupkg</PackageOutputPath>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <ContentTargetFolders>contentFiles</ContentTargetFolders>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <NoWarn>CS8021</NoWarn>
+        <NoBuild>true</NoBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+        <PackageOutputPath>$(SolutionDir)nupkg</PackageOutputPath>
+    </PropertyGroup>
 
-	<PropertyGroup>
-		<Title>dnGLua.API.Common</Title>
-		<Authors>Cheatoid</Authors>
-		<Owners>dnGLua</Owners>
-		<Company>dnGLua</Company>
-		<Copyright>Copyright © dnGLua and Contributors</Copyright>
-		<PackageId>dnGLua.API.Common</PackageId>
-		<Description>Common GLua library API for C#.</Description>
-		<RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/dnGLua/API/tree/main/Common</PackageProjectUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>csharp api gmod-lua glua common dnglua</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<PackageVersion>0.1.4</PackageVersion>
-		<PackageReleaseNotes></PackageReleaseNotes>
-	</PropertyGroup>
+    <PropertyGroup>
+        <Title>dnGLua.API.Common</Title>
+        <Authors>Cheatoid</Authors>
+        <Owners>dnGLua</Owners>
+        <Company>dnGLua</Company>
+        <Copyright>Copyright © dnGLua and Contributors</Copyright>
+        <PackageId>dnGLua.API.Common</PackageId>
+        <Description>Common GLua library API for C#.</Description>
+        <RepositoryUrl>https://github.com/dnGLua/API</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/dnGLua/API/tree/main/Common</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>csharp api gmod-lua glua common dnglua</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageVersion>0.1.4</PackageVersion>
+        <PackageReleaseNotes></PackageReleaseNotes>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<Compile Update="@(Compile)">
-			<Pack>true</Pack>
-			<PackagePath>$(ContentTargetFolders)\cs\$(TargetFramework)\$(PackageId)\%(RecursiveDir)\</PackagePath>
-		</Compile>
-	</ItemGroup>
+    <ItemGroup>
+        <Compile Update="@(Compile)">
+            <Pack>true</Pack>
+            <PackagePath>$(ContentTargetFolders)\cs\$(TargetFramework)\$(PackageId)\%(RecursiveDir)\</PackagePath>
+        </Compile>
+    </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Remove="@(PackageReference)" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Remove="@(PackageReference)"/>
+    </ItemGroup>
 
-	<Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+    <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk"/>
 
-	<Target Name="Compile" />
-	<Target Name="CopyFilesToOutputDirectory" />
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Exec Command="&quot;$(SolutionDir)Build/$(OutDir)Build.exe&quot; --clean-nuget" />
-	</Target>
+    <Target Name="Compile"/>
+    <Target Name="CopyFilesToOutputDirectory"/>
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="&quot;$(SolutionDir)BuildHelper/$(OutDir)dnGLua.BuildHelper.exe&quot; --clean-nuget"/>
+    </Target>
 
 </Project>
