@@ -4525,7 +4525,7 @@ public static partial class game
     /// @CSharpLua.Template = _G.GetHostName()
 #endif
     [Pure]
-    public static extern string GetMap();
+    public static extern string GetHostName();
 #endif
 
 #if FEATURE_PROPERTIES
