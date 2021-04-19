@@ -10,7 +10,7 @@
         <ContentTargetFolders>contentFiles</ContentTargetFolders>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-        <NoWarn>CS8021</NoWarn>
+        <NoWarn>$(NoWarn);CS8021;NU5128</NoWarn>
         <NoBuild>true</NoBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
