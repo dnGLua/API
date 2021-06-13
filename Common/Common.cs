@@ -626,6 +626,8 @@ public sealed partial class Color
     public extern override string ToString();
 }
 
+#if INCLUDE_EVENTS
+
 public abstract partial class EventBase
 {
     protected EventBase(string eventName, Delegate func, bool captureThis)
@@ -1038,7 +1040,7 @@ public sealed partial class PlayerChat : EventBase
     {
     }
 }
-#endif
+#endif // CLIENT
 
 #if SERVER
 public sealed partial class PlayerDeath : EventBase
@@ -1241,9 +1243,13 @@ public sealed partial class PhysgunReload : EventBase
     {
     }
 }
+#endif // SERVER
+
+#endregion Hooks / Events
+
 #endif
 
-#endregion
+#if INCLUDE_REALM //|| STARFALL
 
 public abstract class Realm
 {
@@ -1259,6 +1265,8 @@ public abstract partial class Clientside : Realm
 public abstract partial class Serverside : Realm
 {
 }
+
+#endif
 
 /// @CSharpLua.Ignore
 public static partial class CoreExLib
@@ -4583,6 +4591,7 @@ public static partial class system
 }
 
 #if CLIENT
+/// @CSharpLua.Ignore
 public sealed class SunInfo
 {
     private extern SunInfo();
@@ -5732,9 +5741,13 @@ public static partial class coroutine
 {
 }
 
+#if INCLUDE_THREAD
+
 public sealed class Thread
 {
 }
+
+#endif
 
 /// @CSharpLua.Ignore
 public static partial class timer
@@ -5850,6 +5863,8 @@ public static partial class timer
     [Pure]
     public static extern bool Toggle(string identifier);
 }
+
+#if INCLUDE_TIMER
 
 public interface ITimer : IDisposable
 {
@@ -6003,6 +6018,8 @@ public sealed class Timer : ITimer
     }
 }
 
+#endif
+
 /// @CSharpLua.Ignore
 public static partial class hook
 {
@@ -6013,12 +6030,14 @@ public static partial class hook
 #endif
     public static extern void Add<T>(string eventName, string id, T func) where T : Delegate;
 
+#if INCLUDE_EVENTS
 #if STARFALL
     /// @CSharpLua.Template = hook.add({0}, {1}, {2})
 #else
     /// @CSharpLua.Template = hook.Add({0}, {1}, {2})
 #endif
     public static extern void Add(string eventName, string id, EventBase eventBase);
+#endif
 
 #if STARFALL
     /// @CSharpLua.Template = hook.remove({0}, {1})

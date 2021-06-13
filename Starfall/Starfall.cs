@@ -186,6 +186,8 @@ public partial class BasePlayer
 #endif
 }
 
+#if INCLUDE_EVENTS
+
 #region Hooks / Events
 
 public sealed partial class ComponentLinked : EventBase
@@ -424,6 +426,8 @@ public sealed partial class Removed : EventBase
 #endif // SERVER
 
 #endregion Hooks
+
+#endif
 
 /// @CSharpLua.Ignore
 public static partial class holograms
